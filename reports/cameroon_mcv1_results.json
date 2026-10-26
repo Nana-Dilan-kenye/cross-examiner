@@ -1,0 +1,78 @@
+{
+  "source": "zetaris",
+  "records_loaded": 4,
+  "threshold_percentage_points": 5,
+  "findings": [
+    {
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2020",
+      "measure_a": "Administrative coverage",
+      "value_a": 74.0,
+      "measure_b": "WUENIC estimate",
+      "value_b": 63.0,
+      "gap_percentage_points": 11.0,
+      "status": "REVIEW",
+      "interpretation": "Difference detected; investigate definitions, denominators, reporting quality and estimation methodology. This alone does not establish which figure is correct.",
+      "sources": [
+        {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        },
+        {
+          "name": "WHO/UNICEF Estimates of National Immunization Coverage, 2025 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/"
+        }
+      ]
+    },
+    {
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2023",
+      "measure_a": "Administrative coverage",
+      "value_a": 82.0,
+      "measure_b": "WUENIC estimate",
+      "value_b": 71.0,
+      "gap_percentage_points": 11.0,
+      "status": "REVIEW",
+      "interpretation": "Difference detected; investigate definitions, denominators, reporting quality and estimation methodology. This alone does not establish which figure is correct.",
+      "sources": [
+        {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        },
+        {
+          "name": "WHO/UNICEF Estimates of National Immunization Coverage, 2025 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "REVIEW",
+      "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods.",
+      "critic": {
+        "passed": true,
+        "issues": [],
+        "limitations": [
+          "A URL being present does not verify the source's contents.",
+          "A difference between measures does not establish which value is correct."
+        ]
+      }
+    },
+    {
+      "decision": "REVIEW",
+      "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods.",
+      "critic": {
+        "passed": true,
+        "issues": [],
+        "limitations": [
+          "A URL being present does not verify the source's contents.",
+          "A difference between measures does not establish which value is correct."
+        ]
+      }
+    }
+  ],
+  "remembered": []
+}

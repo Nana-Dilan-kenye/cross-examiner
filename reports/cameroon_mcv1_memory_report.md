@@ -30,6 +30,8 @@ Discrepancies identified: 2
 - [WUENIC country profile 2023 revision](https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3)
   - Verification status: CONTEXT_MATCHED
   - Matching table page: 20
+  - WUENIC estimate: claim=63.0%, table=63%, matched=yes
+  - Administrative coverage: claim=74.0%, table=74%, matched=yes
   - Limitation: Text matching does not validate the underlying data.
   - Limitation: PDF extraction can fail or reorder table values.
   - Limitation: A match does not establish which measure is more accurate.
@@ -54,6 +56,8 @@ Discrepancies identified: 2
 - [WUENIC country profile 2023 revision](https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3)
   - Verification status: CONTEXT_MATCHED
   - Matching table page: 20
+  - WUENIC estimate: claim=71.0%, table=71%, matched=yes
+  - Administrative coverage: claim=82.0%, table=82%, matched=yes
   - Limitation: Text matching does not validate the underlying data.
   - Limitation: PDF extraction can fail or reorder table values.
   - Limitation: A match does not establish which measure is more accurate.

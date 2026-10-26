@@ -99,6 +99,14 @@ def render_report(results):
                         f"  - Matching table page: {check['table_page']}"
                     )
 
+                for matched in check.get("matched_values", []):
+                    lines.append(
+                        f"  - {matched.get('measure')}: "
+                        f"claim={matched.get('expected')}%, "
+                        f"table={matched.get('table_value')}%, "
+                        f"matched={'yes' if matched.get('found_in_expected_year_row') else 'no'}"
+                    )
+
                 for limitation in check.get("limitations", []):
                     lines.append(f"  - Limitation: {limitation}")
 

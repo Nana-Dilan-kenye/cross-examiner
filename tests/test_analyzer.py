@@ -122,3 +122,96 @@ class ReporterTests(unittest.TestCase):
 
         report = render_report({"records_loaded": 3, "findings": [], "decisions": []})
         self.assertIn("No discrepancies met the configured threshold.", report)
+class MemoryComparisonTests(unittest.TestCase):
+    def test_matches_memory_for_correct_year_only(self):
+        from src.arbiter import compare_with_memory
+
+        finding = {
+            "country": "Cameroon",
+            "antigen": "MCV1",
+            "year": "2023",
+            "gap_percentage_points": 11.0,
+        }
+
+        memory_context = {
+            "memories": [
+                {
+                    "id": "mem-8",
+                    "content": (
+                        "Observed a 11.0 percentage-point gap for "
+                        "Cameroon MCV1 in 2023."
+                    ),
+                    "source": "cross-examiner:Cameroon:MCV1:2023",
+                },
+                {
+                    "id": "mem-7",
+                    "content": (
+                        "Observed a 11.0 percentage-point gap for "
+                        "Cameroon MCV1 in 2020."
+                    ),
+                    "source": "cross-examiner:Cameroon:MCV1:2020",
+                },
+            ]
+        }
+
+        result = compare_with_memory(finding, memory_context)
+
+        matched_ids = [
+            memory["memory_id"]
+            for memory in result["matching_memories"]
+        ]
+
+        self.assertEqual(matched_ids, ["mem-8"])
+        self.assertEqual(
+            result["memory_comparison"],
+            "MATCHES_RETRIEVED_MEMORY",
+        )
+    def test_report_shows_source_verification_status(self):
+        from src.reporter import render_report
+
+        results = {
+            "findings": [{
+                "country": "Cameroon",
+                "antigen": "MCV1",
+                "year": "2023",
+                "measure_a": "WUENIC estimate",
+                "value_a": 71.0,
+                "measure_b": "Administrative coverage",
+                "value_b": 82.0,
+                "gap_percentage_points": 11.0,
+                "sources": [
+                    {"name": "WHO", "url": "https://example.com/who"},
+                    {"name": "UNICEF", "url": "https://example.com/unicef"},
+                ],
+            }],
+            "decisions": [{
+                "decision": "REVIEW",
+                "reason": "Investigate the discrepancy.",
+                "critic": {
+                    "source_checks": [
+                        {
+                            "name": "WHO",
+                            "status": "CONTEXT_MATCHED",
+                            "table_page": 20,
+                            "limitations": [
+                                "Text matching does not validate the underlying data."
+                            ],
+                        },
+                        {
+                            "name": "UNICEF",
+                            "status": "NOT_VERIFIED",
+                        },
+                    ]
+                },
+            }],
+        }
+
+        report = render_report(results)
+
+        self.assertIn("Verification status: CONTEXT_MATCHED", report)
+        self.assertIn("Matching table page: 20", report)
+        self.assertIn("Verification status: NOT_VERIFIED", report)
+        self.assertIn(
+            "Text matching does not validate the underlying data.",
+            report,
+        )

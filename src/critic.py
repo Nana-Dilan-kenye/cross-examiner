@@ -50,9 +50,43 @@ def critique(finding):
             "details": "Values or gap are missing or not numeric.",
         })
 
+
+    source_checks = []
+    from src.source_verifier import verify_pdf_source
+
+    for source in sources:
+        url = source.get("url", "")
+        verification = None
+
+        if url and "cdn.who.int/media/docs/default-source/country-profiles/immunization/" in url:
+            try:
+                verification = verify_pdf_source(url, finding)
+            except Exception:
+                verification = {"status": "VERIFICATION_ERROR"}
+
+        status = verification["status"] if verification else (
+            "NOT_VERIFIED" if url else "MISSING_URL"
+        )
+
+        source_checks.append({
+            "name": source.get("name", source.get("source", "Unnamed source")),
+            "url_present": bool(url),
+            "table_context_matched": status == "CONTEXT_MATCHED",
+            "status": status,
+            **(
+                {
+                    "table_page": verification.get("table_page"),
+                    "matched_values": verification.get("matched_values", []),
+                    "limitations": verification.get("limitations", []),
+                }
+                if verification else {}
+            ),
+        })
+
     return {
         "passed": not issues,
         "issues": issues,
+        "source_checks": source_checks,
         "limitations": [
             "A URL being present does not verify the source's contents.",
             "A difference between measures does not establish which value is correct.",

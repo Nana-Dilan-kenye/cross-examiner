@@ -71,6 +71,10 @@ def main():
     )
     parser.add_argument("--threshold", type=float, default=5)
     parser.add_argument("--remember", action="store_true", help="Persist findings in H-MEM")
+    parser.add_argument(
+    "--question",
+    help="The question to answer",
+    )
     parser.add_argument("--report", help="Write a Markdown report to this path")
     args = parser.parse_args()
 
@@ -83,9 +87,16 @@ def main():
 
     findings = analyze_records(records, args.threshold)
     from src.arbiter import arbitrate
-    decisions = [arbitrate(finding, args.threshold) for finding in findings]
+    # decisions = [arbitrate(finding, args.threshold) for finding in findings]
     remembered = []
-
+    memory_context = None
+    if args.question:
+        from src.memory_bridge import query
+        memory_context = query(args.question)
+    decisions = [
+        arbitrate(finding, args.threshold, memory_context)
+        for finding in findings
+    ]
     if args.remember:
         from src.memory_bridge import remember
         for finding in findings:
@@ -101,6 +112,10 @@ def main():
                 item["url"] for item in finding["sources"]
                 if item.get("url")
             ]
+            memory_context = None
+            if args.question:
+                from src.memory_bridge import query
+                memory_context = query(args.question)
             result = remember(
                 content,
                 source=(
@@ -121,6 +136,8 @@ def main():
         "source": args.source,
         "records_loaded": len(records),
         "threshold_percentage_points": args.threshold,
+        "question": args.question,
+        "memory_context": memory_context,
         "findings": findings,
         "decisions": decisions,
         "remembered": remembered,

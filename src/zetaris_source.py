@@ -1,11 +1,13 @@
 """Read Cross-Examiner evidence from Zetaris."""
 import importlib.util
+import json
 import os
 from pathlib import Path
 
 DEFAULT_HELPER = (
     Path.home() / "hackathon" / "zetaris-getting-started" / "scripts"
 )
+
 
 def load_records():
     helper_dir = Path(
@@ -29,15 +31,31 @@ def load_records():
 
     try:
         result = channel.run(
-            "SELECT country, antigen, year, measure, value_percent, "
-            "source_name, source_url, notes "
-            "FROM lightning.metastore.cross_examiner.cross_examiner_evidence.evidence",
+            "SELECT * FROM CROSS_EXAMINER_EVIDENCE.evidence_raw",
             limit=1000,
         )
-        columns = [
-            "country", "antigen", "year", "measure", "value_percent",
-            "source", "source_url", "notes",
-        ]
-        return [dict(zip(columns, row)) for row in result.rows]
+
+        records = []
+        for row in result.rows:
+            payload = row[0]
+            if isinstance(payload, str):
+                payload = json.loads(payload)
+
+            if isinstance(payload, dict):
+                payload = [payload]
+
+            for item in payload:
+                records.append({
+                    "country": item["country"],
+                    "antigen": item["antigen"],
+                    "year": str(item["year"]),
+                    "measure": item["measure"],
+                    "value_percent": str(item["value_percent"]),
+                    "source": item.get("source", ""),
+                    "source_url": item.get("source_url", ""),
+                    "notes": item.get("notes", ""),
+                })
+
+        return records
     finally:
         channel.close()

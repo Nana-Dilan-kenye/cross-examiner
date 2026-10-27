@@ -76,14 +76,17 @@ def _diagnose(stderr):
     if not lines:
         return "The H-MEM bridge exited with an error."
 
-    errors = [line for line in lines if "error" in line.casefold()]
-    tail = (errors or lines)[-3:]
-    message = " ".join(line[:200] for line in tail).strip()
-
     hint = _node_hint()
+    if any("SyntaxError" in line for line in lines):
+        detail = "H-MEM bridge failed to start (SyntaxError)."
+    elif lines:
+        detail = "H-MEM bridge failed to start."
+    else:
+        detail = "The H-MEM bridge exited with an error."
+
     if hint:
-        return f"{hint} {message}"[:400]
-    return message[:400]
+        return f"{hint} {detail}"[:400]
+    return detail[:400]
 
 
 def _tsx_command():

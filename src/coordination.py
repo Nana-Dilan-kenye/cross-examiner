@@ -186,7 +186,10 @@ def permitted_actions(state, key):
     ):
         actions.append("QUERY_HMEM")
 
-    return actions
+    # A recalled conflict can also make the generic document-target rule
+    # append FETCH_SOURCE_DOCUMENT; keep the action list deterministic and
+    # free of duplicate names.
+    return list(dict.fromkeys(actions))
 
 
 def choose_next_action(state, key, proposal):

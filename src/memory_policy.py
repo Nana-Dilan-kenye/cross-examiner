@@ -179,10 +179,10 @@ def conflict_memory(finding, conflict):
         f"above an "
         f"independent household-survey measurement "
         f"({conflict.get('value_b')}%). The administrative number is not "
-        f"usable as the coverage level; the survey line is the more "
-        f"appropriate level estimate among the reported figures, but it "
-        f"remains an unverified measurement, with the usual caveats about "
-        f"survey design."
+        f"supported as the coverage level on this evidence; the survey "
+        f"line is the more appropriate level estimate among the reported "
+        f"figures, but it remains an unverified measurement, with the "
+        f"usual caveats about survey design."
     )
 
 

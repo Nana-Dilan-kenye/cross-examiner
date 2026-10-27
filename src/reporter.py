@@ -163,8 +163,8 @@ def render_report(results):
     if memory_context.get("available") is False:
         lines.append("")
         lines.append(
-            f"> Memory was unavailable for this run: "
-            f"{memory_context.get('error', 'unknown reason')}"
+            "> Memory was unavailable for this run: H-MEM bridge not "
+            "available. This is a structured runtime warning, not evidence."
         )
 
     lines.append("")
@@ -256,6 +256,39 @@ def render_report(results):
     else:
         lines.append("No revision step was recorded.")
     lines.append("")
+
+    document_revisions = [
+        revision for revision in revisions
+        if revision.get("action") == "FETCH_SOURCE_DOCUMENT"
+    ]
+    if document_revisions:
+        lines.extend(["## Source retrieval provenance", ""])
+        lines.append(
+            "> Source documents are retrieved only after a candidate URL is "
+            "already attached to a finding. A retrieved document shows that it "
+            "exists; it does not verify the values inside it. Failed attempts "
+            "remain unavailable evidence."
+        )
+        lines.append("")
+        for revision in document_revisions:
+            requested = revision.get("requested_url") or "not recorded"
+            attempted = revision.get("attempted_urls") or []
+            supplied = revision.get("document_url")
+            lines.append(
+                f"- **{revision.get('country', '')} "
+                f"{revision.get('antigen', '')} "
+                f"({revision.get('year', 'unknown year')})**: "
+                f"requested={requested}; "
+                f"outcome={revision.get('outcome')}; "
+                f"supplied={supplied or 'none'}"
+            )
+            if attempted:
+                lines.append(
+                    "  - attempted: " + ", ".join(str(url) for url in attempted)
+                )
+            if revision.get("stop_reason"):
+                lines.append(f"  - stop reason: {revision.get('stop_reason')}")
+        lines.append("")
 
     iterations = results.get("iterations") or []
     lines.extend(["## Investigation trace", ""])
@@ -449,17 +482,18 @@ def render_report(results):
         if recommendation:
             lines.extend([
                 "",
-                "### Recommendation for the coverage level",
+                "### Recommendation for the coverage level (unverified measurements)",
                 "",
-                f"- **Use for the coverage level:** "
+                f"- **Prefer for the coverage level (unverified):** "
                 f"{recommendation.get('recommended_measure')} — "
                 f"{recommendation.get('recommended_value')}%",
-                f"- **Do not use as the coverage level:** "
+                f"- **Do not use as the coverage level on this evidence:** "
                 f"{recommendation.get('not_recommended_measure')} — "
                 f"{recommendation.get('not_recommended_value')}%",
                 f"- **Difference:** "
                 f"{recommendation.get('gap_percentage_points')} percentage points",
                 f"- **Why:** {recommendation.get('basis')}",
+                "- **Status:** REVIEW; neither figure is independently verified.",
             ])
             for caveat in recommendation.get("caveats") or []:
                 lines.append(f"- Caveat: {caveat}")

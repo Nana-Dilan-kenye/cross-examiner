@@ -5,7 +5,14 @@ from unittest.mock import patch
 
 from src.adjudicator import MANDATORY_REVIEW_ITEMS
 from src.arbiter import arbitrate
-from src.coordination import investigate
+from src.coordination import (
+    InvestigationState,
+    _document_targets,
+    choose_next_action,
+    execute_action,
+    permitted_actions,
+    investigate,
+)
 from src.evidence_ledger import EvidenceLedger
 from src.investigator import CallBudget
 from src.model_client import ModelUnavailable
@@ -958,3 +965,110 @@ class StoppingConditionTests(CoordinatorTestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CoordinationPolicyTests(unittest.TestCase):
+    def _state(self, recalled=None):
+        f = finding()
+        decision = arbitrate(f, 5)
+        state = InvestigationState("q", [f], [decision], 5, CallBudget(5))
+        key = list(state.findings)[0]
+        if recalled is not None:
+            state.decisions[key]["memory_recall"] = recalled
+        return state, key
+
+    def test_permitted_actions_are_unique(self):
+        state, key = self._state({
+            "preferred_action": "FETCH_SOURCE_DOCUMENT",
+            "preferred_target": WHO_URL,
+        })
+        actions = permitted_actions(state, key)
+        self.assertEqual(len(actions), len(set(actions)))
+
+    def test_recalled_conflict_prefers_fetch_source_document(self):
+        state, key = self._state({
+            "preferred_action": "FETCH_SOURCE_DOCUMENT",
+            "preferred_target": WHO_URL,
+        })
+        proposal = {"source": "model", "accepted": True, "action": "STOP"}
+        # A genuine model stop is still respected.
+        choice = choose_next_action(state, key, proposal)
+        self.assertEqual(choice["action"], "STOP")
+
+        choice = choose_next_action(state, key, None)
+        self.assertEqual(choice["action"], "FETCH_SOURCE_DOCUMENT")
+        self.assertEqual(choice["source"], "memory")
+
+    def test_alternative_source_urls_remain_eligible(self):
+        state, key = self._state()
+        targets = [s["url"] for s in state.findings[key]["sources"]]
+        self.assertIn(WHO_URL, targets)
+        self.assertIn(UNICEF_URL, targets)
+
+    def test_generic_memory_does_not_trigger_conflict_retrieval(self):
+        state, key = self._state({
+            "preferred_action": "QUERY_ZETARIS",
+            "preferred_target": "",
+        })
+        choice = choose_next_action(state, key, None)
+        self.assertNotEqual(choice.get("source"), "memory")
+
+
+class CoordinationRegressionTests(unittest.TestCase):
+    def _state(self, recalled=None):
+        f = finding()
+        decision = arbitrate(f, 5)
+        state = InvestigationState("q", [f], [decision], 5, CallBudget(5))
+        key = list(state.findings)[0]
+        if recalled is not None:
+            state.decisions[key]["memory_recall"] = recalled
+        return state, key
+
+
+
+    def test_failed_document_retrieval_is_recorded_not_evidence(self):
+        state, key = self._state()
+        choice = {
+            "action": "FETCH_SOURCE_DOCUMENT",
+            "target": WHO_URL,
+            "reason": "test",
+            "source": "deterministic",
+        }
+        state.document_fetcher = lambda url: {
+            "status": "NOT_RETRIEVED",
+            "error": "HTTP Error 403: Forbidden",
+        }
+        updated, revision = execute_action(state, key, choice, None)
+        self.assertEqual(revision["outcome"], "ADDITIONAL_EVIDENCE_UNAVAILABLE")
+        self.assertIn(key, state.source_failures)
+        self.assertIn("403", state.source_failures[key]["error"])
+        self.assertTrue(any(
+            item.get("status") == "NOT_RETRIEVED"
+            for item in state.ledger.items()
+            if item.get("kind") == "DOCUMENT_FETCH"
+        ))
+
+    def test_document_targets_skip_failed_url_keep_alternative(self):
+        state, key = self._state()
+        state.executed_set.add((key, "FETCH_SOURCE_DOCUMENT", WHO_URL))
+        targets = _document_targets(state, key)
+        self.assertNotIn(WHO_URL, targets)
+        self.assertIn(UNICEF_URL, targets)
+
+    def test_generic_memories_do_not_enable_conflict_fetch(self):
+        for preferred in ("", None):
+            state, key = self._state({
+                "preferred_action": "QUERY_ZETARIS",
+                "preferred_target": preferred,
+            })
+            actions = permitted_actions(state, key)
+            # Conflict-specific memory retrieval is not enabled by a generic
+            # memory; any document fetch here comes only from the generic rule.
+            self.assertNotIn("memory", str(choose_next_action(state, key, None).get("source")))
+
+    def test_accepted_model_stop_is_respected_with_other_actions(self):
+        state, key = self._state()
+        proposal = {"source": "model", "accepted": True, "action": "STOP"}
+        choice = choose_next_action(state, key, proposal)
+        self.assertEqual(choice["action"], "STOP")
+

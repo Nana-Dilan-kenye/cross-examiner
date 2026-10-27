@@ -101,9 +101,16 @@ def fetch_source_document(url, timeout=DOCUMENT_TIMEOUT,
                           max_bytes=MAX_DOCUMENT_BYTES):
     """Fetch a source document that is already attached to a finding.
 
-    Returns a dict describing what was retrieved. Never raises for ordinary
-    network problems: the caller decides how to treat a failure.
+    The configured URL is tried first, followed by any alternate URLs
+    registered for the same source. Returns a dict describing what was
+    retrieved. Never raises for ordinary network problems: the caller
+    decides how to treat a failure.
     """
+    from src.source_registry import candidate_urls
+
+    requested_url = str(url or "").strip()
+    candidates = candidate_urls(requested_url) or [requested_url]
+    attempts = []
     result = {
         "status": "NOT_RETRIEVED",
         "content_type": "",
@@ -111,35 +118,64 @@ def fetch_source_document(url, timeout=DOCUMENT_TIMEOUT,
         "text_excerpt": "",
         "mentions": {},
         "error": None,
+        "requested_url": requested_url,
+        "url": None,
+        "attempted_urls": [],
     }
-    try:
-        request = Request(url, headers={"User-Agent": "CrossExaminer/0.1"})
-        with urlopen(request, timeout=timeout) as response:
-            content_type = response.headers.get("Content-Type", "")
-            data = response.read(max_bytes + 1)
-    except (URLError, TimeoutError, OSError) as exc:
-        result["error"] = f"{type(exc).__name__}: {exc}"
-        return result
 
-    if len(data) > max_bytes:
-        result["status"] = "TOO_LARGE"
-        result["content_type"] = content_type
-        return result
-
-    result["status"] = "RETRIEVED"
-    result["content_type"] = content_type
-    result["bytes"] = len(data)
-
-    if "pdf" not in content_type.casefold() and not data.startswith(b"%PDF"):
+    for candidate in candidates:
+        attempt = {"url": candidate, "status": "NOT_RETRIEVED", "error": None}
         try:
-            text = plain_text(data.decode("utf-8", errors="replace"))
-        except Exception:
-            text = ""
-        result["text_excerpt"] = text[:600]
-        result["mentions"] = {
-            "antigen": "",
-            "country": "",
+            request = Request(candidate, headers={"User-Agent": "CrossExaminer/0.1"})
+            with urlopen(request, timeout=timeout) as response:
+                content_type = response.headers.get("Content-Type", "")
+                data = response.read(max_bytes + 1)
+        except (URLError, TimeoutError, OSError) as exc:
+            attempt["status"] = "NOT_RETRIEVED"
+            attempt["error"] = f"{type(exc).__name__}: {exc}"
+            attempts.append(attempt)
+            continue
+
+        if len(data) > max_bytes:
+            attempt["status"] = "TOO_LARGE"
+            attempts.append(attempt)
+            continue
+
+        if "pdf" not in content_type.casefold() and not data.startswith(b"%PDF"):
+            attempt["status"] = "REJECTED_NOT_SAME_DOCUMENT"
+            attempt["error"] = "Retrieved content is not the registered PDF document"
+            attempts.append(attempt)
+            continue
+
+        result = {
+            "status": "RETRIEVED",
+            "content_type": content_type,
+            "bytes": len(data),
+            "text_excerpt": "",
+            "mentions": {},
+            "error": None,
+            "requested_url": requested_url,
+            "url": candidate,
+            "attempted_urls": [item["url"] for item in attempts] + [candidate],
+            "failed_attempts": list(attempts),
         }
+
+        if "pdf" not in content_type.casefold() and not data.startswith(b"%PDF"):
+            try:
+                text = plain_text(data.decode("utf-8", errors="replace"))
+            except Exception:
+                text = ""
+            result["text_excerpt"] = text[:600]
+            result["mentions"] = {
+                "antigen": "",
+                "country": "",
+            }
+        return result
+
+    result["attempted_urls"] = [item["url"] for item in attempts]
+    result["failed_attempts"] = attempts
+    if attempts:
+        result["error"] = attempts[-1].get("error") or attempts[-1].get("status")
     return result
 
 
@@ -365,6 +401,10 @@ def _retrieve_source_document(updated, revision, finding, target_url,
     revision["action"] = "FETCH_SOURCE_DOCUMENT"
     document = fetch_document(target_url)
 
+    revision["requested_url"] = target_url
+    revision["document_url"] = document.get("url")
+    revision["attempted_urls"] = document.get("attempted_urls", [target_url])
+
     if document.get("status") != "RETRIEVED":
         revision["outcome"] = "ADDITIONAL_EVIDENCE_UNAVAILABLE"
         revision["stop_reason"] = document.get("error") or document.get("status")
@@ -398,6 +438,9 @@ def _retrieve_source_document(updated, revision, finding, target_url,
             "verification_scope": "DOCUMENT_PRESENCE",
             "table_context_matched": False,
             "document": {
+                "requested_url": document.get("requested_url", target_url),
+                "url": document.get("url", target_url),
+                "attempted_urls": document.get("attempted_urls", [target_url]),
                 "content_type": document.get("content_type"),
                 "bytes": document.get("bytes"),
                 "mentions": mentions,

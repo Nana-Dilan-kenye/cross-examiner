@@ -1,4 +1,5 @@
 import unittest
+import unittest.mock
 
 from src.revision import revise_decision
 
@@ -139,3 +140,108 @@ class RevisionReportTests(unittest.TestCase):
         self.assertIn("WORKBOOK_VALUE_MATCHED", report)
         self.assertIn("Verification status: EXTRACT_CONSISTENT", report)
         self.assertIn("not independent verification", report)
+
+
+from unittest.mock import patch
+
+from src.revision import fetch_source_document
+
+
+class SourceDocumentFallbackTests(unittest.TestCase):
+    def test_primary_url_success(self):
+        with patch("src.source_registry.candidate_urls", return_value=["https://primary.example/doc.pdf", "https://alt.example/doc.pdf"]):
+            with patch("src.revision.urlopen") as mocked:
+                response = mocked.return_value.__enter__.return_value
+                response.headers.get.return_value = "application/pdf"
+                response.read.return_value = b"%PDF-1.4"
+                result = fetch_source_document("https://primary.example/doc.pdf")
+        self.assertEqual(result["status"], "RETRIEVED")
+        self.assertEqual(result["url"], "https://primary.example/doc.pdf")
+        self.assertEqual(result["requested_url"], "https://primary.example/doc.pdf")
+
+    def test_fallback_success_after_primary_403(self):
+        from urllib.error import HTTPError
+
+        def side_effect(request, timeout=...):
+            if "primary" in request.full_url:
+                raise HTTPError(request.full_url, 403, "Forbidden", {}, None)
+            response = unittest.mock.MagicMock()
+            response.headers.get.return_value = "application/pdf"
+            response.read.return_value = b"%PDF-1.4"
+            response.__enter__.return_value = response
+            return response
+
+        with patch("src.source_registry.candidate_urls", return_value=["https://primary.example/doc.pdf", "https://alt.example/doc.pdf"]):
+            with patch("src.revision.urlopen", side_effect=side_effect):
+                result = fetch_source_document("https://primary.example/doc.pdf")
+        self.assertEqual(result["status"], "RETRIEVED")
+        self.assertEqual(result["url"], "https://alt.example/doc.pdf")
+        self.assertEqual(result["requested_url"], "https://primary.example/doc.pdf")
+        self.assertEqual(result["attempted_urls"], ["https://primary.example/doc.pdf", "https://alt.example/doc.pdf"])
+
+    def test_all_candidates_fail(self):
+        from urllib.error import HTTPError
+
+        def side_effect(request, timeout=...):
+            raise HTTPError(request.full_url, 403, "Forbidden", {}, None)
+
+        with patch("src.source_registry.candidate_urls", return_value=["https://primary.example/doc.pdf", "https://alt.example/doc.pdf"]):
+            with patch("src.revision.urlopen", side_effect=side_effect):
+                result = fetch_source_document("https://primary.example/doc.pdf")
+        self.assertEqual(result["status"], "NOT_RETRIEVED")
+        self.assertIsNone(result["url"])
+        self.assertIn("403", result["error"])
+        self.assertEqual(result["attempted_urls"], ["https://primary.example/doc.pdf", "https://alt.example/doc.pdf"])
+
+    def test_provenance_records_failed_and_successful_urls(self):
+        from urllib.error import HTTPError
+
+        def side_effect(request, timeout=...):
+            if "primary" in request.full_url:
+                raise HTTPError(request.full_url, 403, "Forbidden", {}, None)
+            response = unittest.mock.MagicMock()
+            response.headers.get.return_value = "application/pdf"
+            response.read.return_value = b"%PDF-1.4"
+            response.__enter__.return_value = response
+            return response
+
+        with patch("src.source_registry.candidate_urls", return_value=["https://primary.example/doc.pdf", "https://alt.example/doc.pdf"]):
+            with patch("src.revision.urlopen", side_effect=side_effect):
+                result = fetch_source_document("https://primary.example/doc.pdf")
+        self.assertEqual(result["failed_attempts"][0]["url"], "https://primary.example/doc.pdf")
+        self.assertEqual(result["failed_attempts"][0]["status"], "NOT_RETRIEVED")
+
+
+class SourceDocumentIdentityTests(unittest.TestCase):
+    def test_unrelated_document_is_rejected(self):
+        catalog_body = b"<html><title>Publication Catalog</title></html>"
+
+        def side_effect(request, timeout=...):
+            response = unittest.mock.MagicMock()
+            response.headers.get.return_value = "text/html"
+            response.read.return_value = catalog_body
+            response.__enter__.return_value = response
+            return response
+
+        with patch("src.source_registry.candidate_urls", return_value=["https://primary.example/doc.pdf", "https://catalog.example/search"]):
+            with patch("src.revision.urlopen", side_effect=side_effect):
+                result = fetch_source_document("https://primary.example/doc.pdf")
+        self.assertEqual(result["status"], "NOT_RETRIEVED")
+        self.assertIsNone(result["url"])
+        self.assertEqual(result["failed_attempts"][0]["status"], "REJECTED_NOT_SAME_DOCUMENT")
+
+    def test_candidate_urls_exclude_catalog_origin(self):
+        with patch("src.source_registry.load_registry", return_value={
+            "sources": [{
+                "source_urls": [
+                    "https://example.com/a.pdf",
+                    "https://example.com/b.pdf",
+                ],
+                "origin_url": "https://example.com/catalog",
+            }]
+        }):
+            from src.source_registry import candidate_urls, reset_registry
+            reset_registry()
+            urls = candidate_urls("https://example.com/a.pdf")
+        self.assertEqual(urls, ["https://example.com/a.pdf", "https://example.com/b.pdf"])
+        self.assertNotIn("https://example.com/catalog", urls)

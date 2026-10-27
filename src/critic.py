@@ -333,8 +333,9 @@ def detect_conflicts(finding, threshold=5):
                     "The administrative figure is "
                     f"{gap:.1f} percentage points above an independent "
                     "household-survey measurement for the same year. The "
-                    "administrative number is not usable as the coverage "
-                    "level; the survey is the more appropriate level estimate "
+                    "administrative number is not supported as the coverage "
+                    "level on this evidence; the survey is the more appropriate "
+                    "level estimate "
                     "among the reported figures, but it remains an unverified "
                     "measurement, with the usual caveats about survey design."
                 ),

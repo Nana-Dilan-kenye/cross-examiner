@@ -121,6 +121,33 @@ def entry_for(source):
     return None
 
 
+def candidate_urls(url):
+    """Registered URLs for the source that owns ``url``.
+
+    The configured canonical URL is preferred, followed by any alternate
+    URLs already registered for that source. An unknown URL is returned
+    unchanged so callers can still attempt it.
+    """
+    url = str(url or "").strip()
+    if not url:
+        return []
+
+    entry = entry_for({"url": url})
+    candidates = []
+    if entry:
+        # Only URLs registered as serving the same document are eligible
+        # fallbacks. A publication catalog or search page is not the same
+        # document, even when it is the source's origin page.
+        for known in entry.get("source_urls") or []:
+            known = str(known or "").strip()
+            if known and known not in candidates:
+                candidates.append(known)
+
+    if url not in candidates:
+        candidates.insert(0, url)
+    return candidates
+
+
 def source_id(source):
     """The registry id of a source record, or None."""
     entry = entry_for(source)

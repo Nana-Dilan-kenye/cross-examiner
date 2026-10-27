@@ -175,3 +175,91 @@ class ReportTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SourceRetrievalProvenanceTests(unittest.TestCase):
+    def _results(self, revision):
+        return {
+            "records_loaded": 0,
+            "findings": [],
+            "decisions": [],
+            "revisions": [revision],
+        }
+
+    def test_successful_fallback_provenance_is_reported(self):
+        revision = {
+            "country": "Cameroon",
+            "antigen": "MCV1",
+            "year": "2020",
+            "action": "FETCH_SOURCE_DOCUMENT",
+            "outcome": "EVIDENCE_RETRIEVED",
+            "stop_reason": "SOURCE_DOCUMENT_RETRIEVED",
+            "requested_url": "https://primary.example/doc.pdf",
+            "document_url": "https://alt.example/doc.pdf",
+            "attempted_urls": [
+                "https://primary.example/doc.pdf",
+                "https://alt.example/doc.pdf",
+            ],
+        }
+        report = render_report(self._results(revision))
+        self.assertIn("## Source retrieval provenance", report)
+        self.assertIn("requested=https://primary.example/doc.pdf", report)
+        self.assertIn("supplied=https://alt.example/doc.pdf", report)
+        self.assertIn("https://primary.example/doc.pdf, https://alt.example/doc.pdf", report)
+
+    def test_total_failure_is_reported_as_unavailable(self):
+        revision = {
+            "country": "Cameroon",
+            "antigen": "MCV1",
+            "year": "2020",
+            "action": "FETCH_SOURCE_DOCUMENT",
+            "outcome": "ADDITIONAL_EVIDENCE_UNAVAILABLE",
+            "stop_reason": "HTTP Error 403: Forbidden",
+            "requested_url": "https://primary.example/doc.pdf",
+            "document_url": None,
+            "attempted_urls": [
+                "https://primary.example/doc.pdf",
+                "https://alt.example/doc.pdf",
+            ],
+        }
+        report = render_report(self._results(revision))
+        self.assertIn("## Source retrieval provenance", report)
+        self.assertIn("supplied=none", report)
+        self.assertIn("ADDITIONAL_EVIDENCE_UNAVAILABLE", report)
+
+
+class ReportQualityTests(unittest.TestCase):
+    def _results(self, revision=None, memory_error=None):
+        results = {
+            "records_loaded": 0,
+            "findings": [],
+            "decisions": [],
+            "revisions": [revision] if revision else [],
+        }
+        if memory_error is not None:
+            results["memory_context"] = {
+                "available": False,
+                "error": memory_error,
+                "memories": [],
+            }
+        return results
+
+    def test_memory_warning_is_concise_and_structured(self):
+        report = render_report(self._results(memory_error="var x=1; SyntaxError: boom"))
+        self.assertIn("H-MEM bridge not", report)
+        self.assertNotIn("var x=1", report)
+
+    def test_recommendation_is_qualified_as_unverified(self):
+        finding = analyze_records(EVIDENCE)[0]
+        decision = arbitrate(finding)
+        report = render_report(self._results())
+        # Build a report with the real finding/decision to exercise recommendation.
+        report = render_report({
+            "records_loaded": 3,
+            "findings": [finding],
+            "decisions": [decision],
+            "revisions": [],
+        })
+        self.assertIn("unverified measurements", report)
+        self.assertIn("- **Status:** REVIEW;", report)
+        self.assertIn("neither figure is independently verified", report)

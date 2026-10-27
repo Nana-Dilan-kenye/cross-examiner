@@ -23,20 +23,34 @@ QUESTION_PREFIX = "cross-examiner:question:"
 
 
 def _topic(source):
-    """The country, antigen and year a memory is about."""
+    """Extract a topic from current and legacy memory source formats."""
     parts = str(source or "").split(":")
-    if len(parts) < 5:
+
+    if not parts or parts[0] != "cross-examiner":
         return None
-    return {
-        "country": parts[2],
-        "antigen": parts[3],
-        "year": parts[4],
+
+    known_kinds = {
+        "conflict", "disposition", "finding", "revision", "question"
     }
+
+    # Current format: cross-examiner:<kind>:<country>:<antigen>:<year>
+    if len(parts) >= 5 and parts[1] in known_kinds:
+        country, antigen, year = parts[2:5]
+
+    # Legacy format: cross-examiner:<country>:<antigen>:<year>
+    elif len(parts) == 4:
+        country, antigen, year = parts[1:4]
+
+    else:
+        return None
+
+    return {"country": country, "antigen": antigen, "year": year}
 
 
 def _kind(source):
-    """The kind of fact a memory holds."""
+    """Identify the memory type; legacy records remain observations."""
     source = str(source or "")
+
     for prefix, kind in (
         (CONFLICT_PREFIX, "conflict"),
         (DISPOSITION_PREFIX, "disposition"),
@@ -46,8 +60,8 @@ def _kind(source):
     ):
         if source.startswith(prefix):
             return kind
-    return "observation"
 
+    return "observation"
 
 def recall(memories, finding):
     """What the store already knows about this finding.
@@ -89,6 +103,8 @@ def recall(memories, finding):
 
     conflicts = known.get("conflict") or []
     dispositions = known.get("disposition") or []
+    findings = known.get("finding") or []
+    revisions = known.get("revision") or []
     questions = known.get("question") or []
 
     effect = ""
@@ -97,19 +113,35 @@ def recall(memories, finding):
 
     if conflicts:
         effect = (
-            "An earlier investigation of this country, antigen and year "
-            "already found that the administrative figure sits far above an "
-            "independent household measurement. This run therefore goes for "
-            "the survey evidence first, and the question it is answering is "
-            "whether that conflict still holds, not which figure is right."
+            "An earlier investigation recorded a conflict between administrative "
+            "coverage and an independent household-survey measurement. "
+            "Recheck the supporting evidence before deciding whether it still holds."
         )
         preferred_action = "FETCH_SOURCE_DOCUMENT"
         preferred_target = _survey_target(finding, conflicts)
+
+    elif questions:
+        effect = (
+            "An earlier investigation left open questions. Revisit those "
+            "uncertainties before treating the finding as resolved."
+        )
+
+    elif revisions:
+        effect = (
+            "An earlier investigation recorded source revisions. Check the "
+            "current source and revision history before relying on earlier values."
+        )
+
+    elif findings:
+        effect = (
+            "An earlier investigation recorded findings for this topic. "
+            "Use them as leads to verify, not as independently confirmed evidence."
+        )
+
     elif dispositions:
         effect = (
-            "An earlier investigation of this country, antigen and year "
-            "reached a disposition. This run checks it against the evidence "
-            "rather than starting from scratch."
+            "An earlier investigation reached a disposition. Check it against "
+            "the current evidence rather than starting from scratch."
         )
 
     return {
@@ -147,8 +179,10 @@ def conflict_memory(finding, conflict):
         f"above an "
         f"independent household-survey measurement "
         f"({conflict.get('value_b')}%). The administrative number is not "
-        f"usable as the coverage level; the survey line is the better "
-        f"estimate of the level, with the usual caveats about survey design."
+        f"usable as the coverage level; the survey line is the more "
+        f"appropriate level estimate among the reported figures, but it "
+        f"remains an unverified measurement, with the usual caveats about "
+        f"survey design."
     )
 
 

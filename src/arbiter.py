@@ -1,5 +1,7 @@
 """Conservative decision policy for Cross-Examiner findings."""
+from src.adjudicator import build_recommendation
 from src.critic import critique
+from src.memory_policy import recall as recall_memories
 
 
 def compare_with_memory(finding, memory_context=None):
@@ -76,9 +78,28 @@ def arbitrate(finding, threshold=5, memory_context=None):
             "either value as correct."
         )
 
-    return {
+    result = {
         "decision": decision,
         "reason": reason,
         "critic": review,
         "memory_comparison": memory_comparison,
     }
+
+    # What earlier investigations of this country, antigen and year left
+    # behind. It changes what this run does next, and it is on the record
+    # so a reader can see the difference between a cold and a warm start.
+    recalled = recall_memories(
+        (memory_context or {}).get("memories"), finding
+    )
+    if recalled.get("memory_ids"):
+        result["memory_recall"] = recalled
+        if recalled.get("effect"):
+            result["reason"] = f"{reason} {recalled['effect']}"
+
+    # An independent measurement may say which number to act on even when
+    # the discrepancy itself is not settled.
+    recommendation = build_recommendation(finding, result)
+    if recommendation:
+        result["recommendation"] = recommendation
+
+    return result

@@ -1,0 +1,11 @@
+{
+  "question": "Which Cameroon MCV1 coverage figure should we plan against for 2020?",
+  "country": "Cameroon",
+  "antigen": "MCV1",
+  "year": "2020",
+  "source": "auto",
+  "model": "off",
+  "use_memory": true,
+  "remember": false,
+  "threshold": 5
+}

@@ -1,16 +1,228 @@
 {
   "source": "zetaris",
-  "records_loaded": 4,
+  "evidence_trace": [
+    {
+      "source_id": "unified_semantic_layer",
+      "records": 262,
+      "read_from": "lightning.metastore.cross_examiner.coverage_observations.coverage_observation",
+      "origin": "zetaris_usl",
+      "reason": null,
+      "source_ids": [
+        "dhs_cameroon_2018",
+        "synthetic_programme_reports",
+        "who_country_profile_2024",
+        "worldbank_wdi",
+        "wuenic_workbook_2025"
+      ]
+    },
+    {
+      "source_id": "synthetic_programme_reports",
+      "records": 181,
+      "read_from": "the semantic layer",
+      "origin": "excluded",
+      "reason": "generated records are never evidence"
+    }
+  ],
+  "records_loaded": 81,
   "threshold_percentage_points": 5,
+  "question": null,
+  "memory_context": null,
   "findings": [
     {
       "country": "Cameroon",
       "antigen": "MCV1",
+      "year": "2018",
+      "measure_a": "WUENIC estimate",
+      "value_a": 61.0,
+      "measure_b": "Administrative coverage",
+      "value_b": 71.0,
+      "gap_percentage_points": 10.0,
+      "status": "REVIEW",
+      "interpretation": "Difference detected; investigate definitions, denominators, reporting quality and estimation methodology. This alone does not establish which figure is correct.",
+      "sources": [
+        {
+          "name": "Cameroon DHS 2018 survey report",
+          "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+        },
+        {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        },
+        {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/"
+        }
+      ],
+      "measure_sources": {
+        "value_c": {
+          "name": "Cameroon DHS 2018 survey report",
+          "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+        },
+        "value_b": {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        },
+        "value_a": {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/"
+        }
+      },
+      "observations": [
+        {
+          "measure": "Household survey coverage",
+          "value": 65.3,
+          "source": {
+            "name": "Cameroon DHS 2018 survey report",
+            "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+          },
+          "notes": "Measles (MCV1) among children 12-23 months; published in the Cameroon DHS 2018 summary report (SR266); cross-checked against the Countdown to 2030 Cameroon DHS 2018 country sheet",
+          "origin": "cameroon_household_survey",
+          "origin_label": "Cameroon household survey coverage (independent household sampling)",
+          "measurement_kind": "household_survey",
+          "metric_type": "survey",
+          "source_id": "dhs_cameroon_2018",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": true,
+          "verification_scope": "INDEPENDENT_MEASUREMENT",
+          "lineage": {
+            "source_id": "dhs_cameroon_2018",
+            "source_name": "Cameroon DHS 2018 survey report",
+            "source_type": "pdf",
+            "publication_url": "https://dhsprogram.com/Publications/Publication-Search.cfm?Country=Cameroon&c=Cameroon&cn=Cameroon&ctry_id=4",
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "origin_kind": "household_survey",
+            "derived_from": null,
+            "is_own_publication": true,
+            "is_synthetic": false,
+            "independent_capable": true,
+            "access": [
+              "python"
+            ]
+          },
+          "field": "value_c"
+        },
+        {
+          "measure": "Administrative coverage",
+          "value": 71.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+          },
+          "notes": "Reported administrative figure",
+          "origin": "cameroon_admin_jrf",
+          "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+          "measurement_kind": "administrative_reporting",
+          "metric_type": "administrative",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY",
+          "lineage": {
+            "source_id": "who_country_profile_2024",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_type": "pdf",
+            "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "origin_kind": "administrative_reporting",
+            "derived_from": null,
+            "is_own_publication": true,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_b"
+        },
+        {
+          "measure": "WUENIC estimate",
+          "value": 61.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/"
+          },
+          "notes": "Estimate",
+          "origin": "wuenic_2025",
+          "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+          "measurement_kind": "reconciled_estimate",
+          "metric_type": "wuenic",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY",
+          "lineage": {
+            "source_id": "wuenic_workbook_2025",
+            "source_name": "WUENIC 2025 revision",
+            "source_type": "xlsx",
+            "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "origin_kind": "reconciled_estimate",
+            "derived_from": null,
+            "is_own_publication": true,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_a"
+        }
+      ],
+      "synthetic": false,
+      "corroborating_observations": [
+        {
+          "measure": "Household survey coverage",
+          "value": 65.3,
+          "source": {
+            "name": "Cameroon DHS 2018 survey report",
+            "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+          },
+          "notes": "Measles (MCV1) among children 12-23 months; published in the Cameroon DHS 2018 summary report (SR266); cross-checked against the Countdown to 2030 Cameroon DHS 2018 country sheet",
+          "origin": "cameroon_household_survey",
+          "origin_label": "Cameroon household survey coverage (independent household sampling)",
+          "measurement_kind": "household_survey",
+          "metric_type": "survey",
+          "source_id": "dhs_cameroon_2018",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": true,
+          "verification_scope": "INDEPENDENT_MEASUREMENT",
+          "lineage": {
+            "source_id": "dhs_cameroon_2018",
+            "source_name": "Cameroon DHS 2018 survey report",
+            "source_type": "pdf",
+            "publication_url": "https://dhsprogram.com/Publications/Publication-Search.cfm?Country=Cameroon&c=Cameroon&cn=Cameroon&ctry_id=4",
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "origin_kind": "household_survey",
+            "derived_from": null,
+            "is_own_publication": true,
+            "is_synthetic": false,
+            "independent_capable": true,
+            "access": [
+              "python"
+            ]
+          },
+          "field": "value_c"
+        }
+      ]
+    },
+    {
+      "country": "Cameroon",
+      "antigen": "MCV1",
       "year": "2020",
-      "measure_a": "Administrative coverage",
-      "value_a": 74.0,
-      "measure_b": "WUENIC estimate",
-      "value_b": 63.0,
+      "measure_a": "WUENIC estimate",
+      "value_a": 63.0,
+      "measure_b": "Administrative coverage",
+      "value_b": 74.0,
       "gap_percentage_points": 11.0,
       "status": "REVIEW",
       "interpretation": "Difference detected; investigate definitions, denominators, reporting quality and estimation methodology. This alone does not establish which figure is correct.",
@@ -20,8 +232,356 @@
           "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
         },
         {
-          "name": "WHO/UNICEF Estimates of National Immunization Coverage, 2025 revision",
+          "name": "WUENIC country profile 2023 revision",
           "url": "https://data.unicef.org/resources/dataset/immunization/"
+        }
+      ],
+      "measure_sources": {
+        "value_b": {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        },
+        "value_c": {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        },
+        "value_a": {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/"
+        }
+      },
+      "observations": [
+        {
+          "measure": "Administrative coverage",
+          "value": 74.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+          },
+          "notes": "Reported administrative figure",
+          "origin": "cameroon_admin_jrf",
+          "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+          "measurement_kind": "administrative_reporting",
+          "metric_type": "administrative",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY",
+          "lineage": {
+            "source_id": "who_country_profile_2024",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_type": "pdf",
+            "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "origin_kind": "administrative_reporting",
+            "derived_from": null,
+            "is_own_publication": true,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_b"
+        },
+        {
+          "measure": "Household survey coverage",
+          "value": 54.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+          },
+          "notes": "Household survey row published in the country profile",
+          "origin": "cameroon_household_survey",
+          "origin_label": "Cameroon household survey coverage (independent household sampling)",
+          "measurement_kind": "household_survey",
+          "metric_type": "survey",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "INDEPENDENT_MEASUREMENT",
+          "lineage": {
+            "source_id": "who_country_profile_2024",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_type": "pdf",
+            "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "origin_kind": "household_survey",
+            "derived_from": null,
+            "is_own_publication": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_c"
+        },
+        {
+          "measure": "WUENIC estimate",
+          "value": 63.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/"
+          },
+          "notes": "Estimate",
+          "origin": "wuenic_2025",
+          "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+          "measurement_kind": "reconciled_estimate",
+          "metric_type": "wuenic",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY",
+          "lineage": {
+            "source_id": "wuenic_workbook_2025",
+            "source_name": "WUENIC 2025 revision",
+            "source_type": "xlsx",
+            "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "origin_kind": "reconciled_estimate",
+            "derived_from": null,
+            "is_own_publication": true,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_a"
+        }
+      ],
+      "synthetic": false,
+      "corroborating_observations": [
+        {
+          "measure": "Household survey coverage",
+          "value": 54.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+          },
+          "notes": "Household survey row published in the country profile",
+          "origin": "cameroon_household_survey",
+          "origin_label": "Cameroon household survey coverage (independent household sampling)",
+          "measurement_kind": "household_survey",
+          "metric_type": "survey",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "INDEPENDENT_MEASUREMENT",
+          "lineage": {
+            "source_id": "who_country_profile_2024",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_type": "pdf",
+            "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "origin_kind": "household_survey",
+            "derived_from": null,
+            "is_own_publication": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_c"
+        }
+      ]
+    },
+    {
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2021",
+      "measure_a": "WUENIC estimate",
+      "value_a": 65.0,
+      "measure_b": "Administrative coverage",
+      "value_b": 74.0,
+      "gap_percentage_points": 9.0,
+      "status": "REVIEW",
+      "interpretation": "Difference detected; investigate definitions, denominators, reporting quality and estimation methodology. This alone does not establish which figure is correct.",
+      "sources": [
+        {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        },
+        {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/"
+        }
+      ],
+      "measure_sources": {
+        "value_b": {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        },
+        "value_c": {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        },
+        "value_a": {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/"
+        }
+      },
+      "observations": [
+        {
+          "measure": "Administrative coverage",
+          "value": 74.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+          },
+          "notes": "Reported administrative figure",
+          "origin": "cameroon_admin_jrf",
+          "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+          "measurement_kind": "administrative_reporting",
+          "metric_type": "administrative",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY",
+          "lineage": {
+            "source_id": "who_country_profile_2024",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_type": "pdf",
+            "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "origin_kind": "administrative_reporting",
+            "derived_from": null,
+            "is_own_publication": true,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_b"
+        },
+        {
+          "measure": "Household survey coverage",
+          "value": 56.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+          },
+          "notes": "Household survey row published in the country profile",
+          "origin": "cameroon_household_survey",
+          "origin_label": "Cameroon household survey coverage (independent household sampling)",
+          "measurement_kind": "household_survey",
+          "metric_type": "survey",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "INDEPENDENT_MEASUREMENT",
+          "lineage": {
+            "source_id": "who_country_profile_2024",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_type": "pdf",
+            "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "origin_kind": "household_survey",
+            "derived_from": null,
+            "is_own_publication": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_c"
+        },
+        {
+          "measure": "WUENIC estimate",
+          "value": 65.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/"
+          },
+          "notes": "Estimate",
+          "origin": "wuenic_2025",
+          "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+          "measurement_kind": "reconciled_estimate",
+          "metric_type": "wuenic",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY",
+          "lineage": {
+            "source_id": "wuenic_workbook_2025",
+            "source_name": "WUENIC 2025 revision",
+            "source_type": "xlsx",
+            "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "origin_kind": "reconciled_estimate",
+            "derived_from": null,
+            "is_own_publication": true,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_a"
+        }
+      ],
+      "synthetic": false,
+      "corroborating_observations": [
+        {
+          "measure": "Household survey coverage",
+          "value": 56.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+          },
+          "notes": "Household survey row published in the country profile",
+          "origin": "cameroon_household_survey",
+          "origin_label": "Cameroon household survey coverage (independent household sampling)",
+          "measurement_kind": "household_survey",
+          "metric_type": "survey",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "INDEPENDENT_MEASUREMENT",
+          "lineage": {
+            "source_id": "who_country_profile_2024",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_type": "pdf",
+            "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "origin_kind": "household_survey",
+            "derived_from": null,
+            "is_own_publication": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_c"
         }
       ]
     },
@@ -29,10 +589,10 @@
       "country": "Cameroon",
       "antigen": "MCV1",
       "year": "2023",
-      "measure_a": "Administrative coverage",
-      "value_a": 82.0,
-      "measure_b": "WUENIC estimate",
-      "value_b": 71.0,
+      "measure_a": "WUENIC estimate",
+      "value_a": 71.0,
+      "measure_b": "Administrative coverage",
+      "value_b": 82.0,
       "gap_percentage_points": 11.0,
       "status": "REVIEW",
       "interpretation": "Difference detected; investigate definitions, denominators, reporting quality and estimation methodology. This alone does not establish which figure is correct.",
@@ -42,10 +602,96 @@
           "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
         },
         {
-          "name": "WHO/UNICEF Estimates of National Immunization Coverage, 2025 revision",
+          "name": "WUENIC country profile 2023 revision",
           "url": "https://data.unicef.org/resources/dataset/immunization/"
         }
-      ]
+      ],
+      "measure_sources": {
+        "value_b": {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        },
+        "value_a": {
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/"
+        }
+      },
+      "observations": [
+        {
+          "measure": "Administrative coverage",
+          "value": 82.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+          },
+          "notes": "Reported administrative figure",
+          "origin": "cameroon_admin_jrf",
+          "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+          "measurement_kind": "administrative_reporting",
+          "metric_type": "administrative",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY",
+          "lineage": {
+            "source_id": "who_country_profile_2024",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_type": "pdf",
+            "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "origin_kind": "administrative_reporting",
+            "derived_from": null,
+            "is_own_publication": true,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_b"
+        },
+        {
+          "measure": "WUENIC estimate",
+          "value": 71.0,
+          "source": {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/"
+          },
+          "notes": "Estimate",
+          "origin": "wuenic_2025",
+          "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+          "measurement_kind": "reconciled_estimate",
+          "metric_type": "wuenic",
+          "source_id": "who_country_profile_2024",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY",
+          "lineage": {
+            "source_id": "wuenic_workbook_2025",
+            "source_name": "WUENIC 2025 revision",
+            "source_type": "xlsx",
+            "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "origin_kind": "reconciled_estimate",
+            "derived_from": null,
+            "is_own_publication": true,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "access": [
+              "python",
+              "zetaris"
+            ]
+          },
+          "field": "value_a"
+        }
+      ],
+      "synthetic": false,
+      "corroborating_observations": []
     }
   ],
   "decisions": [
@@ -55,10 +701,305 @@
       "critic": {
         "passed": true,
         "issues": [],
+        "source_checks": [
+          {
+            "name": "Cameroon DHS 2018 survey report",
+            "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+            "url_present": true,
+            "table_context_matched": false,
+            "status": "SOURCE_DOCUMENT_RETRIEVED",
+            "verification_scope": "DOCUMENT_PRESENCE",
+            "scope_note": "The source was never checked against its own published table.",
+            "lineage": {
+              "source_id": "dhs_cameroon_2018",
+              "source_name": "Cameroon DHS 2018 survey report",
+              "source_type": "pdf",
+              "publication_url": "https://dhsprogram.com/Publications/Publication-Search.cfm?Country=Cameroon&c=Cameroon&cn=Cameroon&ctry_id=4",
+              "origin": "cameroon_household_survey",
+              "origin_label": "Cameroon household survey coverage (independent household sampling)",
+              "origin_kind": "household_survey",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": true,
+              "access": [
+                "python"
+              ]
+            },
+            "document": {
+              "content_type": "application/pdf",
+              "bytes": 2036701,
+              "mentions": {},
+              "text_excerpt": ""
+            },
+            "limitations": [
+              "Retrieving a source document shows that it exists; it does not verify the values inside it."
+            ]
+          },
+          {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "url_present": true,
+            "table_context_matched": false,
+            "status": "EXTRACT_CONSISTENT",
+            "verification_scope": "SELF_CONSISTENCY",
+            "scope_note": "The checked value was taken from this document, so comparing them shows that the record is faithful to its source; it is not independent verification.",
+            "lineage": {
+              "source_id": "who_country_profile_2024",
+              "source_name": "WUENIC country profile 2023 revision",
+              "source_type": "pdf",
+              "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+              "origin": null,
+              "origin_label": null,
+              "origin_kind": null,
+              "derived_from": null,
+              "is_own_publication": false,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            },
+            "table_page": 20,
+            "matched_values": [
+              {
+                "measure": "WUENIC estimate",
+                "expected": 61.0,
+                "table_value": 61.0,
+                "found_in_expected_year_row": true
+              }
+            ],
+            "limitations": [
+              "Text matching does not validate the underlying data.",
+              "PDF extraction can fail or reorder table values.",
+              "A match does not establish which measure is more accurate.",
+              "Workbook matching compares the claim with a local WUENIC extract; it does not prove the estimate is correct or more accurate than administrative coverage."
+            ]
+          },
+          {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "url_present": true,
+            "table_context_matched": false,
+            "status": "NOT_VERIFIED",
+            "verification_scope": "CONTEXT_ONLY",
+            "scope_note": "The source was never checked against its own published table.",
+            "lineage": {
+              "source_id": "wuenic_workbook_2025",
+              "source_name": "WUENIC 2025 revision",
+              "source_type": "xlsx",
+              "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+              "origin": "wuenic_2025",
+              "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+              "origin_kind": "reconciled_estimate",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          }
+        ],
+        "observations": [
+          {
+            "field": "value_c",
+            "measure": "Household survey coverage",
+            "value": 65.3,
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "measurement_kind": "household_survey",
+            "is_synthetic": false,
+            "lineage": {
+              "source_id": "dhs_cameroon_2018",
+              "source_name": "Cameroon DHS 2018 survey report",
+              "source_type": "pdf",
+              "publication_url": "https://dhsprogram.com/Publications/Publication-Search.cfm?Country=Cameroon&c=Cameroon&cn=Cameroon&ctry_id=4",
+              "origin": "cameroon_household_survey",
+              "origin_label": "Cameroon household survey coverage (independent household sampling)",
+              "origin_kind": "household_survey",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": true,
+              "access": [
+                "python"
+              ]
+            }
+          },
+          {
+            "field": "value_b",
+            "measure": "Administrative coverage",
+            "value": 71.0,
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "measurement_kind": "administrative_reporting",
+            "is_synthetic": false,
+            "lineage": {
+              "source_id": "who_country_profile_2024",
+              "source_name": "WUENIC country profile 2023 revision",
+              "source_type": "pdf",
+              "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+              "origin": "cameroon_admin_jrf",
+              "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+              "origin_kind": "administrative_reporting",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          },
+          {
+            "field": "value_a",
+            "measure": "WUENIC estimate",
+            "value": 61.0,
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "measurement_kind": "reconciled_estimate",
+            "is_synthetic": false,
+            "lineage": {
+              "source_id": "wuenic_workbook_2025",
+              "source_name": "WUENIC 2025 revision",
+              "source_type": "xlsx",
+              "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+              "origin": "wuenic_2025",
+              "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+              "origin_kind": "reconciled_estimate",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          }
+        ],
+        "conflicts": [
+          {
+            "code": "CONFLICT_ADMIN_SURVEY",
+            "country": "Cameroon",
+            "antigen": "MCV1",
+            "year": "2018",
+            "measure_a": "Administrative coverage",
+            "value_a": 71.0,
+            "measure_b": "Household survey coverage",
+            "value_b": 65.3,
+            "gap_percentage_points": 5.700000000000003,
+            "origin_a": "cameroon_admin_jrf",
+            "origin_b": "cameroon_household_survey",
+            "note": "The administrative figure is 5.7 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design."
+          }
+        ],
         "limitations": [
           "A URL being present does not verify the source's contents.",
-          "A difference between measures does not establish which value is correct."
+          "A difference between measures does not establish which value is correct.",
+          "A household-survey measurement is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+          "Workbook matching compares the claim with a local WUENIC extract; it does not prove the estimate is correct or more accurate than administrative coverage.",
+          "Retrieving a source document shows that it exists; it does not verify the values inside it."
         ]
+      },
+      "memory_comparison": {
+        "matching_memories": [],
+        "memory_comparison": "NO_MATCHING_MEMORY_FOUND"
+      },
+      "recommendation": {
+        "recommended_measure": "Household survey coverage",
+        "recommended_value": 65.3,
+        "recommended_source": "Cameroon household survey coverage (independent household sampling)",
+        "recommended_source_id": "dhs_cameroon_2018",
+        "not_recommended_measure": "Administrative coverage",
+        "not_recommended_value": 71.0,
+        "gap_percentage_points": 5.700000000000003,
+        "basis": "The administrative figure is 5.7 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design.",
+        "caveats": [
+          "The survey figure is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+          "A survey measures a sample of households, not the whole population, so it carries its own sampling uncertainty.",
+          "This is a recommendation for the coverage level, not a claim that one of the published figures is correct."
+        ]
+      },
+      "revision": {
+        "action": "FETCH_SOURCE_DOCUMENT",
+        "outcome": "EVIDENCE_RETRIEVED",
+        "stop_reason": "SOURCE_DOCUMENT_RETRIEVED",
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2018",
+        "proposal_source": "deterministic",
+        "proposal_action": "FETCH_SOURCE_DOCUMENT",
+        "coordinator_action": "FETCH_SOURCE_DOCUMENT"
+      },
+      "adjudications": [
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        },
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        },
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        }
+      ],
+      "disposition": "REVIEW",
+      "disposition_meaning": "The discrepancy stands but is not resolved; a human has to look at the definitions, denominators, reporting quality and estimation methods.",
+      "adjudication": {
+        "baseline_decision": "REVIEW",
+        "baseline_disposition": "REVIEW",
+        "previous_disposition": "REVIEW",
+        "proposed_verdict": null,
+        "proposal_source": "deterministic",
+        "proposal_status": "not_proposed",
+        "reason": "",
+        "citations": [],
+        "accepted": false,
+        "validation_reason": "MODEL_NOT_REQUESTED",
+        "final_disposition": "REVIEW",
+        "changed": false,
+        "differs_from_baseline": false
       }
     },
     {
@@ -67,12 +1008,3157 @@
       "critic": {
         "passed": true,
         "issues": [],
+        "source_checks": [
+          {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "url_present": true,
+            "table_context_matched": true,
+            "status": "SOURCE_DOCUMENT_RETRIEVED",
+            "verification_scope": "DOCUMENT_PRESENCE",
+            "scope_note": "The checked value was taken from this document, so comparing them shows that the record is faithful to its source; it is not independent verification.",
+            "lineage": {
+              "source_id": "who_country_profile_2024",
+              "source_name": "WUENIC country profile 2023 revision",
+              "source_type": "pdf",
+              "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+              "origin": null,
+              "origin_label": null,
+              "origin_kind": null,
+              "derived_from": null,
+              "is_own_publication": false,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            },
+            "table_page": 20,
+            "matched_values": [
+              {
+                "measure": "WUENIC estimate",
+                "expected": 63.0,
+                "table_value": 63.0,
+                "found_in_expected_year_row": true
+              }
+            ],
+            "limitations": [
+              "Text matching does not validate the underlying data.",
+              "PDF extraction can fail or reorder table values.",
+              "A match does not establish which measure is more accurate.",
+              "Workbook matching compares the claim with a local WUENIC extract; it does not prove the estimate is correct or more accurate than administrative coverage.",
+              "Retrieving a source document shows that it exists; it does not verify the values inside it."
+            ],
+            "document": {
+              "content_type": "application/pdf",
+              "bytes": 444677,
+              "mentions": {},
+              "text_excerpt": ""
+            }
+          },
+          {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "url_present": true,
+            "table_context_matched": false,
+            "status": "NOT_VERIFIED",
+            "verification_scope": "CONTEXT_ONLY",
+            "scope_note": "The source was never checked against its own published table.",
+            "lineage": {
+              "source_id": "wuenic_workbook_2025",
+              "source_name": "WUENIC 2025 revision",
+              "source_type": "xlsx",
+              "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+              "origin": "wuenic_2025",
+              "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+              "origin_kind": "reconciled_estimate",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          }
+        ],
+        "observations": [
+          {
+            "field": "value_b",
+            "measure": "Administrative coverage",
+            "value": 74.0,
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "measurement_kind": "administrative_reporting",
+            "is_synthetic": false,
+            "lineage": {
+              "source_id": "who_country_profile_2024",
+              "source_name": "WUENIC country profile 2023 revision",
+              "source_type": "pdf",
+              "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+              "origin": "cameroon_admin_jrf",
+              "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+              "origin_kind": "administrative_reporting",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          },
+          {
+            "field": "value_c",
+            "measure": "Household survey coverage",
+            "value": 54.0,
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "measurement_kind": "household_survey",
+            "is_synthetic": false,
+            "lineage": {
+              "source_id": "who_country_profile_2024",
+              "source_name": "WUENIC country profile 2023 revision",
+              "source_type": "pdf",
+              "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+              "origin": "cameroon_household_survey",
+              "origin_label": "Cameroon household survey coverage (independent household sampling)",
+              "origin_kind": "household_survey",
+              "derived_from": null,
+              "is_own_publication": false,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          },
+          {
+            "field": "value_a",
+            "measure": "WUENIC estimate",
+            "value": 63.0,
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "measurement_kind": "reconciled_estimate",
+            "is_synthetic": false,
+            "lineage": {
+              "source_id": "wuenic_workbook_2025",
+              "source_name": "WUENIC 2025 revision",
+              "source_type": "xlsx",
+              "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+              "origin": "wuenic_2025",
+              "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+              "origin_kind": "reconciled_estimate",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          }
+        ],
+        "conflicts": [
+          {
+            "code": "CONFLICT_ADMIN_SURVEY",
+            "country": "Cameroon",
+            "antigen": "MCV1",
+            "year": "2020",
+            "measure_a": "Administrative coverage",
+            "value_a": 74.0,
+            "measure_b": "Household survey coverage",
+            "value_b": 54.0,
+            "gap_percentage_points": 20.0,
+            "origin_a": "cameroon_admin_jrf",
+            "origin_b": "cameroon_household_survey",
+            "note": "The administrative figure is 20.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design."
+          }
+        ],
         "limitations": [
           "A URL being present does not verify the source's contents.",
-          "A difference between measures does not establish which value is correct."
+          "A difference between measures does not establish which value is correct.",
+          "A household-survey measurement is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+          "Workbook matching compares the claim with a local WUENIC extract; it does not prove the estimate is correct or more accurate than administrative coverage.",
+          "Retrieving a source document shows that it exists; it does not verify the values inside it."
         ]
+      },
+      "memory_comparison": {
+        "matching_memories": [],
+        "memory_comparison": "NO_MATCHING_MEMORY_FOUND"
+      },
+      "recommendation": {
+        "recommended_measure": "Household survey coverage",
+        "recommended_value": 54.0,
+        "recommended_source": "Cameroon household survey coverage (independent household sampling)",
+        "recommended_source_id": "who_country_profile_2024",
+        "not_recommended_measure": "Administrative coverage",
+        "not_recommended_value": 74.0,
+        "gap_percentage_points": 20.0,
+        "basis": "The administrative figure is 20.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design.",
+        "caveats": [
+          "The survey figure is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+          "A survey measures a sample of households, not the whole population, so it carries its own sampling uncertainty.",
+          "This is a recommendation for the coverage level, not a claim that one of the published figures is correct."
+        ]
+      },
+      "revision": {
+        "action": "FETCH_SOURCE_DOCUMENT",
+        "outcome": "EVIDENCE_RETRIEVED",
+        "stop_reason": "SOURCE_DOCUMENT_RETRIEVED",
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2020",
+        "proposal_source": "deterministic",
+        "proposal_action": "FETCH_SOURCE_DOCUMENT",
+        "coordinator_action": "FETCH_SOURCE_DOCUMENT"
+      },
+      "adjudications": [
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        },
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        },
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        }
+      ],
+      "disposition": "REVIEW",
+      "disposition_meaning": "The discrepancy stands but is not resolved; a human has to look at the definitions, denominators, reporting quality and estimation methods.",
+      "adjudication": {
+        "baseline_decision": "REVIEW",
+        "baseline_disposition": "REVIEW",
+        "previous_disposition": "REVIEW",
+        "proposed_verdict": null,
+        "proposal_source": "deterministic",
+        "proposal_status": "not_proposed",
+        "reason": "",
+        "citations": [],
+        "accepted": false,
+        "validation_reason": "MODEL_NOT_REQUESTED",
+        "final_disposition": "REVIEW",
+        "changed": false,
+        "differs_from_baseline": false
+      }
+    },
+    {
+      "decision": "REVIEW",
+      "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods.",
+      "critic": {
+        "passed": true,
+        "issues": [],
+        "source_checks": [
+          {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "url_present": true,
+            "table_context_matched": true,
+            "status": "SOURCE_DOCUMENT_RETRIEVED",
+            "verification_scope": "DOCUMENT_PRESENCE",
+            "scope_note": "The checked value was taken from this document, so comparing them shows that the record is faithful to its source; it is not independent verification.",
+            "lineage": {
+              "source_id": "who_country_profile_2024",
+              "source_name": "WUENIC country profile 2023 revision",
+              "source_type": "pdf",
+              "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+              "origin": null,
+              "origin_label": null,
+              "origin_kind": null,
+              "derived_from": null,
+              "is_own_publication": false,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            },
+            "table_page": 20,
+            "matched_values": [
+              {
+                "measure": "WUENIC estimate",
+                "expected": 65.0,
+                "table_value": 65.0,
+                "found_in_expected_year_row": true
+              }
+            ],
+            "limitations": [
+              "Text matching does not validate the underlying data.",
+              "PDF extraction can fail or reorder table values.",
+              "A match does not establish which measure is more accurate.",
+              "Workbook matching compares the claim with a local WUENIC extract; it does not prove the estimate is correct or more accurate than administrative coverage.",
+              "Retrieving a source document shows that it exists; it does not verify the values inside it."
+            ],
+            "document": {
+              "content_type": "application/pdf",
+              "bytes": 444677,
+              "mentions": {},
+              "text_excerpt": ""
+            }
+          },
+          {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "url_present": true,
+            "table_context_matched": false,
+            "status": "NOT_VERIFIED",
+            "verification_scope": "CONTEXT_ONLY",
+            "scope_note": "The source was never checked against its own published table.",
+            "lineage": {
+              "source_id": "wuenic_workbook_2025",
+              "source_name": "WUENIC 2025 revision",
+              "source_type": "xlsx",
+              "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+              "origin": "wuenic_2025",
+              "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+              "origin_kind": "reconciled_estimate",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          }
+        ],
+        "observations": [
+          {
+            "field": "value_b",
+            "measure": "Administrative coverage",
+            "value": 74.0,
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "measurement_kind": "administrative_reporting",
+            "is_synthetic": false,
+            "lineage": {
+              "source_id": "who_country_profile_2024",
+              "source_name": "WUENIC country profile 2023 revision",
+              "source_type": "pdf",
+              "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+              "origin": "cameroon_admin_jrf",
+              "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+              "origin_kind": "administrative_reporting",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          },
+          {
+            "field": "value_c",
+            "measure": "Household survey coverage",
+            "value": 56.0,
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "measurement_kind": "household_survey",
+            "is_synthetic": false,
+            "lineage": {
+              "source_id": "who_country_profile_2024",
+              "source_name": "WUENIC country profile 2023 revision",
+              "source_type": "pdf",
+              "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+              "origin": "cameroon_household_survey",
+              "origin_label": "Cameroon household survey coverage (independent household sampling)",
+              "origin_kind": "household_survey",
+              "derived_from": null,
+              "is_own_publication": false,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          },
+          {
+            "field": "value_a",
+            "measure": "WUENIC estimate",
+            "value": 65.0,
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "measurement_kind": "reconciled_estimate",
+            "is_synthetic": false,
+            "lineage": {
+              "source_id": "wuenic_workbook_2025",
+              "source_name": "WUENIC 2025 revision",
+              "source_type": "xlsx",
+              "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+              "origin": "wuenic_2025",
+              "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+              "origin_kind": "reconciled_estimate",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          }
+        ],
+        "conflicts": [
+          {
+            "code": "CONFLICT_ADMIN_SURVEY",
+            "country": "Cameroon",
+            "antigen": "MCV1",
+            "year": "2021",
+            "measure_a": "Administrative coverage",
+            "value_a": 74.0,
+            "measure_b": "Household survey coverage",
+            "value_b": 56.0,
+            "gap_percentage_points": 18.0,
+            "origin_a": "cameroon_admin_jrf",
+            "origin_b": "cameroon_household_survey",
+            "note": "The administrative figure is 18.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design."
+          }
+        ],
+        "limitations": [
+          "A URL being present does not verify the source's contents.",
+          "A difference between measures does not establish which value is correct.",
+          "A household-survey measurement is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+          "Workbook matching compares the claim with a local WUENIC extract; it does not prove the estimate is correct or more accurate than administrative coverage.",
+          "Retrieving a source document shows that it exists; it does not verify the values inside it."
+        ]
+      },
+      "memory_comparison": {
+        "matching_memories": [],
+        "memory_comparison": "NO_MATCHING_MEMORY_FOUND"
+      },
+      "recommendation": {
+        "recommended_measure": "Household survey coverage",
+        "recommended_value": 56.0,
+        "recommended_source": "Cameroon household survey coverage (independent household sampling)",
+        "recommended_source_id": "who_country_profile_2024",
+        "not_recommended_measure": "Administrative coverage",
+        "not_recommended_value": 74.0,
+        "gap_percentage_points": 18.0,
+        "basis": "The administrative figure is 18.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design.",
+        "caveats": [
+          "The survey figure is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+          "A survey measures a sample of households, not the whole population, so it carries its own sampling uncertainty.",
+          "This is a recommendation for the coverage level, not a claim that one of the published figures is correct."
+        ]
+      },
+      "revision": {
+        "action": "FETCH_SOURCE_DOCUMENT",
+        "outcome": "EVIDENCE_RETRIEVED",
+        "stop_reason": "SOURCE_DOCUMENT_RETRIEVED",
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2021",
+        "proposal_source": "deterministic",
+        "proposal_action": "FETCH_SOURCE_DOCUMENT",
+        "coordinator_action": "FETCH_SOURCE_DOCUMENT"
+      },
+      "adjudications": [
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        },
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        },
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        }
+      ],
+      "disposition": "REVIEW",
+      "disposition_meaning": "The discrepancy stands but is not resolved; a human has to look at the definitions, denominators, reporting quality and estimation methods.",
+      "adjudication": {
+        "baseline_decision": "REVIEW",
+        "baseline_disposition": "REVIEW",
+        "previous_disposition": "REVIEW",
+        "proposed_verdict": null,
+        "proposal_source": "deterministic",
+        "proposal_status": "not_proposed",
+        "reason": "",
+        "citations": [],
+        "accepted": false,
+        "validation_reason": "MODEL_NOT_REQUESTED",
+        "final_disposition": "REVIEW",
+        "changed": false,
+        "differs_from_baseline": false
+      }
+    },
+    {
+      "decision": "REVIEW",
+      "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods.",
+      "critic": {
+        "passed": true,
+        "issues": [],
+        "source_checks": [
+          {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "url_present": true,
+            "table_context_matched": true,
+            "status": "SOURCE_DOCUMENT_RETRIEVED",
+            "verification_scope": "DOCUMENT_PRESENCE",
+            "scope_note": "The checked value was taken from this document, so comparing them shows that the record is faithful to its source; it is not independent verification.",
+            "lineage": {
+              "source_id": "who_country_profile_2024",
+              "source_name": "WUENIC country profile 2023 revision",
+              "source_type": "pdf",
+              "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+              "origin": null,
+              "origin_label": null,
+              "origin_kind": null,
+              "derived_from": null,
+              "is_own_publication": false,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            },
+            "table_page": 20,
+            "matched_values": [
+              {
+                "measure": "WUENIC estimate",
+                "expected": 71.0,
+                "table_value": 71.0,
+                "found_in_expected_year_row": true
+              }
+            ],
+            "limitations": [
+              "Text matching does not validate the underlying data.",
+              "PDF extraction can fail or reorder table values.",
+              "A match does not establish which measure is more accurate.",
+              "Workbook matching compares the claim with a local WUENIC extract; it does not prove the estimate is correct or more accurate than administrative coverage.",
+              "Retrieving a source document shows that it exists; it does not verify the values inside it."
+            ],
+            "document": {
+              "content_type": "application/pdf",
+              "bytes": 444677,
+              "mentions": {},
+              "text_excerpt": ""
+            }
+          },
+          {
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "url_present": true,
+            "table_context_matched": false,
+            "status": "NOT_VERIFIED",
+            "verification_scope": "CONTEXT_ONLY",
+            "scope_note": "The source was never checked against its own published table.",
+            "lineage": {
+              "source_id": "wuenic_workbook_2025",
+              "source_name": "WUENIC 2025 revision",
+              "source_type": "xlsx",
+              "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+              "origin": "wuenic_2025",
+              "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+              "origin_kind": "reconciled_estimate",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          }
+        ],
+        "observations": [
+          {
+            "field": "value_b",
+            "measure": "Administrative coverage",
+            "value": 82.0,
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "measurement_kind": "administrative_reporting",
+            "is_synthetic": false,
+            "lineage": {
+              "source_id": "who_country_profile_2024",
+              "source_name": "WUENIC country profile 2023 revision",
+              "source_type": "pdf",
+              "publication_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+              "origin": "cameroon_admin_jrf",
+              "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+              "origin_kind": "administrative_reporting",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          },
+          {
+            "field": "value_a",
+            "measure": "WUENIC estimate",
+            "value": 71.0,
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "measurement_kind": "reconciled_estimate",
+            "is_synthetic": false,
+            "lineage": {
+              "source_id": "wuenic_workbook_2025",
+              "source_name": "WUENIC 2025 revision",
+              "source_type": "xlsx",
+              "publication_url": "https://data.unicef.org/resources/dataset/immunization/",
+              "origin": "wuenic_2025",
+              "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+              "origin_kind": "reconciled_estimate",
+              "derived_from": null,
+              "is_own_publication": true,
+              "is_synthetic": false,
+              "independent_capable": false,
+              "access": [
+                "python",
+                "zetaris"
+              ]
+            }
+          }
+        ],
+        "conflicts": [],
+        "limitations": [
+          "A URL being present does not verify the source's contents.",
+          "A difference between measures does not establish which value is correct.",
+          "Workbook matching compares the claim with a local WUENIC extract; it does not prove the estimate is correct or more accurate than administrative coverage.",
+          "Retrieving a source document shows that it exists; it does not verify the values inside it."
+        ]
+      },
+      "memory_comparison": {
+        "matching_memories": [],
+        "memory_comparison": "NO_MATCHING_MEMORY_FOUND"
+      },
+      "revision": {
+        "action": "FETCH_SOURCE_DOCUMENT",
+        "outcome": "EVIDENCE_RETRIEVED",
+        "stop_reason": "SOURCE_DOCUMENT_RETRIEVED",
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2023",
+        "proposal_source": "deterministic",
+        "proposal_action": "FETCH_SOURCE_DOCUMENT",
+        "coordinator_action": "FETCH_SOURCE_DOCUMENT"
+      },
+      "adjudications": [
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        },
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        },
+        {
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "previous_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "proposal_source": "deterministic",
+          "proposal_status": "not_proposed",
+          "reason": "",
+          "citations": [],
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "changed": false,
+          "differs_from_baseline": false
+        }
+      ],
+      "disposition": "REVIEW",
+      "disposition_meaning": "The discrepancy stands but is not resolved; a human has to look at the definitions, denominators, reporting quality and estimation methods.",
+      "adjudication": {
+        "baseline_decision": "REVIEW",
+        "baseline_disposition": "REVIEW",
+        "previous_disposition": "REVIEW",
+        "proposed_verdict": null,
+        "proposal_source": "deterministic",
+        "proposal_status": "not_proposed",
+        "reason": "",
+        "citations": [],
+        "accepted": false,
+        "validation_reason": "MODEL_NOT_REQUESTED",
+        "final_disposition": "REVIEW",
+        "changed": false,
+        "differs_from_baseline": false
       }
     }
   ],
+  "dispositions": [
+    "REVIEW",
+    "REVIEW",
+    "REVIEW",
+    "REVIEW"
+  ],
+  "revisions": [
+    {
+      "action": "FETCH_WUENIC",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2018",
+      "proposal_source": "deterministic",
+      "proposal_action": "FETCH_WUENIC_WORKBOOK",
+      "coordinator_action": "FETCH_WUENIC_WORKBOOK"
+    },
+    {
+      "action": "FETCH_WUENIC",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2020",
+      "proposal_source": "deterministic",
+      "proposal_action": "FETCH_WUENIC_WORKBOOK",
+      "coordinator_action": "FETCH_WUENIC_WORKBOOK"
+    },
+    {
+      "action": "FETCH_WUENIC",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2021",
+      "proposal_source": "deterministic",
+      "proposal_action": "FETCH_WUENIC_WORKBOOK",
+      "coordinator_action": "FETCH_WUENIC_WORKBOOK"
+    },
+    {
+      "action": "FETCH_WUENIC",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2023",
+      "proposal_source": "deterministic",
+      "proposal_action": "FETCH_WUENIC_WORKBOOK",
+      "coordinator_action": "FETCH_WUENIC_WORKBOOK"
+    },
+    {
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "SOURCE_DOCUMENT_RETRIEVED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2018",
+      "proposal_source": "deterministic",
+      "proposal_action": "FETCH_SOURCE_DOCUMENT",
+      "coordinator_action": "FETCH_SOURCE_DOCUMENT"
+    },
+    {
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "SOURCE_DOCUMENT_RETRIEVED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2020",
+      "proposal_source": "deterministic",
+      "proposal_action": "FETCH_SOURCE_DOCUMENT",
+      "coordinator_action": "FETCH_SOURCE_DOCUMENT"
+    },
+    {
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "SOURCE_DOCUMENT_RETRIEVED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2021",
+      "proposal_source": "deterministic",
+      "proposal_action": "FETCH_SOURCE_DOCUMENT",
+      "coordinator_action": "FETCH_SOURCE_DOCUMENT"
+    },
+    {
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "SOURCE_DOCUMENT_RETRIEVED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2023",
+      "proposal_source": "deterministic",
+      "proposal_action": "FETCH_SOURCE_DOCUMENT",
+      "coordinator_action": "FETCH_SOURCE_DOCUMENT"
+    },
+    {
+      "action": "QUERY_ZETARIS",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "ZETARIS_VALUE_MATCHED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2018",
+      "proposal_source": "deterministic",
+      "proposal_action": "QUERY_ZETARIS",
+      "coordinator_action": "QUERY_ZETARIS"
+    },
+    {
+      "action": "QUERY_ZETARIS",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "ZETARIS_VALUE_MATCHED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2020",
+      "proposal_source": "deterministic",
+      "proposal_action": "QUERY_ZETARIS",
+      "coordinator_action": "QUERY_ZETARIS"
+    },
+    {
+      "action": "QUERY_ZETARIS",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "ZETARIS_VALUE_MATCHED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2021",
+      "proposal_source": "deterministic",
+      "proposal_action": "QUERY_ZETARIS",
+      "coordinator_action": "QUERY_ZETARIS"
+    },
+    {
+      "action": "QUERY_ZETARIS",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "ZETARIS_VALUE_MATCHED",
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2023",
+      "proposal_source": "deterministic",
+      "proposal_action": "QUERY_ZETARIS",
+      "coordinator_action": "QUERY_ZETARIS"
+    }
+  ],
+  "iterations": [
+    {
+      "iteration": 1,
+      "active_findings": [
+        "Cameroon MCV1 (2018)",
+        "Cameroon MCV1 (2020)",
+        "Cameroon MCV1 (2021)",
+        "Cameroon MCV1 (2023)"
+      ],
+      "proposed": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": true,
+          "fallback_reason": null,
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": true,
+          "fallback_reason": null,
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": true,
+          "fallback_reason": null,
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": true,
+          "fallback_reason": null,
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        }
+      ],
+      "next_steps": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "reason": "A WUENIC/UNICEF source is still unverified."
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "reason": "A WUENIC/UNICEF source is still unverified."
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "reason": "A WUENIC/UNICEF source is still unverified."
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "reason": "A WUENIC/UNICEF source is still unverified."
+        }
+      ],
+      "rejected_proposals": [],
+      "executed": [
+        {
+          "iteration": 1,
+          "finding": "Cameroon MCV1 (2018)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "target": null,
+          "source": "deterministic",
+          "reason": "A WUENIC/UNICEF source is still unverified.",
+          "outcome": "REVISED_SOURCE_CHECK",
+          "stop_reason": "EXTRACT_VALUE_MATCHED"
+        },
+        {
+          "iteration": 1,
+          "finding": "Cameroon MCV1 (2020)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "target": null,
+          "source": "deterministic",
+          "reason": "A WUENIC/UNICEF source is still unverified.",
+          "outcome": "REVISED_SOURCE_CHECK",
+          "stop_reason": "EXTRACT_VALUE_MATCHED"
+        },
+        {
+          "iteration": 1,
+          "finding": "Cameroon MCV1 (2021)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "target": null,
+          "source": "deterministic",
+          "reason": "A WUENIC/UNICEF source is still unverified.",
+          "outcome": "REVISED_SOURCE_CHECK",
+          "stop_reason": "EXTRACT_VALUE_MATCHED"
+        },
+        {
+          "iteration": 1,
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "target": null,
+          "source": "deterministic",
+          "reason": "A WUENIC/UNICEF source is still unverified.",
+          "outcome": "REVISED_SOURCE_CHECK",
+          "stop_reason": "EXTRACT_VALUE_MATCHED"
+        }
+      ],
+      "challenges": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": false
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": false
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": false
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": false
+        }
+      ],
+      "adjudications": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        }
+      ],
+      "state_fingerprint": "ea24883cd4c83caf",
+      "stop_reason": null,
+      "plan_status": "disabled",
+      "plan_note": "MODEL_NOT_REQUESTED",
+      "model_calls": 0
+    },
+    {
+      "iteration": 2,
+      "active_findings": [
+        "Cameroon MCV1 (2018)",
+        "Cameroon MCV1 (2020)",
+        "Cameroon MCV1 (2021)",
+        "Cameroon MCV1 (2023)"
+      ],
+      "proposed": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        }
+      ],
+      "next_steps": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "action": "FETCH_SOURCE_DOCUMENT",
+          "source": "deterministic",
+          "reason": "A source document for this finding has not been retrieved yet."
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "action": "FETCH_SOURCE_DOCUMENT",
+          "source": "deterministic",
+          "reason": "A source document for this finding has not been retrieved yet."
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "action": "FETCH_SOURCE_DOCUMENT",
+          "source": "deterministic",
+          "reason": "A source document for this finding has not been retrieved yet."
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_SOURCE_DOCUMENT",
+          "source": "deterministic",
+          "reason": "A source document for this finding has not been retrieved yet."
+        }
+      ],
+      "rejected_proposals": [
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        }
+      ],
+      "executed": [
+        {
+          "iteration": 2,
+          "finding": "Cameroon MCV1 (2018)",
+          "action": "FETCH_SOURCE_DOCUMENT",
+          "target": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+          "source": "deterministic",
+          "reason": "A source document for this finding has not been retrieved yet.",
+          "outcome": "EVIDENCE_RETRIEVED",
+          "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+        },
+        {
+          "iteration": 2,
+          "finding": "Cameroon MCV1 (2020)",
+          "action": "FETCH_SOURCE_DOCUMENT",
+          "target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "source": "deterministic",
+          "reason": "A source document for this finding has not been retrieved yet.",
+          "outcome": "EVIDENCE_RETRIEVED",
+          "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+        },
+        {
+          "iteration": 2,
+          "finding": "Cameroon MCV1 (2021)",
+          "action": "FETCH_SOURCE_DOCUMENT",
+          "target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "source": "deterministic",
+          "reason": "A source document for this finding has not been retrieved yet.",
+          "outcome": "EVIDENCE_RETRIEVED",
+          "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+        },
+        {
+          "iteration": 2,
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_SOURCE_DOCUMENT",
+          "target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "source": "deterministic",
+          "reason": "A source document for this finding has not been retrieved yet.",
+          "outcome": "EVIDENCE_RETRIEVED",
+          "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+        }
+      ],
+      "challenges": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": false
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": false
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": false
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": false
+        }
+      ],
+      "adjudications": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        }
+      ],
+      "state_fingerprint": "33eae9107ea5db89",
+      "stop_reason": null,
+      "plan_status": "disabled",
+      "plan_note": "MODEL_NOT_REQUESTED",
+      "model_calls": 0
+    },
+    {
+      "iteration": 3,
+      "active_findings": [
+        "Cameroon MCV1 (2018)",
+        "Cameroon MCV1 (2020)",
+        "Cameroon MCV1 (2021)",
+        "Cameroon MCV1 (2023)"
+      ],
+      "proposed": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        }
+      ],
+      "next_steps": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "action": "QUERY_ZETARIS",
+          "source": "deterministic",
+          "reason": "A published value is not corroborated yet."
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "action": "QUERY_ZETARIS",
+          "source": "deterministic",
+          "reason": "A published value is not corroborated yet."
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "action": "QUERY_ZETARIS",
+          "source": "deterministic",
+          "reason": "A published value is not corroborated yet."
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "QUERY_ZETARIS",
+          "source": "deterministic",
+          "reason": "A published value is not corroborated yet."
+        }
+      ],
+      "rejected_proposals": [
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        }
+      ],
+      "executed": [
+        {
+          "iteration": 3,
+          "finding": "Cameroon MCV1 (2018)",
+          "action": "QUERY_ZETARIS",
+          "target": null,
+          "source": "deterministic",
+          "reason": "A published value is not corroborated yet.",
+          "outcome": "EVIDENCE_RETRIEVED",
+          "stop_reason": "ZETARIS_VALUE_MATCHED"
+        },
+        {
+          "iteration": 3,
+          "finding": "Cameroon MCV1 (2020)",
+          "action": "QUERY_ZETARIS",
+          "target": null,
+          "source": "deterministic",
+          "reason": "A published value is not corroborated yet.",
+          "outcome": "EVIDENCE_RETRIEVED",
+          "stop_reason": "ZETARIS_VALUE_MATCHED"
+        },
+        {
+          "iteration": 3,
+          "finding": "Cameroon MCV1 (2021)",
+          "action": "QUERY_ZETARIS",
+          "target": null,
+          "source": "deterministic",
+          "reason": "A published value is not corroborated yet.",
+          "outcome": "EVIDENCE_RETRIEVED",
+          "stop_reason": "ZETARIS_VALUE_MATCHED"
+        },
+        {
+          "iteration": 3,
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "QUERY_ZETARIS",
+          "target": null,
+          "source": "deterministic",
+          "reason": "A published value is not corroborated yet.",
+          "outcome": "EVIDENCE_RETRIEVED",
+          "stop_reason": "ZETARIS_VALUE_MATCHED"
+        }
+      ],
+      "challenges": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": true
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": true
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": true
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "source": "deterministic",
+          "challenges": [
+            "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+          ],
+          "missing_support": [
+            "No independent document confirms either value."
+          ],
+          "would_change_verdict": false,
+          "fallback_reason": "MODEL_NOT_REQUESTED",
+          "reused": true
+        }
+      ],
+      "adjudications": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "baseline_decision": "REVIEW",
+          "baseline_disposition": "REVIEW",
+          "proposed_verdict": null,
+          "accepted": false,
+          "validation_reason": "MODEL_NOT_REQUESTED",
+          "final_disposition": "REVIEW",
+          "reason": "",
+          "citations": []
+        }
+      ],
+      "state_fingerprint": "29606c5c6e181ff3",
+      "stop_reason": null,
+      "plan_status": "disabled",
+      "plan_note": "MODEL_NOT_REQUESTED",
+      "model_calls": 0
+    },
+    {
+      "iteration": 4,
+      "active_findings": [
+        "Cameroon MCV1 (2018)",
+        "Cameroon MCV1 (2020)",
+        "Cameroon MCV1 (2021)",
+        "Cameroon MCV1 (2023)"
+      ],
+      "proposed": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "source": "deterministic",
+          "accepted": false,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+          "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+        }
+      ],
+      "next_steps": [
+        {
+          "finding": "Cameroon MCV1 (2018)",
+          "action": "STOP",
+          "source": "deterministic",
+          "reason": "No permitted action remains for this finding."
+        },
+        {
+          "finding": "Cameroon MCV1 (2020)",
+          "action": "STOP",
+          "source": "deterministic",
+          "reason": "No permitted action remains for this finding."
+        },
+        {
+          "finding": "Cameroon MCV1 (2021)",
+          "action": "STOP",
+          "source": "deterministic",
+          "reason": "No permitted action remains for this finding."
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "STOP",
+          "source": "deterministic",
+          "reason": "No permitted action remains for this finding."
+        }
+      ],
+      "rejected_proposals": [
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        },
+        {
+          "finding": "Cameroon MCV1 (2023)",
+          "action": "FETCH_WUENIC_WORKBOOK",
+          "rejected_action": null,
+          "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+        }
+      ],
+      "executed": [],
+      "challenges": [],
+      "adjudications": [],
+      "state_fingerprint": "29606c5c6e181ff3",
+      "stop_reason": "REPEATED_STATE",
+      "plan_status": "disabled",
+      "plan_note": "MODEL_NOT_REQUESTED",
+      "model_calls": 0
+    }
+  ],
+  "evidence_ledger": [
+    {
+      "evidence_id": "ev-1",
+      "kind": "SOURCE_CHECK",
+      "name": "Cameroon DHS 2018 survey report",
+      "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+      "status": "SOURCE_DOCUMENT_RETRIEVED",
+      "scope": "DOCUMENT_PRESENCE",
+      "findings": [
+        [
+          "Cameroon",
+          "MCV1",
+          "2018"
+        ]
+      ]
+    },
+    {
+      "evidence_id": "ev-2",
+      "kind": "SOURCE_CHECK",
+      "name": "WUENIC country profile 2023 revision",
+      "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+      "status": "SOURCE_DOCUMENT_RETRIEVED",
+      "scope": "DOCUMENT_PRESENCE",
+      "findings": [
+        [
+          "Cameroon",
+          "MCV1",
+          "2018"
+        ],
+        [
+          "Cameroon",
+          "MCV1",
+          "2020"
+        ],
+        [
+          "Cameroon",
+          "MCV1",
+          "2021"
+        ],
+        [
+          "Cameroon",
+          "MCV1",
+          "2023"
+        ]
+      ]
+    },
+    {
+      "evidence_id": "ev-3",
+      "kind": "SOURCE_CHECK",
+      "name": "WUENIC country profile 2023 revision",
+      "url": "https://data.unicef.org/resources/dataset/immunization/",
+      "status": "NOT_VERIFIED",
+      "scope": "CONTEXT_ONLY",
+      "findings": [
+        [
+          "Cameroon",
+          "MCV1",
+          "2018"
+        ],
+        [
+          "Cameroon",
+          "MCV1",
+          "2020"
+        ],
+        [
+          "Cameroon",
+          "MCV1",
+          "2021"
+        ],
+        [
+          "Cameroon",
+          "MCV1",
+          "2023"
+        ]
+      ]
+    },
+    {
+      "evidence_id": "ev-4",
+      "kind": "CONFLICT",
+      "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+      "url": "",
+      "status": "CONFLICT_DETECTED",
+      "scope": "INDEPENDENT_MEASUREMENT",
+      "findings": [
+        [
+          "Cameroon",
+          "MCV1",
+          "2018"
+        ]
+      ]
+    },
+    {
+      "evidence_id": "ev-5",
+      "kind": "CONFLICT",
+      "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+      "url": "",
+      "status": "CONFLICT_DETECTED",
+      "scope": "INDEPENDENT_MEASUREMENT",
+      "findings": [
+        [
+          "Cameroon",
+          "MCV1",
+          "2020"
+        ]
+      ]
+    },
+    {
+      "evidence_id": "ev-6",
+      "kind": "CONFLICT",
+      "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+      "url": "",
+      "status": "CONFLICT_DETECTED",
+      "scope": "INDEPENDENT_MEASUREMENT",
+      "findings": [
+        [
+          "Cameroon",
+          "MCV1",
+          "2021"
+        ]
+      ]
+    },
+    {
+      "evidence_id": "ev-7",
+      "kind": "ZETARIS_QUERY",
+      "name": "Evidence store row for Cameroon MCV1 2018",
+      "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+      "status": "EXTRACT_CONSISTENT",
+      "scope": "SELF_CONSISTENCY",
+      "findings": [
+        [
+          "Cameroon",
+          "MCV1",
+          "2018"
+        ]
+      ]
+    },
+    {
+      "evidence_id": "ev-8",
+      "kind": "ZETARIS_QUERY",
+      "name": "Evidence store row for Cameroon MCV1 2020",
+      "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+      "status": "EXTRACT_CONSISTENT",
+      "scope": "SELF_CONSISTENCY",
+      "findings": [
+        [
+          "Cameroon",
+          "MCV1",
+          "2020"
+        ]
+      ]
+    },
+    {
+      "evidence_id": "ev-9",
+      "kind": "ZETARIS_QUERY",
+      "name": "Evidence store row for Cameroon MCV1 2021",
+      "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+      "status": "EXTRACT_CONSISTENT",
+      "scope": "SELF_CONSISTENCY",
+      "findings": [
+        [
+          "Cameroon",
+          "MCV1",
+          "2021"
+        ]
+      ]
+    },
+    {
+      "evidence_id": "ev-10",
+      "kind": "ZETARIS_QUERY",
+      "name": "Evidence store row for Cameroon MCV1 2023",
+      "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+      "status": "EXTRACT_CONSISTENT",
+      "scope": "SELF_CONSISTENCY",
+      "findings": [
+        [
+          "Cameroon",
+          "MCV1",
+          "2023"
+        ]
+      ]
+    }
+  ],
+  "executed_actions": [
+    {
+      "iteration": 1,
+      "finding": "Cameroon MCV1 (2018)",
+      "action": "FETCH_WUENIC_WORKBOOK",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A WUENIC/UNICEF source is still unverified.",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED"
+    },
+    {
+      "iteration": 1,
+      "finding": "Cameroon MCV1 (2020)",
+      "action": "FETCH_WUENIC_WORKBOOK",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A WUENIC/UNICEF source is still unverified.",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED"
+    },
+    {
+      "iteration": 1,
+      "finding": "Cameroon MCV1 (2021)",
+      "action": "FETCH_WUENIC_WORKBOOK",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A WUENIC/UNICEF source is still unverified.",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED"
+    },
+    {
+      "iteration": 1,
+      "finding": "Cameroon MCV1 (2023)",
+      "action": "FETCH_WUENIC_WORKBOOK",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A WUENIC/UNICEF source is still unverified.",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED"
+    },
+    {
+      "iteration": 2,
+      "finding": "Cameroon MCV1 (2018)",
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "target": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+      "source": "deterministic",
+      "reason": "A source document for this finding has not been retrieved yet.",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+    },
+    {
+      "iteration": 2,
+      "finding": "Cameroon MCV1 (2020)",
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+      "source": "deterministic",
+      "reason": "A source document for this finding has not been retrieved yet.",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+    },
+    {
+      "iteration": 2,
+      "finding": "Cameroon MCV1 (2021)",
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+      "source": "deterministic",
+      "reason": "A source document for this finding has not been retrieved yet.",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+    },
+    {
+      "iteration": 2,
+      "finding": "Cameroon MCV1 (2023)",
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+      "source": "deterministic",
+      "reason": "A source document for this finding has not been retrieved yet.",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+    },
+    {
+      "iteration": 3,
+      "finding": "Cameroon MCV1 (2018)",
+      "action": "QUERY_ZETARIS",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A published value is not corroborated yet.",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "ZETARIS_VALUE_MATCHED"
+    },
+    {
+      "iteration": 3,
+      "finding": "Cameroon MCV1 (2020)",
+      "action": "QUERY_ZETARIS",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A published value is not corroborated yet.",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "ZETARIS_VALUE_MATCHED"
+    },
+    {
+      "iteration": 3,
+      "finding": "Cameroon MCV1 (2021)",
+      "action": "QUERY_ZETARIS",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A published value is not corroborated yet.",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "ZETARIS_VALUE_MATCHED"
+    },
+    {
+      "iteration": 3,
+      "finding": "Cameroon MCV1 (2023)",
+      "action": "QUERY_ZETARIS",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A published value is not corroborated yet.",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "ZETARIS_VALUE_MATCHED"
+    }
+  ],
+  "closing": {
+    "Cameroon MCV1 (2018)": {
+      "cause": "NO_ACTION",
+      "reason": "No permitted action remains for this finding.",
+      "disposition": "REVIEW"
+    },
+    "Cameroon MCV1 (2020)": {
+      "cause": "NO_ACTION",
+      "reason": "No permitted action remains for this finding.",
+      "disposition": "REVIEW"
+    },
+    "Cameroon MCV1 (2021)": {
+      "cause": "NO_ACTION",
+      "reason": "No permitted action remains for this finding.",
+      "disposition": "REVIEW"
+    },
+    "Cameroon MCV1 (2023)": {
+      "cause": "NO_ACTION",
+      "reason": "No permitted action remains for this finding.",
+      "disposition": "REVIEW"
+    }
+  },
+  "stop_reason": "REPEATED_STATE",
+  "stop_detail": "4 finding(s) are still open: Cameroon MCV1 (2018), Cameroon MCV1 (2020), Cameroon MCV1 (2021), Cameroon MCV1 (2023). The investigation reached the same state twice, so it was stopped instead of looping.",
+  "uncertainties": {
+    "Cameroon MCV1 (2018)": [
+      "The document behind 'Cameroon DHS 2018 survey report' was retrieved but its values were not checked.",
+      "'WUENIC country profile 2023 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+      "'WUENIC country profile 2023 revision' was never verified against its own published source.",
+      "Missing support: No independent document confirms either value."
+    ],
+    "Cameroon MCV1 (2020)": [
+      "The document behind 'WUENIC country profile 2023 revision' was retrieved but its values were not checked.",
+      "'WUENIC country profile 2023 revision' was never verified against its own published source.",
+      "Missing support: No independent document confirms either value."
+    ],
+    "Cameroon MCV1 (2021)": [
+      "The document behind 'WUENIC country profile 2023 revision' was retrieved but its values were not checked.",
+      "'WUENIC country profile 2023 revision' was never verified against its own published source.",
+      "Missing support: No independent document confirms either value."
+    ],
+    "Cameroon MCV1 (2023)": [
+      "The document behind 'WUENIC country profile 2023 revision' was retrieved but its values were not checked.",
+      "'WUENIC country profile 2023 revision' was never verified against its own published source.",
+      "Missing support: No independent document confirms either value."
+    ]
+  },
+  "model": {
+    "status": "disabled",
+    "model": null,
+    "base_url": null,
+    "calls": 0,
+    "max_calls": 12,
+    "note": "MODEL_NOT_REQUESTED",
+    "proposals": [
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2018",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": true,
+        "rejected_action": null,
+        "fallback_reason": null
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2020",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": true,
+        "rejected_action": null,
+        "fallback_reason": null
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2021",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": true,
+        "rejected_action": null,
+        "fallback_reason": null
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2023",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": true,
+        "rejected_action": null,
+        "fallback_reason": null
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2018",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2020",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2021",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2023",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2018",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2020",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2021",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2023",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2018",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2020",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2021",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2023",
+        "action": "FETCH_WUENIC_WORKBOOK",
+        "target": null,
+        "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value.",
+        "source": "deterministic",
+        "accepted": false,
+        "rejected_action": null,
+        "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+      }
+    ],
+    "challenges": [
+      {
+        "challenges": [
+          "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+        ],
+        "missing_support": [
+          "No independent document confirms either value."
+        ],
+        "would_change_verdict": false,
+        "summary": "Deterministic challenge for Cameroon MCV1 (2018).",
+        "source": "deterministic",
+        "status": "fallback",
+        "fallback_reason": "MODEL_NOT_REQUESTED",
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2018"
+      },
+      {
+        "challenges": [
+          "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+        ],
+        "missing_support": [
+          "No independent document confirms either value."
+        ],
+        "would_change_verdict": false,
+        "summary": "Deterministic challenge for Cameroon MCV1 (2020).",
+        "source": "deterministic",
+        "status": "fallback",
+        "fallback_reason": "MODEL_NOT_REQUESTED",
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2020"
+      },
+      {
+        "challenges": [
+          "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+        ],
+        "missing_support": [
+          "No independent document confirms either value."
+        ],
+        "would_change_verdict": false,
+        "summary": "Deterministic challenge for Cameroon MCV1 (2021).",
+        "source": "deterministic",
+        "status": "fallback",
+        "fallback_reason": "MODEL_NOT_REQUESTED",
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2021"
+      },
+      {
+        "challenges": [
+          "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+        ],
+        "missing_support": [
+          "No independent document confirms either value."
+        ],
+        "would_change_verdict": false,
+        "summary": "Deterministic challenge for Cameroon MCV1 (2023).",
+        "source": "deterministic",
+        "status": "fallback",
+        "fallback_reason": "MODEL_NOT_REQUESTED",
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2023"
+      }
+    ],
+    "iterations": [
+      {
+        "iteration": 1,
+        "active_findings": [
+          "Cameroon MCV1 (2018)",
+          "Cameroon MCV1 (2020)",
+          "Cameroon MCV1 (2021)",
+          "Cameroon MCV1 (2023)"
+        ],
+        "proposed": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": true,
+            "fallback_reason": null,
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": true,
+            "fallback_reason": null,
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": true,
+            "fallback_reason": null,
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": true,
+            "fallback_reason": null,
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          }
+        ],
+        "next_steps": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "reason": "A WUENIC/UNICEF source is still unverified."
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "reason": "A WUENIC/UNICEF source is still unverified."
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "reason": "A WUENIC/UNICEF source is still unverified."
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "reason": "A WUENIC/UNICEF source is still unverified."
+          }
+        ],
+        "rejected_proposals": [],
+        "executed": [
+          {
+            "iteration": 1,
+            "finding": "Cameroon MCV1 (2018)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "target": null,
+            "source": "deterministic",
+            "reason": "A WUENIC/UNICEF source is still unverified.",
+            "outcome": "REVISED_SOURCE_CHECK",
+            "stop_reason": "EXTRACT_VALUE_MATCHED"
+          },
+          {
+            "iteration": 1,
+            "finding": "Cameroon MCV1 (2020)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "target": null,
+            "source": "deterministic",
+            "reason": "A WUENIC/UNICEF source is still unverified.",
+            "outcome": "REVISED_SOURCE_CHECK",
+            "stop_reason": "EXTRACT_VALUE_MATCHED"
+          },
+          {
+            "iteration": 1,
+            "finding": "Cameroon MCV1 (2021)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "target": null,
+            "source": "deterministic",
+            "reason": "A WUENIC/UNICEF source is still unverified.",
+            "outcome": "REVISED_SOURCE_CHECK",
+            "stop_reason": "EXTRACT_VALUE_MATCHED"
+          },
+          {
+            "iteration": 1,
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "target": null,
+            "source": "deterministic",
+            "reason": "A WUENIC/UNICEF source is still unverified.",
+            "outcome": "REVISED_SOURCE_CHECK",
+            "stop_reason": "EXTRACT_VALUE_MATCHED"
+          }
+        ],
+        "challenges": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": false
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": false
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": false
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": false
+          }
+        ],
+        "adjudications": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          }
+        ],
+        "state_fingerprint": "ea24883cd4c83caf",
+        "stop_reason": null,
+        "plan_status": "disabled",
+        "plan_note": "MODEL_NOT_REQUESTED",
+        "model_calls": 0
+      },
+      {
+        "iteration": 2,
+        "active_findings": [
+          "Cameroon MCV1 (2018)",
+          "Cameroon MCV1 (2020)",
+          "Cameroon MCV1 (2021)",
+          "Cameroon MCV1 (2023)"
+        ],
+        "proposed": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          }
+        ],
+        "next_steps": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "action": "FETCH_SOURCE_DOCUMENT",
+            "source": "deterministic",
+            "reason": "A source document for this finding has not been retrieved yet."
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "action": "FETCH_SOURCE_DOCUMENT",
+            "source": "deterministic",
+            "reason": "A source document for this finding has not been retrieved yet."
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "action": "FETCH_SOURCE_DOCUMENT",
+            "source": "deterministic",
+            "reason": "A source document for this finding has not been retrieved yet."
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_SOURCE_DOCUMENT",
+            "source": "deterministic",
+            "reason": "A source document for this finding has not been retrieved yet."
+          }
+        ],
+        "rejected_proposals": [
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          }
+        ],
+        "executed": [
+          {
+            "iteration": 2,
+            "finding": "Cameroon MCV1 (2018)",
+            "action": "FETCH_SOURCE_DOCUMENT",
+            "target": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+            "source": "deterministic",
+            "reason": "A source document for this finding has not been retrieved yet.",
+            "outcome": "EVIDENCE_RETRIEVED",
+            "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+          },
+          {
+            "iteration": 2,
+            "finding": "Cameroon MCV1 (2020)",
+            "action": "FETCH_SOURCE_DOCUMENT",
+            "target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "source": "deterministic",
+            "reason": "A source document for this finding has not been retrieved yet.",
+            "outcome": "EVIDENCE_RETRIEVED",
+            "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+          },
+          {
+            "iteration": 2,
+            "finding": "Cameroon MCV1 (2021)",
+            "action": "FETCH_SOURCE_DOCUMENT",
+            "target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "source": "deterministic",
+            "reason": "A source document for this finding has not been retrieved yet.",
+            "outcome": "EVIDENCE_RETRIEVED",
+            "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+          },
+          {
+            "iteration": 2,
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_SOURCE_DOCUMENT",
+            "target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "source": "deterministic",
+            "reason": "A source document for this finding has not been retrieved yet.",
+            "outcome": "EVIDENCE_RETRIEVED",
+            "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+          }
+        ],
+        "challenges": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": false
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": false
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": false
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": false
+          }
+        ],
+        "adjudications": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          }
+        ],
+        "state_fingerprint": "33eae9107ea5db89",
+        "stop_reason": null,
+        "plan_status": "disabled",
+        "plan_note": "MODEL_NOT_REQUESTED",
+        "model_calls": 0
+      },
+      {
+        "iteration": 3,
+        "active_findings": [
+          "Cameroon MCV1 (2018)",
+          "Cameroon MCV1 (2020)",
+          "Cameroon MCV1 (2021)",
+          "Cameroon MCV1 (2023)"
+        ],
+        "proposed": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          }
+        ],
+        "next_steps": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "action": "QUERY_ZETARIS",
+            "source": "deterministic",
+            "reason": "A published value is not corroborated yet."
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "action": "QUERY_ZETARIS",
+            "source": "deterministic",
+            "reason": "A published value is not corroborated yet."
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "action": "QUERY_ZETARIS",
+            "source": "deterministic",
+            "reason": "A published value is not corroborated yet."
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "QUERY_ZETARIS",
+            "source": "deterministic",
+            "reason": "A published value is not corroborated yet."
+          }
+        ],
+        "rejected_proposals": [
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          }
+        ],
+        "executed": [
+          {
+            "iteration": 3,
+            "finding": "Cameroon MCV1 (2018)",
+            "action": "QUERY_ZETARIS",
+            "target": null,
+            "source": "deterministic",
+            "reason": "A published value is not corroborated yet.",
+            "outcome": "EVIDENCE_RETRIEVED",
+            "stop_reason": "ZETARIS_VALUE_MATCHED"
+          },
+          {
+            "iteration": 3,
+            "finding": "Cameroon MCV1 (2020)",
+            "action": "QUERY_ZETARIS",
+            "target": null,
+            "source": "deterministic",
+            "reason": "A published value is not corroborated yet.",
+            "outcome": "EVIDENCE_RETRIEVED",
+            "stop_reason": "ZETARIS_VALUE_MATCHED"
+          },
+          {
+            "iteration": 3,
+            "finding": "Cameroon MCV1 (2021)",
+            "action": "QUERY_ZETARIS",
+            "target": null,
+            "source": "deterministic",
+            "reason": "A published value is not corroborated yet.",
+            "outcome": "EVIDENCE_RETRIEVED",
+            "stop_reason": "ZETARIS_VALUE_MATCHED"
+          },
+          {
+            "iteration": 3,
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "QUERY_ZETARIS",
+            "target": null,
+            "source": "deterministic",
+            "reason": "A published value is not corroborated yet.",
+            "outcome": "EVIDENCE_RETRIEVED",
+            "stop_reason": "ZETARIS_VALUE_MATCHED"
+          }
+        ],
+        "challenges": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": true
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": true
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": true
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "source": "deterministic",
+            "challenges": [
+              "The evidence record is internally consistent; the gap between the two measures is unexplained by the checks that were run."
+            ],
+            "missing_support": [
+              "No independent document confirms either value."
+            ],
+            "would_change_verdict": false,
+            "fallback_reason": "MODEL_NOT_REQUESTED",
+            "reused": true
+          }
+        ],
+        "adjudications": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "baseline_decision": "REVIEW",
+            "baseline_disposition": "REVIEW",
+            "proposed_verdict": null,
+            "accepted": false,
+            "validation_reason": "MODEL_NOT_REQUESTED",
+            "final_disposition": "REVIEW",
+            "reason": "",
+            "citations": []
+          }
+        ],
+        "state_fingerprint": "29606c5c6e181ff3",
+        "stop_reason": null,
+        "plan_status": "disabled",
+        "plan_note": "MODEL_NOT_REQUESTED",
+        "model_calls": 0
+      },
+      {
+        "iteration": 4,
+        "active_findings": [
+          "Cameroon MCV1 (2018)",
+          "Cameroon MCV1 (2020)",
+          "Cameroon MCV1 (2021)",
+          "Cameroon MCV1 (2023)"
+        ],
+        "proposed": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "source": "deterministic",
+            "accepted": false,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING",
+            "reason": "A WUENIC/UNICEF source is still unverified, so the workbook extract is compared against the claimed value."
+          }
+        ],
+        "next_steps": [
+          {
+            "finding": "Cameroon MCV1 (2018)",
+            "action": "STOP",
+            "source": "deterministic",
+            "reason": "No permitted action remains for this finding."
+          },
+          {
+            "finding": "Cameroon MCV1 (2020)",
+            "action": "STOP",
+            "source": "deterministic",
+            "reason": "No permitted action remains for this finding."
+          },
+          {
+            "finding": "Cameroon MCV1 (2021)",
+            "action": "STOP",
+            "source": "deterministic",
+            "reason": "No permitted action remains for this finding."
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "STOP",
+            "source": "deterministic",
+            "reason": "No permitted action remains for this finding."
+          }
+        ],
+        "rejected_proposals": [
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          },
+          {
+            "finding": "Cameroon MCV1 (2023)",
+            "action": "FETCH_WUENIC_WORKBOOK",
+            "rejected_action": null,
+            "fallback_reason": "ACTION_NOT_AVAILABLE_FOR_THIS_FINDING"
+          }
+        ],
+        "executed": [],
+        "challenges": [],
+        "adjudications": [],
+        "state_fingerprint": "29606c5c6e181ff3",
+        "stop_reason": "REPEATED_STATE",
+        "plan_status": "disabled",
+        "plan_note": "MODEL_NOT_REQUESTED",
+        "model_calls": 0
+      }
+    ]
+  },
   "remembered": []
 }

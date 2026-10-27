@@ -1,0 +1,18 @@
+{
+  "name": "cross-examiner-engine",
+  "version": "0.1.0",
+  "description": "The Meterless H-MEM engine bridge for Cross-Examiner: it remembers what an earlier investigation found, and hands it to the next one.",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "setup": "npm install --no-audit --no-fund",
+    "memory": "tsx cross_examiner_memory.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  }
+}

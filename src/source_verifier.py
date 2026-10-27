@@ -1,5 +1,6 @@
 """Contextual checks for claims against PDF table rows."""
 
+import copy
 import io
 import re
 import unicodedata
@@ -9,6 +10,11 @@ from pypdf import PdfReader
 
 YEAR_RE = re.compile(r"\b(?:19|20)\d{2}\b")
 VALUE_RE = re.compile(r"(?<![\w.])(?:\d+(?:\.\d+)?|NA)(?![\w.])", re.I)
+
+# The country profiles are large PDFs and the same document is checked
+# again on every investigation iteration. The result depends only on the
+# URL and the claim, so it is cached for the lifetime of the process.
+_VERIFICATION_CACHE = {}
 
 
 def norm(value):
@@ -75,6 +81,60 @@ def parse_table(text):
 
 def verify_pdf_source(url, finding, timeout=20,
                       max_bytes=15 * 1024 * 1024):
+    country = norm(finding.get("country", ""))
+    antigen = norm(finding.get("antigen", ""))
+    year = str(finding.get("year", ""))
+    cache_key = (url, country, antigen, year)
+
+    if cache_key in _VERIFICATION_CACHE:
+        return copy.deepcopy(_VERIFICATION_CACHE[cache_key])
+
+    result = verify_pdf_source_uncached(
+        url, finding, timeout=timeout, max_bytes=max_bytes
+    )
+    _VERIFICATION_CACHE[cache_key] = copy.deepcopy(result)
+    return result
+
+
+def clear_verification_cache():
+    """Drop the cached PDF verifications (used by the tests)."""
+    _VERIFICATION_CACHE.clear()
+
+
+def comparisons_for(finding):
+    """The (field, measure, expected value) triples to check in a table.
+
+    A finding may carry more than the two numbers it was built on: a
+    household-survey line is a third reported number for the same country,
+    antigen and year, and it lives in the same table.
+    """
+    comparisons = []
+    for observation in finding.get("observations") or []:
+        field = observation.get("field")
+        measure = observation.get("measure")
+        value = observation.get("value")
+        if not field or not measure:
+            continue
+        comparisons.append((field, measure, value))
+
+    if not comparisons:
+        comparisons = [
+            (
+                "value_a",
+                finding.get("measure_a", "WUENIC estimate"),
+                finding.get("value_a"),
+            ),
+            (
+                "value_b",
+                finding.get("measure_b", "Administrative coverage"),
+                finding.get("value_b"),
+            ),
+        ]
+    return comparisons
+
+
+def verify_pdf_source_uncached(url, finding, timeout=20,
+                               max_bytes=15 * 1024 * 1024):
     result = {
         "url": url,
         "status": "NOT_VERIFIED",
@@ -144,17 +204,13 @@ def verify_pdf_source(url, finding, timeout=20,
             "year": True,
         }
 
-        comparisons = [
-            ("value_a", finding.get("measure_a", "WUENIC estimate")),
-            ("value_b", finding.get("measure_b", "Administrative coverage")),
-        ]
+        comparisons = comparisons_for(finding)
         all_match = True
 
-        for field, description in comparisons:
+        for field, description, expected in comparisons:
             row = measure_row(description)
             values = rows.get(row) if row else None
             actual = values[year_index] if values and year_index < len(values) else None
-            expected = finding.get(field)
 
             try:
                 matches = (

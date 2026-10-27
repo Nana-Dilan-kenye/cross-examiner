@@ -1,0 +1,271 @@
+{
+  "version": 1,
+  "note": "The source registry. Every number the agent reasons about comes from one of these sources. A source is a publication; an origin is the series the numbers actually come from. A source that republishes another series is a derived mirror and is counted once with its origin, so it can never confirm the numbers it was derived from.",
+  "origins": {
+    "wuenic_2025": {
+      "label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+      "kind": "reconciled_estimate",
+      "independent_capable": false,
+      "note": "A reconciliation of administrative, survey and other evidence. It is not an independent source of anything it reconciles.",
+      "series": "wuenic"
+    },
+    "cameroon_admin_jrf": {
+      "label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+      "kind": "administrative_reporting",
+      "independent_capable": false,
+      "note": "Facility and district reports. The denominators are population estimates, which is why this line can exceed the truth.",
+      "series": "cmr_admin"
+    },
+    "cameroon_government_official": {
+      "label": "Cameroon official (government) coverage estimate",
+      "kind": "government_estimate",
+      "independent_capable": false,
+      "series": "cmr_official"
+    },
+    "cameroon_household_survey": {
+      "label": "Cameroon household survey coverage (independent household sampling)",
+      "kind": "household_survey",
+      "independent_capable": true,
+      "note": "Sampled households, not facility reports. This is the only measurement kind that does not derive from the administrative reporting. Published by the DHS Program for the 2018 round and republished by the WHO/UNICEF country profile for the years it covers.",
+      "series": "cmr_survey"
+    },
+    "synthetic_programme": {
+      "label": "Synthetic district programme reports (generated for this project)",
+      "kind": "synthetic",
+      "independent_capable": false,
+      "is_synthetic": true,
+      "note": "Generated. Never evidence; it exists to test the agent's checks.",
+      "series": "synthetic"
+    },
+    "wuenic_2023": {
+      "label": "WHO/UNICEF Estimates of National Immunization Coverage, 2023 revision (the revision the 2024 country profiles publish)",
+      "kind": "reconciled_estimate",
+      "series": "wuenic",
+      "independent_capable": false,
+      "note": "An earlier revision of the same series. The estimate was revised after the country profile was published, so the two disagree for some countries. A revision is not an independent measurement."
+    },
+    "ethiopia_admin_jrf": {
+      "label": "Ethiopia administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+      "kind": "administrative_reporting",
+      "series": "eth_admin",
+      "independent_capable": false
+    },
+    "ethiopia_government_official": {
+      "label": "Ethiopia official (government) coverage estimate",
+      "kind": "government_estimate",
+      "series": "eth_official",
+      "independent_capable": false
+    },
+    "ethiopia_household_survey": {
+      "label": "Ethiopia household survey coverage, as compiled in the country profile",
+      "kind": "household_survey",
+      "series": "eth_survey",
+      "independent_capable": true,
+      "note": "Sampled households, not facility reports."
+    }
+  },
+  "sources": [
+    {
+      "source_id": "wuenic_workbook_2025",
+      "name": "WUENIC 2025 revision",
+      "source_type": "xlsx",
+      "access": [
+        "python",
+        "zetaris"
+      ],
+      "format": "XLSX workbook (country sheet), read with openpyxl",
+      "origin_of_measure": {
+        "WUENIC estimate": "wuenic_2025"
+      },
+      "own_publications": [
+        "wuenic_2025"
+      ],
+      "derived_from": null,
+      "is_synthetic": false,
+      "independent_capable": false,
+      "source_urls": [
+        "https://data.unicef.org/resources/dataset/immunization/"
+      ],
+      "source_names": [
+        "WUENIC 2025 revision"
+      ],
+      "origin_url": "https://data.unicef.org/resources/dataset/immunization/",
+      "licence": "UNICEF data use policy; check before redistribution",
+      "notes": "The origin of the WUENIC estimate in the evidence file. Reading a value back out of this workbook proves the extraction worked, not that the estimate is right."
+    },
+    {
+      "source_id": "who_country_profile_2024",
+      "name": "WUENIC country profile 2023 revision",
+      "source_type": "pdf",
+      "access": [
+        "python",
+        "zetaris"
+      ],
+      "format": "PDF (one page per antigen, four rows per year)",
+      "origin_of_measure": {
+        "WUENIC estimate": "wuenic_2023",
+        "Administrative coverage": "cameroon_admin_jrf",
+        "Official (government) coverage": "cameroon_government_official",
+        "Household survey coverage": "cameroon_household_survey"
+      },
+      "own_publications": [
+        "cameroon_admin_jrf",
+        "cameroon_government_official"
+      ],
+      "derived_from": null,
+      "is_synthetic": false,
+      "independent_capable": false,
+      "source_urls": [
+        "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+        "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf"
+      ],
+      "source_names": [
+        "WUENIC country profile 2023 revision"
+      ],
+      "origin_url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf",
+      "licence": "WHO/UNICEF joint country profile, published under WHO terms of use",
+      "notes": "Republishes the WHO/UNICEF estimates as they stood in the 2023 revision, and the administrative and household-survey rows. Its estimate row is an earlier revision of the same series as the workbook, so it cannot confirm the workbook's figure, and for some countries the estimate was revised in between.",
+      "country": "Cameroon"
+    },
+    {
+      "source_id": "unicef_sdmx_immunisation",
+      "name": "UNICEF Data Warehouse (SDMX IMMUNISATION flow)",
+      "source_type": "rest_csv",
+      "access": [
+        "zetaris"
+      ],
+      "format": "REST/CSV over SDMX 2.0",
+      "origin_of_measure": {
+        "WUENIC estimate": "wuenic_2025"
+      },
+      "own_publications": [],
+      "derived_from": "wuenic_workbook_2025",
+      "is_synthetic": false,
+      "independent_capable": false,
+      "source_urls": [
+        "https://sdmx.data.unicef.org/ws/public/sdmxapi/rest/data/UNICEF,IMMUNISATION,1.0/"
+      ],
+      "source_names": [
+        "UNICEF Data Warehouse SDMX"
+      ],
+      "origin_url": "https://data.unicef.org/",
+      "licence": "UNICEF data use policy; check before redistribution",
+      "notes": "Publishes the same WUENIC 2025 revision numbers as the workbook. A derived mirror, not a second opinion. Verified: Cameroon MCV1 2020 = 63, 2023 = 71, identical to the workbook."
+    },
+    {
+      "source_id": "worldbank_wdi",
+      "name": "World Bank Indicators (SH.IMM.MEAS)",
+      "source_type": "rest_json",
+      "access": [
+        "zetaris"
+      ],
+      "format": "REST/JSON",
+      "origin_of_measure": {
+        "WUENIC estimate": "wuenic_2025"
+      },
+      "own_publications": [],
+      "derived_from": "wuenic_workbook_2025",
+      "is_synthetic": false,
+      "independent_capable": false,
+      "source_urls": [
+        "https://api.worldbank.org/v2/country/CMR/indicator/SH.IMM.MEAS"
+      ],
+      "source_names": [
+        "World Bank Indicators"
+      ],
+      "origin_url": "https://data.worldbank.org/",
+      "licence": "CC BY 4.0",
+      "notes": "Republishes the WUENIC estimate. Verified: Cameroon measles 2020 = 63, 2023 = 71, identical to the workbook. It must never be counted as confirmation of the estimate it was derived from.",
+      "country": "Cameroon"
+    },
+    {
+      "source_id": "dhs_cameroon_2018",
+      "name": "Cameroon DHS 2018 survey report",
+      "source_type": "pdf",
+      "access": [
+        "python"
+      ],
+      "format": "PDF (DHS summary report SR266)",
+      "origin_of_measure": {
+        "Household survey coverage": "cameroon_household_survey"
+      },
+      "own_publications": [
+        "cameroon_household_survey"
+      ],
+      "derived_from": null,
+      "is_synthetic": false,
+      "independent_capable": true,
+      "source_urls": [
+        "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+        "https://dhsprogram.com/pubs/pdf/FR359/FR359.pdf"
+      ],
+      "source_names": [
+        "Cameroon DHS 2018 survey report"
+      ],
+      "origin_url": "https://dhsprogram.com/Publications/Publication-Search.cfm?Country=Cameroon&c=Cameroon&cn=Cameroon&ctry_id=4",
+      "licence": "DHS Program: authorised for public use with citation",
+      "notes": "The household survey that does not derive from administrative reporting. Measles (MCV1) coverage among children 12-23 months is 65.3 percent; cross-checked against the Countdown to 2030 country sheet for Cameroon DHS 2018. The PDF is not machine-readable in this environment (pypdf cannot parse the DHS reports), so a value transcribed from it is labelled as transcribed and is not re-read during a run.",
+      "country": "Cameroon"
+    },
+    {
+      "source_id": "synthetic_programme_reports",
+      "name": "SYNTHETIC district programme reports",
+      "source_type": "csv",
+      "access": [
+        "python",
+        "zetaris"
+      ],
+      "format": "CSV generated by scripts/make_synthetic.py with a fixed seed",
+      "origin_of_measure": {
+        "Programme report (synthetic)": "synthetic_programme"
+      },
+      "own_publications": [
+        "synthetic_programme"
+      ],
+      "derived_from": null,
+      "is_synthetic": true,
+      "independent_capable": false,
+      "source_urls": [],
+      "source_names": [
+        "SYNTHETIC district programme reports"
+      ],
+      "origin_url": null,
+      "licence": "Generated for this project; carries no external licence",
+      "notes": "Fictional district reports with planted contradictions and clean controls. Registered in its own Zetaris database so it can never be unioned with real evidence by accident. Never counts as evidence.",
+      "country": "Meridia"
+    },
+    {
+      "source_id": "who_country_profile_2024_ethiopia",
+      "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+      "source_type": "pdf",
+      "access": [
+        "python",
+        "zetaris"
+      ],
+      "format": "PDF (one page per antigen, four rows per year)",
+      "origin_of_measure": {
+        "WUENIC estimate": "wuenic_2023",
+        "Administrative coverage": "ethiopia_admin_jrf",
+        "Official (government) coverage": "ethiopia_government_official",
+        "Household survey coverage": "ethiopia_household_survey"
+      },
+      "own_publications": [
+        "ethiopia_admin_jrf",
+        "ethiopia_government_official"
+      ],
+      "derived_from": null,
+      "is_synthetic": false,
+      "independent_capable": false,
+      "source_urls": [
+        "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf"
+      ],
+      "source_names": [
+        "WHO/UNICEF country profile for Ethiopia (2023 revision)"
+      ],
+      "origin_url": "https://www.who.int/data/gho/data/themes/measles-and-rubella/immunization-data",
+      "licence": "WHO/UNICEF joint country profile, published under WHO terms of use",
+      "notes": "The Ethiopian country profile. Its administrative and household-survey rows are Ethiopian series; its estimate row is the 2023 revision of the shared WHO/UNICEF series.",
+      "country": "Ethiopia"
+    }
+  ]
+}

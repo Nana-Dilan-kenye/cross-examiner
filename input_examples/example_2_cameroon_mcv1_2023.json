@@ -1,0 +1,10 @@
+{
+  "question": "The 2023 Cameroon MCV1 figures disagree. What do we know, and what is still open?",
+  "country": "Cameroon",
+  "antigen": "MCV1",
+  "year": "2023",
+  "source": "auto",
+  "model": "off",
+  "use_memory": true,
+  "remember": false
+}

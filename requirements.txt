@@ -1,0 +1,8 @@
+# Runtime dependencies for Cross-Examiner.
+# Standard library is used for everything else (no requests/httpx needed).
+
+# PDF text extraction for WHO country-profile source verification.
+pypdf>=6.0,<7.0
+
+# Reading the WUENIC 2025 revision workbook (.xlsx) behind the local evidence API.
+openpyxl>=3.1,<4.0

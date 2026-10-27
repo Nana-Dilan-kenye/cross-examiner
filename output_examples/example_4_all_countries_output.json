@@ -1,0 +1,4449 @@
+{
+  "run_id": "20261026T223747-51934",
+  "status": "review",
+  "mode": "live",
+  "sample_mode": false,
+  "question": "Compare every published coverage figure we hold for Cameroon MCV1 and say which of them can be trusted as the coverage level.",
+  "semantic_layer": [
+    {
+      "source_id": "unified_semantic_layer",
+      "records": 267,
+      "read_from": "lightning.metastore.cross_examiner.coverage_observations.coverage_observation",
+      "origin": "zetaris_usl",
+      "reason": null,
+      "source_ids": [
+        "dhs_cameroon_2018",
+        "synthetic_programme_reports",
+        "who_country_profile_2024",
+        "who_country_profile_2024_ethiopia",
+        "worldbank_wdi",
+        "wuenic_workbook_2025"
+      ]
+    },
+    {
+      "source_id": "synthetic_programme_reports",
+      "records": 181,
+      "read_from": "the semantic layer",
+      "origin": "excluded",
+      "reason": "generated records are never evidence"
+    }
+  ],
+  "findings": [
+    {
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2018",
+      "data_kind": "observed",
+      "status": "REVIEW",
+      "review_status": "REVIEW",
+      "confidence": "moderate",
+      "decision": "REVIEW",
+      "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods. An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+      "measures": {
+        "a": {
+          "measure": "WUENIC estimate",
+          "value": 61.0
+        },
+        "b": {
+          "measure": "Administrative coverage",
+          "value": 71.0
+        }
+      },
+      "gap_percentage_points": 10.0,
+      "recommendation": {
+        "recommended_measure": "Household survey coverage",
+        "recommended_value": 65.3,
+        "recommended_source": "Cameroon household survey coverage (independent household sampling)",
+        "recommended_source_id": "dhs_cameroon_2018",
+        "not_recommended_measure": "Administrative coverage",
+        "not_recommended_value": 71.0,
+        "gap_percentage_points": 5.700000000000003,
+        "basis": "The administrative figure is 5.7 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design.",
+        "caveats": [
+          "The survey figure is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+          "A survey measures a sample of households, not the whole population, so it carries its own sampling uncertainty.",
+          "This is a recommendation for the coverage level, not a claim that one of the published figures is correct."
+        ]
+      },
+      "conflicts": [
+        {
+          "code": "CONFLICT_ADMIN_SURVEY",
+          "country": "Cameroon",
+          "antigen": "MCV1",
+          "year": "2018",
+          "measure_a": "Administrative coverage",
+          "value_a": 71.0,
+          "measure_b": "Household survey coverage",
+          "value_b": 65.3,
+          "gap_percentage_points": 5.700000000000003,
+          "origin_a": "cameroon_admin_jrf",
+          "origin_b": "cameroon_household_survey",
+          "note": "The administrative figure is 5.7 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design."
+        }
+      ],
+      "lineage": [
+        {
+          "measure": "Household survey coverage",
+          "value": 65.3,
+          "origin": "cameroon_household_survey",
+          "origin_label": "Cameroon household survey coverage (independent household sampling)",
+          "measurement_kind": "household_survey",
+          "source_id": "dhs_cameroon_2018",
+          "source_type": "pdf",
+          "source_name": "Cameroon DHS 2018 survey report",
+          "source_ref": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": true,
+          "verification_scope": "INDEPENDENT_MEASUREMENT"
+        },
+        {
+          "measure": "Administrative coverage",
+          "value": 71.0,
+          "origin": "cameroon_admin_jrf",
+          "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+          "measurement_kind": "administrative_reporting",
+          "source_id": "who_country_profile_2024",
+          "source_type": "pdf",
+          "source_name": "WUENIC country profile 2023 revision",
+          "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        },
+        {
+          "measure": "WUENIC estimate",
+          "value": 61.0,
+          "origin": "wuenic_2025",
+          "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+          "measurement_kind": "reconciled_estimate",
+          "source_id": "wuenic_workbook_2025",
+          "source_type": "xlsx",
+          "source_name": "WUENIC 2025 revision",
+          "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev-1",
+          "kind": "SOURCE_CHECK",
+          "name": "Cameroon DHS 2018 survey report",
+          "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+          "status": "SOURCE_DOCUMENT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-2",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-3",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC 2025 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "EXTRACT_CONSISTENT",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-4",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-5",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-6",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-7",
+          "kind": "SOURCE_CHECK",
+          "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-8",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-9",
+          "kind": "DOCUMENT_FETCH",
+          "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "NOT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        }
+      ],
+      "uncertainties": [
+        "The document behind 'Cameroon DHS 2018 survey report' was retrieved but its values were not checked.",
+        "Only part of 'WUENIC country profile 2023 revision' matched the expected table row.",
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ],
+      "memory_recall": {
+        "known": {
+          "conflict": [
+            {
+              "id": "mem-63",
+              "content": "For Cameroon MCV1 in 2018, the administrative figure (71.0%) sits 5.700000000000003 percentage points above an independent household-survey measurement (65.3%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+                "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+              ]
+            }
+          ],
+          "disposition": [],
+          "finding": [
+            {
+              "id": "mem-61",
+              "content": "Observed a 10.0 percentage-point gap between WUENIC estimate (61.0%) and Administrative coverage (71.0%) for Cameroon MCV1 in 2018. This difference requires investigation and does not establish which figure is correct.",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+                "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+              ]
+            }
+          ],
+          "revision": [],
+          "question": [
+            {
+              "id": "mem-64",
+              "content": "Still open for Cameroon MCV1 2018: 'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification). Only part of 'WUENIC country profile 2023 revision' matched the expected table row. 'dhs_cameroon_2018' was never verified against its own published source. Missing support: No independent document confirms either value.",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+                "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+              ]
+            }
+          ]
+        },
+        "memory_ids": [
+          "mem-61",
+          "mem-63",
+          "mem-64"
+        ],
+        "has_prior_conflict": true,
+        "prior_conflict": {
+          "id": "mem-63",
+          "content": "For Cameroon MCV1 in 2018, the administrative figure (71.0%) sits 5.700000000000003 percentage points above an independent household-survey measurement (65.3%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+          "confidence": 0.7,
+          "refs": [
+            "https://data.unicef.org/resources/dataset/immunization/",
+            "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+          ]
+        },
+        "prior_disposition": null,
+        "open_questions": [
+          {
+            "id": "mem-64",
+            "content": "Still open for Cameroon MCV1 2018: 'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification). Only part of 'WUENIC country profile 2023 revision' matched the expected table row. 'dhs_cameroon_2018' was never verified against its own published source. Missing support: No independent document confirms either value.",
+            "confidence": 0.7,
+            "refs": [
+              "https://data.unicef.org/resources/dataset/immunization/",
+              "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+              "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+            ]
+          }
+        ],
+        "effect": "An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+        "preferred_action": "FETCH_SOURCE_DOCUMENT",
+        "preferred_target": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+      }
+    },
+    {
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2020",
+      "data_kind": "observed",
+      "status": "REVIEW",
+      "review_status": "REVIEW",
+      "confidence": "moderate",
+      "decision": "REVIEW",
+      "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods. An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+      "measures": {
+        "a": {
+          "measure": "WUENIC estimate",
+          "value": 63.0
+        },
+        "b": {
+          "measure": "Administrative coverage",
+          "value": 74.0
+        }
+      },
+      "gap_percentage_points": 11.0,
+      "recommendation": {
+        "recommended_measure": "Household survey coverage",
+        "recommended_value": 54.0,
+        "recommended_source": "Cameroon household survey coverage (independent household sampling)",
+        "recommended_source_id": "who_country_profile_2024",
+        "not_recommended_measure": "Administrative coverage",
+        "not_recommended_value": 74.0,
+        "gap_percentage_points": 20.0,
+        "basis": "The administrative figure is 20.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design.",
+        "caveats": [
+          "The survey figure is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+          "A survey measures a sample of households, not the whole population, so it carries its own sampling uncertainty.",
+          "This is a recommendation for the coverage level, not a claim that one of the published figures is correct."
+        ]
+      },
+      "conflicts": [
+        {
+          "code": "CONFLICT_ADMIN_SURVEY",
+          "country": "Cameroon",
+          "antigen": "MCV1",
+          "year": "2020",
+          "measure_a": "Administrative coverage",
+          "value_a": 74.0,
+          "measure_b": "Household survey coverage",
+          "value_b": 54.0,
+          "gap_percentage_points": 20.0,
+          "origin_a": "cameroon_admin_jrf",
+          "origin_b": "cameroon_household_survey",
+          "note": "The administrative figure is 20.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design."
+        }
+      ],
+      "lineage": [
+        {
+          "measure": "Administrative coverage",
+          "value": 74.0,
+          "origin": "cameroon_admin_jrf",
+          "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+          "measurement_kind": "administrative_reporting",
+          "source_id": "who_country_profile_2024",
+          "source_type": "pdf",
+          "source_name": "WUENIC country profile 2023 revision",
+          "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        },
+        {
+          "measure": "Household survey coverage",
+          "value": 54.0,
+          "origin": "cameroon_household_survey",
+          "origin_label": "Cameroon household survey coverage (independent household sampling)",
+          "measurement_kind": "household_survey",
+          "source_id": "who_country_profile_2024",
+          "source_type": "pdf",
+          "source_name": "WUENIC country profile 2023 revision",
+          "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "INDEPENDENT_MEASUREMENT"
+        },
+        {
+          "measure": "WUENIC estimate",
+          "value": 63.0,
+          "origin": "wuenic_2025",
+          "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+          "measurement_kind": "reconciled_estimate",
+          "source_id": "wuenic_workbook_2025",
+          "source_type": "xlsx",
+          "source_name": "WUENIC 2025 revision",
+          "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev-1",
+          "kind": "SOURCE_CHECK",
+          "name": "Cameroon DHS 2018 survey report",
+          "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+          "status": "SOURCE_DOCUMENT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-2",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-3",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC 2025 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "EXTRACT_CONSISTENT",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-4",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-5",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-6",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-7",
+          "kind": "SOURCE_CHECK",
+          "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-8",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-9",
+          "kind": "DOCUMENT_FETCH",
+          "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "NOT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        }
+      ],
+      "uncertainties": [
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ],
+      "memory_recall": {
+        "known": {
+          "conflict": [
+            {
+              "id": "mem-49",
+              "content": "For Cameroon MCV1 in 2020, the administrative figure (74.0%) sits 20.0 percentage points above an independent household-survey measurement (54.0%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+              ]
+            }
+          ],
+          "disposition": [],
+          "finding": [
+            {
+              "id": "mem-47",
+              "content": "Observed a 11.0 percentage-point gap between WUENIC estimate (63.0%) and Administrative coverage (74.0%) for Cameroon MCV1 in 2020. This difference requires investigation and does not establish which figure is correct.",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+              ]
+            }
+          ],
+          "revision": [],
+          "question": [],
+          "observation": [
+            {
+              "id": "mem-45",
+              "content": "Model challenge for Cameroon MCV1 2020: The claim presents a single-year comparison (2020) without showing the historical trend of the gap, which could indicate whether this is a persistent discrepancy or an anomaly. No information is provided about the specific denominator populations used for each estimate (e.g., target population definitions, census vs. projection sources), which directly affects coverage calculations. The administrative coverage figure (74.0%) is presented without any indication of data quality assessments, completeness of reporting, or known issues with the health management information system in Cameroon for 2",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+              ]
+            },
+            {
+              "id": "mem-37",
+              "content": "Model challenge for Cameroon MCV1 2020: The claim presents a single-year comparison (2020) without showing the historical trend of the gap, which could indicate whether this is a persistent discrepancy or an anomaly. No information is provided about the specific denominator populations used for each estimate (e.g., target population definitions, census vs. projection sources), which directly affects coverage calculations. The administrative coverage figure (74.0%) is presented without any indication of data quality assessments, completeness of reporting, or known issues with the health management information system in Cameroon for 2",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+              ]
+            },
+            {
+              "id": "mem-29",
+              "content": "Model challenge for Cameroon MCV1 2020: The claim presents a single-year comparison (2020) without showing the historical trend of the gap, which could indicate whether this is a persistent discrepancy or an anomaly. No information is provided about the specific denominator populations used for each estimate (e.g., target population definitions, census vs. projection sources), which directly affects coverage calculations. The administrative coverage figure (74.0%) is presented without any indication of data quality assessments, completeness of reporting, or known issues with the health management information system in Cameroon for 2",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+              ]
+            },
+            {
+              "id": "mem-21",
+              "content": "Model challenge for Cameroon MCV1 2020: The claim presents a single-year comparison (2020) without showing the historical trend of the gap, which could indicate whether this is a persistent discrepancy or an anomaly. No information is provided about the specific denominator populations used for each estimate (e.g., target population definitions, census vs. projection sources), which directly affects coverage calculations. The administrative coverage figure (74.0%) is presented without any indication of data quality assessments, completeness of reporting, or known issues with the health management information system in Cameroon for 2",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+              ]
+            }
+          ]
+        },
+        "memory_ids": [
+          "mem-47",
+          "mem-49",
+          "mem-45",
+          "mem-37",
+          "mem-29",
+          "mem-21"
+        ],
+        "has_prior_conflict": true,
+        "prior_conflict": {
+          "id": "mem-49",
+          "content": "For Cameroon MCV1 in 2020, the administrative figure (74.0%) sits 20.0 percentage points above an independent household-survey measurement (54.0%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+          "confidence": 0.7,
+          "refs": [
+            "https://data.unicef.org/resources/dataset/immunization/",
+            "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+          ]
+        },
+        "prior_disposition": null,
+        "open_questions": [],
+        "effect": "An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+        "preferred_action": "FETCH_SOURCE_DOCUMENT",
+        "preferred_target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+      }
+    },
+    {
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2021",
+      "data_kind": "observed",
+      "status": "REVIEW",
+      "review_status": "REVIEW",
+      "confidence": "moderate",
+      "decision": "REVIEW",
+      "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods. An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+      "measures": {
+        "a": {
+          "measure": "WUENIC estimate",
+          "value": 65.0
+        },
+        "b": {
+          "measure": "Administrative coverage",
+          "value": 74.0
+        }
+      },
+      "gap_percentage_points": 9.0,
+      "recommendation": {
+        "recommended_measure": "Household survey coverage",
+        "recommended_value": 56.0,
+        "recommended_source": "Cameroon household survey coverage (independent household sampling)",
+        "recommended_source_id": "who_country_profile_2024",
+        "not_recommended_measure": "Administrative coverage",
+        "not_recommended_value": 74.0,
+        "gap_percentage_points": 18.0,
+        "basis": "The administrative figure is 18.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design.",
+        "caveats": [
+          "The survey figure is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+          "A survey measures a sample of households, not the whole population, so it carries its own sampling uncertainty.",
+          "This is a recommendation for the coverage level, not a claim that one of the published figures is correct."
+        ]
+      },
+      "conflicts": [
+        {
+          "code": "CONFLICT_ADMIN_SURVEY",
+          "country": "Cameroon",
+          "antigen": "MCV1",
+          "year": "2021",
+          "measure_a": "Administrative coverage",
+          "value_a": 74.0,
+          "measure_b": "Household survey coverage",
+          "value_b": 56.0,
+          "gap_percentage_points": 18.0,
+          "origin_a": "cameroon_admin_jrf",
+          "origin_b": "cameroon_household_survey",
+          "note": "The administrative figure is 18.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design."
+        }
+      ],
+      "lineage": [
+        {
+          "measure": "Administrative coverage",
+          "value": 74.0,
+          "origin": "cameroon_admin_jrf",
+          "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+          "measurement_kind": "administrative_reporting",
+          "source_id": "who_country_profile_2024",
+          "source_type": "pdf",
+          "source_name": "WUENIC country profile 2023 revision",
+          "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        },
+        {
+          "measure": "Household survey coverage",
+          "value": 56.0,
+          "origin": "cameroon_household_survey",
+          "origin_label": "Cameroon household survey coverage (independent household sampling)",
+          "measurement_kind": "household_survey",
+          "source_id": "who_country_profile_2024",
+          "source_type": "pdf",
+          "source_name": "WUENIC country profile 2023 revision",
+          "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "INDEPENDENT_MEASUREMENT"
+        },
+        {
+          "measure": "WUENIC estimate",
+          "value": 65.0,
+          "origin": "wuenic_2025",
+          "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+          "measurement_kind": "reconciled_estimate",
+          "source_id": "wuenic_workbook_2025",
+          "source_type": "xlsx",
+          "source_name": "WUENIC 2025 revision",
+          "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev-1",
+          "kind": "SOURCE_CHECK",
+          "name": "Cameroon DHS 2018 survey report",
+          "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+          "status": "SOURCE_DOCUMENT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-2",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-3",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC 2025 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "EXTRACT_CONSISTENT",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-4",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-5",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-6",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-7",
+          "kind": "SOURCE_CHECK",
+          "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-8",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-9",
+          "kind": "DOCUMENT_FETCH",
+          "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "NOT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        }
+      ],
+      "uncertainties": [
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ],
+      "memory_recall": {
+        "known": {
+          "conflict": [
+            {
+              "id": "mem-54",
+              "content": "For Cameroon MCV1 in 2021, the administrative figure (74.0%) sits 18.0 percentage points above an independent household-survey measurement (56.0%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+              ]
+            }
+          ],
+          "disposition": [],
+          "finding": [
+            {
+              "id": "mem-52",
+              "content": "Observed a 9.0 percentage-point gap between WUENIC estimate (65.0%) and Administrative coverage (74.0%) for Cameroon MCV1 in 2021. This difference requires investigation and does not establish which figure is correct.",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+              ]
+            }
+          ],
+          "revision": [],
+          "question": []
+        },
+        "memory_ids": [
+          "mem-52",
+          "mem-54"
+        ],
+        "has_prior_conflict": true,
+        "prior_conflict": {
+          "id": "mem-54",
+          "content": "For Cameroon MCV1 in 2021, the administrative figure (74.0%) sits 18.0 percentage points above an independent household-survey measurement (56.0%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+          "confidence": 0.7,
+          "refs": [
+            "https://data.unicef.org/resources/dataset/immunization/",
+            "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+          ]
+        },
+        "prior_disposition": null,
+        "open_questions": [],
+        "effect": "An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+        "preferred_action": "FETCH_SOURCE_DOCUMENT",
+        "preferred_target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+      }
+    },
+    {
+      "country": "Cameroon",
+      "antigen": "MCV1",
+      "year": "2023",
+      "data_kind": "observed",
+      "status": "REVIEW",
+      "review_status": "REVIEW",
+      "confidence": "low",
+      "decision": "REVIEW",
+      "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods.",
+      "measures": {
+        "a": {
+          "measure": "WUENIC estimate",
+          "value": 71.0
+        },
+        "b": {
+          "measure": "Administrative coverage",
+          "value": 82.0
+        }
+      },
+      "gap_percentage_points": 11.0,
+      "recommendation": null,
+      "conflicts": [],
+      "lineage": [
+        {
+          "measure": "Administrative coverage",
+          "value": 82.0,
+          "origin": "cameroon_admin_jrf",
+          "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+          "measurement_kind": "administrative_reporting",
+          "source_id": "who_country_profile_2024",
+          "source_type": "pdf",
+          "source_name": "WUENIC country profile 2023 revision",
+          "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        },
+        {
+          "measure": "WUENIC estimate",
+          "value": 71.0,
+          "origin": "wuenic_2025",
+          "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+          "measurement_kind": "reconciled_estimate",
+          "source_id": "wuenic_workbook_2025",
+          "source_type": "xlsx",
+          "source_name": "WUENIC 2025 revision",
+          "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev-1",
+          "kind": "SOURCE_CHECK",
+          "name": "Cameroon DHS 2018 survey report",
+          "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+          "status": "SOURCE_DOCUMENT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-2",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-3",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC 2025 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "EXTRACT_CONSISTENT",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-4",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-5",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-6",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-7",
+          "kind": "SOURCE_CHECK",
+          "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-8",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-9",
+          "kind": "DOCUMENT_FETCH",
+          "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "NOT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        }
+      ],
+      "uncertainties": [
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ],
+      "memory_recall": {
+        "known": {
+          "conflict": [],
+          "disposition": [],
+          "finding": [
+            {
+              "id": "mem-57",
+              "content": "Observed a 11.0 percentage-point gap between WUENIC estimate (71.0%) and Administrative coverage (82.0%) for Cameroon MCV1 in 2023. This difference requires investigation and does not establish which figure is correct.",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+              ]
+            }
+          ],
+          "revision": [],
+          "question": [],
+          "observation": [
+            {
+              "id": "mem-46",
+              "content": "Model challenge for Cameroon MCV1 2023: The claim presents a single-year comparison (2023) without showing the historical trend of the gap, which could indicate whether this is a persistent discrepancy or an anomaly. No information is provided about the specific denominator populations used for each estimate (e.g., target population definitions, census vs. projection sources), which directly affects coverage calculations. The administrative coverage figure (82.0%) is presented without any indication of data quality assessments, completeness of reporting, or known issues with the health management information system in Cameroon for 2",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+              ]
+            }
+          ]
+        },
+        "memory_ids": [
+          "mem-57",
+          "mem-46"
+        ],
+        "has_prior_conflict": false,
+        "prior_conflict": null,
+        "prior_disposition": null,
+        "open_questions": [],
+        "effect": "",
+        "preferred_action": null,
+        "preferred_target": null
+      }
+    },
+    {
+      "country": "Ethiopia",
+      "antigen": "MCV1",
+      "year": "2017",
+      "data_kind": "observed",
+      "status": "REVIEW",
+      "review_status": "REVIEW",
+      "confidence": "moderate",
+      "decision": "REVIEW",
+      "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods.",
+      "measures": {
+        "a": {
+          "measure": "WUENIC estimate",
+          "value": 59.0
+        },
+        "b": {
+          "measure": "Administrative coverage",
+          "value": 92.0
+        }
+      },
+      "gap_percentage_points": 33.0,
+      "recommendation": {
+        "recommended_measure": "Household survey coverage",
+        "recommended_value": 58.0,
+        "recommended_source": "Ethiopia household survey coverage, as compiled in the country profile",
+        "recommended_source_id": "who_country_profile_2024_ethiopia",
+        "not_recommended_measure": "Administrative coverage",
+        "not_recommended_value": 92.0,
+        "gap_percentage_points": 34.0,
+        "basis": "The administrative figure is 34.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design.",
+        "caveats": [
+          "The survey figure is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+          "A survey measures a sample of households, not the whole population, so it carries its own sampling uncertainty.",
+          "This is a recommendation for the coverage level, not a claim that one of the published figures is correct."
+        ]
+      },
+      "conflicts": [
+        {
+          "code": "CONFLICT_ADMIN_SURVEY",
+          "country": "Ethiopia",
+          "antigen": "MCV1",
+          "year": "2017",
+          "measure_a": "Administrative coverage",
+          "value_a": 92.0,
+          "measure_b": "Household survey coverage",
+          "value_b": 58.0,
+          "gap_percentage_points": 34.0,
+          "origin_a": "ethiopia_admin_jrf",
+          "origin_b": "ethiopia_household_survey",
+          "note": "The administrative figure is 34.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design."
+        }
+      ],
+      "lineage": [
+        {
+          "measure": "Administrative coverage",
+          "value": 92.0,
+          "origin": "ethiopia_admin_jrf",
+          "origin_label": "Ethiopia administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+          "measurement_kind": "administrative_reporting",
+          "source_id": "who_country_profile_2024_ethiopia",
+          "source_type": "pdf",
+          "source_name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+          "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        },
+        {
+          "measure": "Household survey coverage",
+          "value": 58.0,
+          "origin": "ethiopia_household_survey",
+          "origin_label": "Ethiopia household survey coverage, as compiled in the country profile",
+          "measurement_kind": "household_survey",
+          "source_id": "who_country_profile_2024_ethiopia",
+          "source_type": "pdf",
+          "source_name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+          "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "INDEPENDENT_MEASUREMENT"
+        },
+        {
+          "measure": "WUENIC estimate",
+          "value": 59.0,
+          "origin": "wuenic_2025",
+          "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+          "measurement_kind": "reconciled_estimate",
+          "source_id": "wuenic_workbook_2025",
+          "source_type": "xlsx",
+          "source_name": "WUENIC 2025 revision",
+          "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev-1",
+          "kind": "SOURCE_CHECK",
+          "name": "Cameroon DHS 2018 survey report",
+          "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+          "status": "SOURCE_DOCUMENT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-2",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-3",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC 2025 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "EXTRACT_CONSISTENT",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-4",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-5",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-6",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-7",
+          "kind": "SOURCE_CHECK",
+          "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-8",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-9",
+          "kind": "DOCUMENT_FETCH",
+          "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "NOT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        }
+      ],
+      "uncertainties": [
+        "Only part of 'WHO/UNICEF country profile for Ethiopia (2023 revision)' matched the expected table row.",
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ],
+      "memory_recall": null
+    },
+    {
+      "country": "Ethiopia",
+      "antigen": "MCV1",
+      "year": "2020",
+      "data_kind": "observed",
+      "status": "REVIEW",
+      "review_status": "REVIEW",
+      "confidence": "low",
+      "decision": "REVIEW",
+      "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods.",
+      "measures": {
+        "a": {
+          "measure": "WUENIC estimate",
+          "value": 67.0
+        },
+        "b": {
+          "measure": "Administrative coverage",
+          "value": 93.0
+        }
+      },
+      "gap_percentage_points": 26.0,
+      "recommendation": null,
+      "conflicts": [],
+      "lineage": [
+        {
+          "measure": "Administrative coverage",
+          "value": 93.0,
+          "origin": "ethiopia_admin_jrf",
+          "origin_label": "Ethiopia administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+          "measurement_kind": "administrative_reporting",
+          "source_id": "who_country_profile_2024_ethiopia",
+          "source_type": "pdf",
+          "source_name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+          "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        },
+        {
+          "measure": "WUENIC estimate",
+          "value": 67.0,
+          "origin": "wuenic_2025",
+          "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+          "measurement_kind": "reconciled_estimate",
+          "source_id": "wuenic_workbook_2025",
+          "source_type": "xlsx",
+          "source_name": "WUENIC 2025 revision",
+          "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+          "is_derived": false,
+          "is_synthetic": false,
+          "independent_capable": false,
+          "verification_scope": "SELF_CONSISTENCY"
+        }
+      ],
+      "evidence": [
+        {
+          "evidence_id": "ev-1",
+          "kind": "SOURCE_CHECK",
+          "name": "Cameroon DHS 2018 survey report",
+          "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+          "status": "SOURCE_DOCUMENT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-2",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC country profile 2023 revision",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-3",
+          "kind": "SOURCE_CHECK",
+          "name": "WUENIC 2025 revision",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "EXTRACT_CONSISTENT",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-4",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-5",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-6",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-7",
+          "kind": "SOURCE_CHECK",
+          "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+          "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+          "status": "PARTIAL_MATCH",
+          "scope": "SELF_CONSISTENCY",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-8",
+          "kind": "CONFLICT",
+          "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+          "url": "",
+          "status": "CONFLICT_DETECTED",
+          "scope": "INDEPENDENT_MEASUREMENT",
+          "findings": [
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ]
+          ]
+        },
+        {
+          "evidence_id": "ev-9",
+          "kind": "DOCUMENT_FETCH",
+          "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+          "url": "https://data.unicef.org/resources/dataset/immunization/",
+          "status": "NOT_RETRIEVED",
+          "scope": "DOCUMENT_PRESENCE",
+          "findings": [
+            [
+              "Cameroon",
+              "MCV1",
+              "2020"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2021"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2018"
+            ],
+            [
+              "Cameroon",
+              "MCV1",
+              "2023"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2017"
+            ],
+            [
+              "Ethiopia",
+              "MCV1",
+              "2020"
+            ]
+          ]
+        }
+      ],
+      "uncertainties": [
+        "Only part of 'WHO/UNICEF country profile for Ethiopia (2023 revision)' matched the expected table row.",
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ],
+      "memory_recall": null
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "ev-1",
+      "kind": "SOURCE_CHECK",
+      "name": "Cameroon DHS 2018 survey report",
+      "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+      "status": "SOURCE_DOCUMENT_RETRIEVED",
+      "scope": "DOCUMENT_PRESENCE"
+    },
+    {
+      "evidence_id": "ev-2",
+      "kind": "SOURCE_CHECK",
+      "name": "WUENIC country profile 2023 revision",
+      "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+      "status": "PARTIAL_MATCH",
+      "scope": "SELF_CONSISTENCY"
+    },
+    {
+      "evidence_id": "ev-3",
+      "kind": "SOURCE_CHECK",
+      "name": "WUENIC 2025 revision",
+      "url": "https://data.unicef.org/resources/dataset/immunization/",
+      "status": "EXTRACT_CONSISTENT",
+      "scope": "SELF_CONSISTENCY"
+    },
+    {
+      "evidence_id": "ev-4",
+      "kind": "CONFLICT",
+      "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+      "url": "",
+      "status": "CONFLICT_DETECTED",
+      "scope": "INDEPENDENT_MEASUREMENT"
+    },
+    {
+      "evidence_id": "ev-5",
+      "kind": "CONFLICT",
+      "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+      "url": "",
+      "status": "CONFLICT_DETECTED",
+      "scope": "INDEPENDENT_MEASUREMENT"
+    },
+    {
+      "evidence_id": "ev-6",
+      "kind": "CONFLICT",
+      "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+      "url": "",
+      "status": "CONFLICT_DETECTED",
+      "scope": "INDEPENDENT_MEASUREMENT"
+    },
+    {
+      "evidence_id": "ev-7",
+      "kind": "SOURCE_CHECK",
+      "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+      "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+      "status": "PARTIAL_MATCH",
+      "scope": "SELF_CONSISTENCY"
+    },
+    {
+      "evidence_id": "ev-8",
+      "kind": "CONFLICT",
+      "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+      "url": "",
+      "status": "CONFLICT_DETECTED",
+      "scope": "INDEPENDENT_MEASUREMENT"
+    },
+    {
+      "evidence_id": "ev-9",
+      "kind": "DOCUMENT_FETCH",
+      "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+      "url": "https://data.unicef.org/resources/dataset/immunization/",
+      "status": "NOT_RETRIEVED",
+      "scope": "DOCUMENT_PRESENCE"
+    }
+  ],
+  "executed_actions": [
+    {
+      "iteration": 1,
+      "finding": "Cameroon MCV1 (2018)",
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "target": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+      "source": "memory",
+      "reason": "An earlier investigation of this country, antigen and year found the administrative figure far above an independent household measurement, so the survey evidence is checked first.",
+      "outcome": "EVIDENCE_RETRIEVED",
+      "stop_reason": "SOURCE_DOCUMENT_RETRIEVED"
+    },
+    {
+      "iteration": 1,
+      "finding": "Cameroon MCV1 (2020)",
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "target": "https://data.unicef.org/resources/dataset/immunization/",
+      "source": "memory",
+      "reason": "An earlier investigation of this country, antigen and year found the administrative figure far above an independent household measurement, so the survey evidence is checked first.",
+      "outcome": "ADDITIONAL_EVIDENCE_UNAVAILABLE",
+      "stop_reason": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "iteration": 1,
+      "finding": "Cameroon MCV1 (2021)",
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "target": "https://data.unicef.org/resources/dataset/immunization/",
+      "source": "memory",
+      "reason": "An earlier investigation of this country, antigen and year found the administrative figure far above an independent household measurement, so the survey evidence is checked first.",
+      "outcome": "ADDITIONAL_EVIDENCE_UNAVAILABLE",
+      "stop_reason": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "iteration": 1,
+      "finding": "Cameroon MCV1 (2023)",
+      "action": "FETCH_WUENIC_WORKBOOK",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A WUENIC/UNICEF source is still unverified.",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED"
+    },
+    {
+      "iteration": 1,
+      "finding": "Ethiopia MCV1 (2017)",
+      "action": "FETCH_WUENIC_WORKBOOK",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A WUENIC/UNICEF source is still unverified.",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED"
+    },
+    {
+      "iteration": 1,
+      "finding": "Ethiopia MCV1 (2020)",
+      "action": "FETCH_WUENIC_WORKBOOK",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A WUENIC/UNICEF source is still unverified.",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED"
+    },
+    {
+      "iteration": 2,
+      "finding": "Cameroon MCV1 (2018)",
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "target": "https://data.unicef.org/resources/dataset/immunization/",
+      "source": "memory",
+      "reason": "An earlier investigation of this country, antigen and year found the administrative figure far above an independent household measurement, so the survey evidence is checked first.",
+      "outcome": "ADDITIONAL_EVIDENCE_UNAVAILABLE",
+      "stop_reason": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "iteration": 2,
+      "finding": "Cameroon MCV1 (2020)",
+      "action": "FETCH_WUENIC_WORKBOOK",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A WUENIC/UNICEF source is still unverified.",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED"
+    },
+    {
+      "iteration": 2,
+      "finding": "Cameroon MCV1 (2021)",
+      "action": "FETCH_WUENIC_WORKBOOK",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A WUENIC/UNICEF source is still unverified.",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED"
+    },
+    {
+      "iteration": 2,
+      "finding": "Cameroon MCV1 (2023)",
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "target": "https://data.unicef.org/resources/dataset/immunization/",
+      "source": "deterministic",
+      "reason": "A source document for this finding has not been retrieved yet.",
+      "outcome": "ADDITIONAL_EVIDENCE_UNAVAILABLE",
+      "stop_reason": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "iteration": 2,
+      "finding": "Ethiopia MCV1 (2017)",
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "target": "https://data.unicef.org/resources/dataset/immunization/",
+      "source": "deterministic",
+      "reason": "A source document for this finding has not been retrieved yet.",
+      "outcome": "ADDITIONAL_EVIDENCE_UNAVAILABLE",
+      "stop_reason": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "iteration": 2,
+      "finding": "Ethiopia MCV1 (2020)",
+      "action": "FETCH_SOURCE_DOCUMENT",
+      "target": "https://data.unicef.org/resources/dataset/immunization/",
+      "source": "deterministic",
+      "reason": "A source document for this finding has not been retrieved yet.",
+      "outcome": "ADDITIONAL_EVIDENCE_UNAVAILABLE",
+      "stop_reason": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "iteration": 3,
+      "finding": "Cameroon MCV1 (2018)",
+      "action": "FETCH_WUENIC_WORKBOOK",
+      "target": null,
+      "source": "deterministic",
+      "reason": "A WUENIC/UNICEF source is still unverified.",
+      "outcome": "REVISED_SOURCE_CHECK",
+      "stop_reason": "EXTRACT_VALUE_MATCHED"
+    }
+  ],
+  "memory": {
+    "available": true,
+    "memories": 25,
+    "stored": 0,
+    "error": null
+  },
+  "stop_reason": "SOURCES_UNAVAILABLE",
+  "stop_detail": "6 finding(s) are still open: Cameroon MCV1 (2018), Cameroon MCV1 (2020), Cameroon MCV1 (2021), Cameroon MCV1 (2023), Ethiopia MCV1 (2017), Ethiopia MCV1 (2020). They were closed because their evidence could not be retrieved (Cameroon MCV1 (2018): HTTPError: HTTP Error 403: Forbidden; Cameroon MCV1 (2020): HTTPError: HTTP Error 403: Forbidden; Cameroon MCV1 (2021): HTTPError: HTTP Error 403: Forbidden; Cameroon MCV1 (2023): HTTPError: HTTP Error 403: Forbidden; Ethiopia MCV1 (2017): HTTPError: HTTP Error 403: Forbidden; Ethiopia MCV1 (2020): HTTPError: HTTP Error 403: Forbidden). The investigation reached the same state twice, so it was stopped instead of looping.",
+  "model": {
+    "status": "disabled",
+    "model": null,
+    "calls": 0,
+    "note": "MODEL_DISABLED_BY_FLAG"
+  },
+  "trace": "/home/nanad/hackathon/cross-examiner/logs/trace-20261026T223747-51934.jsonl",
+  "trace_id": "20261026T223747-51934",
+  "log_file": "/home/nanad/hackathon/cross-examiner/logs/trace-20261026T223747-51934.jsonl",
+  "agents": [
+    "adjudicator",
+    "critic",
+    "investigator",
+    "memory",
+    "orchestrator"
+  ],
+  "output": {
+    "findings": [
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2018",
+        "data_kind": "observed",
+        "status": "REVIEW",
+        "review_status": "REVIEW",
+        "confidence": "moderate",
+        "decision": "REVIEW",
+        "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods. An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+        "measures": {
+          "a": {
+            "measure": "WUENIC estimate",
+            "value": 61.0
+          },
+          "b": {
+            "measure": "Administrative coverage",
+            "value": 71.0
+          }
+        },
+        "gap_percentage_points": 10.0,
+        "recommendation": {
+          "recommended_measure": "Household survey coverage",
+          "recommended_value": 65.3,
+          "recommended_source": "Cameroon household survey coverage (independent household sampling)",
+          "recommended_source_id": "dhs_cameroon_2018",
+          "not_recommended_measure": "Administrative coverage",
+          "not_recommended_value": 71.0,
+          "gap_percentage_points": 5.700000000000003,
+          "basis": "The administrative figure is 5.7 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design.",
+          "caveats": [
+            "The survey figure is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+            "A survey measures a sample of households, not the whole population, so it carries its own sampling uncertainty.",
+            "This is a recommendation for the coverage level, not a claim that one of the published figures is correct."
+          ]
+        },
+        "conflicts": [
+          {
+            "code": "CONFLICT_ADMIN_SURVEY",
+            "country": "Cameroon",
+            "antigen": "MCV1",
+            "year": "2018",
+            "measure_a": "Administrative coverage",
+            "value_a": 71.0,
+            "measure_b": "Household survey coverage",
+            "value_b": 65.3,
+            "gap_percentage_points": 5.700000000000003,
+            "origin_a": "cameroon_admin_jrf",
+            "origin_b": "cameroon_household_survey",
+            "note": "The administrative figure is 5.7 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design."
+          }
+        ],
+        "lineage": [
+          {
+            "measure": "Household survey coverage",
+            "value": 65.3,
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "measurement_kind": "household_survey",
+            "source_id": "dhs_cameroon_2018",
+            "source_type": "pdf",
+            "source_name": "Cameroon DHS 2018 survey report",
+            "source_ref": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": true,
+            "verification_scope": "INDEPENDENT_MEASUREMENT"
+          },
+          {
+            "measure": "Administrative coverage",
+            "value": 71.0,
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "measurement_kind": "administrative_reporting",
+            "source_id": "who_country_profile_2024",
+            "source_type": "pdf",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          },
+          {
+            "measure": "WUENIC estimate",
+            "value": 61.0,
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "measurement_kind": "reconciled_estimate",
+            "source_id": "wuenic_workbook_2025",
+            "source_type": "xlsx",
+            "source_name": "WUENIC 2025 revision",
+            "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          }
+        ],
+        "evidence": [
+          {
+            "evidence_id": "ev-1",
+            "kind": "SOURCE_CHECK",
+            "name": "Cameroon DHS 2018 survey report",
+            "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+            "status": "SOURCE_DOCUMENT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-2",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-3",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC 2025 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "EXTRACT_CONSISTENT",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-4",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-5",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-6",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-7",
+            "kind": "SOURCE_CHECK",
+            "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-8",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-9",
+            "kind": "DOCUMENT_FETCH",
+            "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "NOT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          }
+        ],
+        "uncertainties": [
+          "The document behind 'Cameroon DHS 2018 survey report' was retrieved but its values were not checked.",
+          "Only part of 'WUENIC country profile 2023 revision' matched the expected table row.",
+          "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+          "Missing support: No independent document confirms either value."
+        ],
+        "memory_recall": {
+          "known": {
+            "conflict": [
+              {
+                "id": "mem-63",
+                "content": "For Cameroon MCV1 in 2018, the administrative figure (71.0%) sits 5.700000000000003 percentage points above an independent household-survey measurement (65.3%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+                  "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+                ]
+              }
+            ],
+            "disposition": [],
+            "finding": [
+              {
+                "id": "mem-61",
+                "content": "Observed a 10.0 percentage-point gap between WUENIC estimate (61.0%) and Administrative coverage (71.0%) for Cameroon MCV1 in 2018. This difference requires investigation and does not establish which figure is correct.",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+                  "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+                ]
+              }
+            ],
+            "revision": [],
+            "question": [
+              {
+                "id": "mem-64",
+                "content": "Still open for Cameroon MCV1 2018: 'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification). Only part of 'WUENIC country profile 2023 revision' matched the expected table row. 'dhs_cameroon_2018' was never verified against its own published source. Missing support: No independent document confirms either value.",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+                  "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+                ]
+              }
+            ]
+          },
+          "memory_ids": [
+            "mem-61",
+            "mem-63",
+            "mem-64"
+          ],
+          "has_prior_conflict": true,
+          "prior_conflict": {
+            "id": "mem-63",
+            "content": "For Cameroon MCV1 in 2018, the administrative figure (71.0%) sits 5.700000000000003 percentage points above an independent household-survey measurement (65.3%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+            "confidence": 0.7,
+            "refs": [
+              "https://data.unicef.org/resources/dataset/immunization/",
+              "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+              "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+            ]
+          },
+          "prior_disposition": null,
+          "open_questions": [
+            {
+              "id": "mem-64",
+              "content": "Still open for Cameroon MCV1 2018: 'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification). Only part of 'WUENIC country profile 2023 revision' matched the expected table row. 'dhs_cameroon_2018' was never verified against its own published source. Missing support: No independent document confirms either value.",
+              "confidence": 0.7,
+              "refs": [
+                "https://data.unicef.org/resources/dataset/immunization/",
+                "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+                "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+              ]
+            }
+          ],
+          "effect": "An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+          "preferred_action": "FETCH_SOURCE_DOCUMENT",
+          "preferred_target": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf"
+        }
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2020",
+        "data_kind": "observed",
+        "status": "REVIEW",
+        "review_status": "REVIEW",
+        "confidence": "moderate",
+        "decision": "REVIEW",
+        "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods. An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+        "measures": {
+          "a": {
+            "measure": "WUENIC estimate",
+            "value": 63.0
+          },
+          "b": {
+            "measure": "Administrative coverage",
+            "value": 74.0
+          }
+        },
+        "gap_percentage_points": 11.0,
+        "recommendation": {
+          "recommended_measure": "Household survey coverage",
+          "recommended_value": 54.0,
+          "recommended_source": "Cameroon household survey coverage (independent household sampling)",
+          "recommended_source_id": "who_country_profile_2024",
+          "not_recommended_measure": "Administrative coverage",
+          "not_recommended_value": 74.0,
+          "gap_percentage_points": 20.0,
+          "basis": "The administrative figure is 20.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design.",
+          "caveats": [
+            "The survey figure is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+            "A survey measures a sample of households, not the whole population, so it carries its own sampling uncertainty.",
+            "This is a recommendation for the coverage level, not a claim that one of the published figures is correct."
+          ]
+        },
+        "conflicts": [
+          {
+            "code": "CONFLICT_ADMIN_SURVEY",
+            "country": "Cameroon",
+            "antigen": "MCV1",
+            "year": "2020",
+            "measure_a": "Administrative coverage",
+            "value_a": 74.0,
+            "measure_b": "Household survey coverage",
+            "value_b": 54.0,
+            "gap_percentage_points": 20.0,
+            "origin_a": "cameroon_admin_jrf",
+            "origin_b": "cameroon_household_survey",
+            "note": "The administrative figure is 20.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design."
+          }
+        ],
+        "lineage": [
+          {
+            "measure": "Administrative coverage",
+            "value": 74.0,
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "measurement_kind": "administrative_reporting",
+            "source_id": "who_country_profile_2024",
+            "source_type": "pdf",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          },
+          {
+            "measure": "Household survey coverage",
+            "value": 54.0,
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "measurement_kind": "household_survey",
+            "source_id": "who_country_profile_2024",
+            "source_type": "pdf",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "INDEPENDENT_MEASUREMENT"
+          },
+          {
+            "measure": "WUENIC estimate",
+            "value": 63.0,
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "measurement_kind": "reconciled_estimate",
+            "source_id": "wuenic_workbook_2025",
+            "source_type": "xlsx",
+            "source_name": "WUENIC 2025 revision",
+            "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          }
+        ],
+        "evidence": [
+          {
+            "evidence_id": "ev-1",
+            "kind": "SOURCE_CHECK",
+            "name": "Cameroon DHS 2018 survey report",
+            "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+            "status": "SOURCE_DOCUMENT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-2",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-3",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC 2025 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "EXTRACT_CONSISTENT",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-4",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-5",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-6",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-7",
+            "kind": "SOURCE_CHECK",
+            "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-8",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-9",
+            "kind": "DOCUMENT_FETCH",
+            "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "NOT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          }
+        ],
+        "uncertainties": [
+          "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+          "Missing support: No independent document confirms either value."
+        ],
+        "memory_recall": {
+          "known": {
+            "conflict": [
+              {
+                "id": "mem-49",
+                "content": "For Cameroon MCV1 in 2020, the administrative figure (74.0%) sits 20.0 percentage points above an independent household-survey measurement (54.0%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+                ]
+              }
+            ],
+            "disposition": [],
+            "finding": [
+              {
+                "id": "mem-47",
+                "content": "Observed a 11.0 percentage-point gap between WUENIC estimate (63.0%) and Administrative coverage (74.0%) for Cameroon MCV1 in 2020. This difference requires investigation and does not establish which figure is correct.",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+                ]
+              }
+            ],
+            "revision": [],
+            "question": [],
+            "observation": [
+              {
+                "id": "mem-45",
+                "content": "Model challenge for Cameroon MCV1 2020: The claim presents a single-year comparison (2020) without showing the historical trend of the gap, which could indicate whether this is a persistent discrepancy or an anomaly. No information is provided about the specific denominator populations used for each estimate (e.g., target population definitions, census vs. projection sources), which directly affects coverage calculations. The administrative coverage figure (74.0%) is presented without any indication of data quality assessments, completeness of reporting, or known issues with the health management information system in Cameroon for 2",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+                ]
+              },
+              {
+                "id": "mem-37",
+                "content": "Model challenge for Cameroon MCV1 2020: The claim presents a single-year comparison (2020) without showing the historical trend of the gap, which could indicate whether this is a persistent discrepancy or an anomaly. No information is provided about the specific denominator populations used for each estimate (e.g., target population definitions, census vs. projection sources), which directly affects coverage calculations. The administrative coverage figure (74.0%) is presented without any indication of data quality assessments, completeness of reporting, or known issues with the health management information system in Cameroon for 2",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+                ]
+              },
+              {
+                "id": "mem-29",
+                "content": "Model challenge for Cameroon MCV1 2020: The claim presents a single-year comparison (2020) without showing the historical trend of the gap, which could indicate whether this is a persistent discrepancy or an anomaly. No information is provided about the specific denominator populations used for each estimate (e.g., target population definitions, census vs. projection sources), which directly affects coverage calculations. The administrative coverage figure (74.0%) is presented without any indication of data quality assessments, completeness of reporting, or known issues with the health management information system in Cameroon for 2",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+                ]
+              },
+              {
+                "id": "mem-21",
+                "content": "Model challenge for Cameroon MCV1 2020: The claim presents a single-year comparison (2020) without showing the historical trend of the gap, which could indicate whether this is a persistent discrepancy or an anomaly. No information is provided about the specific denominator populations used for each estimate (e.g., target population definitions, census vs. projection sources), which directly affects coverage calculations. The administrative coverage figure (74.0%) is presented without any indication of data quality assessments, completeness of reporting, or known issues with the health management information system in Cameroon for 2",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+                ]
+              }
+            ]
+          },
+          "memory_ids": [
+            "mem-47",
+            "mem-49",
+            "mem-45",
+            "mem-37",
+            "mem-29",
+            "mem-21"
+          ],
+          "has_prior_conflict": true,
+          "prior_conflict": {
+            "id": "mem-49",
+            "content": "For Cameroon MCV1 in 2020, the administrative figure (74.0%) sits 20.0 percentage points above an independent household-survey measurement (54.0%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+            "confidence": 0.7,
+            "refs": [
+              "https://data.unicef.org/resources/dataset/immunization/",
+              "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+            ]
+          },
+          "prior_disposition": null,
+          "open_questions": [],
+          "effect": "An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+          "preferred_action": "FETCH_SOURCE_DOCUMENT",
+          "preferred_target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        }
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2021",
+        "data_kind": "observed",
+        "status": "REVIEW",
+        "review_status": "REVIEW",
+        "confidence": "moderate",
+        "decision": "REVIEW",
+        "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods. An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+        "measures": {
+          "a": {
+            "measure": "WUENIC estimate",
+            "value": 65.0
+          },
+          "b": {
+            "measure": "Administrative coverage",
+            "value": 74.0
+          }
+        },
+        "gap_percentage_points": 9.0,
+        "recommendation": {
+          "recommended_measure": "Household survey coverage",
+          "recommended_value": 56.0,
+          "recommended_source": "Cameroon household survey coverage (independent household sampling)",
+          "recommended_source_id": "who_country_profile_2024",
+          "not_recommended_measure": "Administrative coverage",
+          "not_recommended_value": 74.0,
+          "gap_percentage_points": 18.0,
+          "basis": "The administrative figure is 18.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design.",
+          "caveats": [
+            "The survey figure is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+            "A survey measures a sample of households, not the whole population, so it carries its own sampling uncertainty.",
+            "This is a recommendation for the coverage level, not a claim that one of the published figures is correct."
+          ]
+        },
+        "conflicts": [
+          {
+            "code": "CONFLICT_ADMIN_SURVEY",
+            "country": "Cameroon",
+            "antigen": "MCV1",
+            "year": "2021",
+            "measure_a": "Administrative coverage",
+            "value_a": 74.0,
+            "measure_b": "Household survey coverage",
+            "value_b": 56.0,
+            "gap_percentage_points": 18.0,
+            "origin_a": "cameroon_admin_jrf",
+            "origin_b": "cameroon_household_survey",
+            "note": "The administrative figure is 18.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design."
+          }
+        ],
+        "lineage": [
+          {
+            "measure": "Administrative coverage",
+            "value": 74.0,
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "measurement_kind": "administrative_reporting",
+            "source_id": "who_country_profile_2024",
+            "source_type": "pdf",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          },
+          {
+            "measure": "Household survey coverage",
+            "value": 56.0,
+            "origin": "cameroon_household_survey",
+            "origin_label": "Cameroon household survey coverage (independent household sampling)",
+            "measurement_kind": "household_survey",
+            "source_id": "who_country_profile_2024",
+            "source_type": "pdf",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "INDEPENDENT_MEASUREMENT"
+          },
+          {
+            "measure": "WUENIC estimate",
+            "value": 65.0,
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "measurement_kind": "reconciled_estimate",
+            "source_id": "wuenic_workbook_2025",
+            "source_type": "xlsx",
+            "source_name": "WUENIC 2025 revision",
+            "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          }
+        ],
+        "evidence": [
+          {
+            "evidence_id": "ev-1",
+            "kind": "SOURCE_CHECK",
+            "name": "Cameroon DHS 2018 survey report",
+            "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+            "status": "SOURCE_DOCUMENT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-2",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-3",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC 2025 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "EXTRACT_CONSISTENT",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-4",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-5",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-6",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-7",
+            "kind": "SOURCE_CHECK",
+            "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-8",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-9",
+            "kind": "DOCUMENT_FETCH",
+            "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "NOT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          }
+        ],
+        "uncertainties": [
+          "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+          "Missing support: No independent document confirms either value."
+        ],
+        "memory_recall": {
+          "known": {
+            "conflict": [
+              {
+                "id": "mem-54",
+                "content": "For Cameroon MCV1 in 2021, the administrative figure (74.0%) sits 18.0 percentage points above an independent household-survey measurement (56.0%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+                ]
+              }
+            ],
+            "disposition": [],
+            "finding": [
+              {
+                "id": "mem-52",
+                "content": "Observed a 9.0 percentage-point gap between WUENIC estimate (65.0%) and Administrative coverage (74.0%) for Cameroon MCV1 in 2021. This difference requires investigation and does not establish which figure is correct.",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+                ]
+              }
+            ],
+            "revision": [],
+            "question": []
+          },
+          "memory_ids": [
+            "mem-52",
+            "mem-54"
+          ],
+          "has_prior_conflict": true,
+          "prior_conflict": {
+            "id": "mem-54",
+            "content": "For Cameroon MCV1 in 2021, the administrative figure (74.0%) sits 18.0 percentage points above an independent household-survey measurement (56.0%). The administrative number is not usable as the coverage level; the survey line is the better estimate of the level, with the usual caveats about survey design.",
+            "confidence": 0.7,
+            "refs": [
+              "https://data.unicef.org/resources/dataset/immunization/",
+              "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+            ]
+          },
+          "prior_disposition": null,
+          "open_questions": [],
+          "effect": "An earlier investigation of this country, antigen and year already found that the administrative figure sits far above an independent household measurement. This run therefore goes for the survey evidence first, and the question it is answering is whether that conflict still holds, not which figure is right.",
+          "preferred_action": "FETCH_SOURCE_DOCUMENT",
+          "preferred_target": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+        }
+      },
+      {
+        "country": "Cameroon",
+        "antigen": "MCV1",
+        "year": "2023",
+        "data_kind": "observed",
+        "status": "REVIEW",
+        "review_status": "REVIEW",
+        "confidence": "low",
+        "decision": "REVIEW",
+        "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods.",
+        "measures": {
+          "a": {
+            "measure": "WUENIC estimate",
+            "value": 71.0
+          },
+          "b": {
+            "measure": "Administrative coverage",
+            "value": 82.0
+          }
+        },
+        "gap_percentage_points": 11.0,
+        "recommendation": null,
+        "conflicts": [],
+        "lineage": [
+          {
+            "measure": "Administrative coverage",
+            "value": 82.0,
+            "origin": "cameroon_admin_jrf",
+            "origin_label": "Cameroon administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "measurement_kind": "administrative_reporting",
+            "source_id": "who_country_profile_2024",
+            "source_type": "pdf",
+            "source_name": "WUENIC country profile 2023 revision",
+            "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          },
+          {
+            "measure": "WUENIC estimate",
+            "value": 71.0,
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "measurement_kind": "reconciled_estimate",
+            "source_id": "wuenic_workbook_2025",
+            "source_type": "xlsx",
+            "source_name": "WUENIC 2025 revision",
+            "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          }
+        ],
+        "evidence": [
+          {
+            "evidence_id": "ev-1",
+            "kind": "SOURCE_CHECK",
+            "name": "Cameroon DHS 2018 survey report",
+            "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+            "status": "SOURCE_DOCUMENT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-2",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-3",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC 2025 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "EXTRACT_CONSISTENT",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-4",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-5",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-6",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-7",
+            "kind": "SOURCE_CHECK",
+            "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-8",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-9",
+            "kind": "DOCUMENT_FETCH",
+            "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "NOT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          }
+        ],
+        "uncertainties": [
+          "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+          "Missing support: No independent document confirms either value."
+        ],
+        "memory_recall": {
+          "known": {
+            "conflict": [],
+            "disposition": [],
+            "finding": [
+              {
+                "id": "mem-57",
+                "content": "Observed a 11.0 percentage-point gap between WUENIC estimate (71.0%) and Administrative coverage (82.0%) for Cameroon MCV1 in 2023. This difference requires investigation and does not establish which figure is correct.",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+                ]
+              }
+            ],
+            "revision": [],
+            "question": [],
+            "observation": [
+              {
+                "id": "mem-46",
+                "content": "Model challenge for Cameroon MCV1 2023: The claim presents a single-year comparison (2023) without showing the historical trend of the gap, which could indicate whether this is a persistent discrepancy or an anomaly. No information is provided about the specific denominator populations used for each estimate (e.g., target population definitions, census vs. projection sources), which directly affects coverage calculations. The administrative coverage figure (82.0%) is presented without any indication of data quality assessments, completeness of reporting, or known issues with the health management information system in Cameroon for 2",
+                "confidence": 0.7,
+                "refs": [
+                  "https://data.unicef.org/resources/dataset/immunization/",
+                  "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3"
+                ]
+              }
+            ]
+          },
+          "memory_ids": [
+            "mem-57",
+            "mem-46"
+          ],
+          "has_prior_conflict": false,
+          "prior_conflict": null,
+          "prior_disposition": null,
+          "open_questions": [],
+          "effect": "",
+          "preferred_action": null,
+          "preferred_target": null
+        }
+      },
+      {
+        "country": "Ethiopia",
+        "antigen": "MCV1",
+        "year": "2017",
+        "data_kind": "observed",
+        "status": "REVIEW",
+        "review_status": "REVIEW",
+        "confidence": "moderate",
+        "decision": "REVIEW",
+        "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods.",
+        "measures": {
+          "a": {
+            "measure": "WUENIC estimate",
+            "value": 59.0
+          },
+          "b": {
+            "measure": "Administrative coverage",
+            "value": 92.0
+          }
+        },
+        "gap_percentage_points": 33.0,
+        "recommendation": {
+          "recommended_measure": "Household survey coverage",
+          "recommended_value": 58.0,
+          "recommended_source": "Ethiopia household survey coverage, as compiled in the country profile",
+          "recommended_source_id": "who_country_profile_2024_ethiopia",
+          "not_recommended_measure": "Administrative coverage",
+          "not_recommended_value": 92.0,
+          "gap_percentage_points": 34.0,
+          "basis": "The administrative figure is 34.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design.",
+          "caveats": [
+            "The survey figure is independent of the administrative reporting, but it was read from a publication that also carries the administrative line, so it was not re-read from the survey's own report.",
+            "A survey measures a sample of households, not the whole population, so it carries its own sampling uncertainty.",
+            "This is a recommendation for the coverage level, not a claim that one of the published figures is correct."
+          ]
+        },
+        "conflicts": [
+          {
+            "code": "CONFLICT_ADMIN_SURVEY",
+            "country": "Ethiopia",
+            "antigen": "MCV1",
+            "year": "2017",
+            "measure_a": "Administrative coverage",
+            "value_a": 92.0,
+            "measure_b": "Household survey coverage",
+            "value_b": 58.0,
+            "gap_percentage_points": 34.0,
+            "origin_a": "ethiopia_admin_jrf",
+            "origin_b": "ethiopia_household_survey",
+            "note": "The administrative figure is 34.0 percentage points above an independent household-survey measurement for the same year. The administrative number is not usable as the coverage level; the survey is the better estimate of the level, with the usual caveats about survey design."
+          }
+        ],
+        "lineage": [
+          {
+            "measure": "Administrative coverage",
+            "value": 92.0,
+            "origin": "ethiopia_admin_jrf",
+            "origin_label": "Ethiopia administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "measurement_kind": "administrative_reporting",
+            "source_id": "who_country_profile_2024_ethiopia",
+            "source_type": "pdf",
+            "source_name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+            "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          },
+          {
+            "measure": "Household survey coverage",
+            "value": 58.0,
+            "origin": "ethiopia_household_survey",
+            "origin_label": "Ethiopia household survey coverage, as compiled in the country profile",
+            "measurement_kind": "household_survey",
+            "source_id": "who_country_profile_2024_ethiopia",
+            "source_type": "pdf",
+            "source_name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+            "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "INDEPENDENT_MEASUREMENT"
+          },
+          {
+            "measure": "WUENIC estimate",
+            "value": 59.0,
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "measurement_kind": "reconciled_estimate",
+            "source_id": "wuenic_workbook_2025",
+            "source_type": "xlsx",
+            "source_name": "WUENIC 2025 revision",
+            "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          }
+        ],
+        "evidence": [
+          {
+            "evidence_id": "ev-1",
+            "kind": "SOURCE_CHECK",
+            "name": "Cameroon DHS 2018 survey report",
+            "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+            "status": "SOURCE_DOCUMENT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-2",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-3",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC 2025 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "EXTRACT_CONSISTENT",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-4",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-5",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-6",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-7",
+            "kind": "SOURCE_CHECK",
+            "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-8",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-9",
+            "kind": "DOCUMENT_FETCH",
+            "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "NOT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          }
+        ],
+        "uncertainties": [
+          "Only part of 'WHO/UNICEF country profile for Ethiopia (2023 revision)' matched the expected table row.",
+          "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+          "Missing support: No independent document confirms either value."
+        ],
+        "memory_recall": null
+      },
+      {
+        "country": "Ethiopia",
+        "antigen": "MCV1",
+        "year": "2020",
+        "data_kind": "observed",
+        "status": "REVIEW",
+        "review_status": "REVIEW",
+        "confidence": "low",
+        "decision": "REVIEW",
+        "reason": "The observed gap meets the review threshold; investigate definitions, denominators, reporting quality, and estimation methods.",
+        "measures": {
+          "a": {
+            "measure": "WUENIC estimate",
+            "value": 67.0
+          },
+          "b": {
+            "measure": "Administrative coverage",
+            "value": 93.0
+          }
+        },
+        "gap_percentage_points": 26.0,
+        "recommendation": null,
+        "conflicts": [],
+        "lineage": [
+          {
+            "measure": "Administrative coverage",
+            "value": 93.0,
+            "origin": "ethiopia_admin_jrf",
+            "origin_label": "Ethiopia administrative reporting (WHO/UNICEF Joint Reporting Form), as published in the country profile",
+            "measurement_kind": "administrative_reporting",
+            "source_id": "who_country_profile_2024_ethiopia",
+            "source_type": "pdf",
+            "source_name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+            "source_ref": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          },
+          {
+            "measure": "WUENIC estimate",
+            "value": 67.0,
+            "origin": "wuenic_2025",
+            "origin_label": "WHO/UNICEF Estimates of National Immunization Coverage (WUENIC), 2025 revision",
+            "measurement_kind": "reconciled_estimate",
+            "source_id": "wuenic_workbook_2025",
+            "source_type": "xlsx",
+            "source_name": "WUENIC 2025 revision",
+            "source_ref": "https://data.unicef.org/resources/dataset/immunization/",
+            "is_derived": false,
+            "is_synthetic": false,
+            "independent_capable": false,
+            "verification_scope": "SELF_CONSISTENCY"
+          }
+        ],
+        "evidence": [
+          {
+            "evidence_id": "ev-1",
+            "kind": "SOURCE_CHECK",
+            "name": "Cameroon DHS 2018 survey report",
+            "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+            "status": "SOURCE_DOCUMENT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-2",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC country profile 2023 revision",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-3",
+            "kind": "SOURCE_CHECK",
+            "name": "WUENIC 2025 revision",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "EXTRACT_CONSISTENT",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-4",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-5",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-6",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-7",
+            "kind": "SOURCE_CHECK",
+            "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+            "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+            "status": "PARTIAL_MATCH",
+            "scope": "SELF_CONSISTENCY",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-8",
+            "kind": "CONFLICT",
+            "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+            "url": "",
+            "status": "CONFLICT_DETECTED",
+            "scope": "INDEPENDENT_MEASUREMENT",
+            "findings": [
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ]
+            ]
+          },
+          {
+            "evidence_id": "ev-9",
+            "kind": "DOCUMENT_FETCH",
+            "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+            "url": "https://data.unicef.org/resources/dataset/immunization/",
+            "status": "NOT_RETRIEVED",
+            "scope": "DOCUMENT_PRESENCE",
+            "findings": [
+              [
+                "Cameroon",
+                "MCV1",
+                "2020"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2021"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2018"
+              ],
+              [
+                "Cameroon",
+                "MCV1",
+                "2023"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2017"
+              ],
+              [
+                "Ethiopia",
+                "MCV1",
+                "2020"
+              ]
+            ]
+          }
+        ],
+        "uncertainties": [
+          "Only part of 'WHO/UNICEF country profile for Ethiopia (2023 revision)' matched the expected table row.",
+          "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+          "Missing support: No independent document confirms either value."
+        ],
+        "memory_recall": null
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "ev-1",
+        "kind": "SOURCE_CHECK",
+        "name": "Cameroon DHS 2018 survey report",
+        "url": "https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf",
+        "status": "SOURCE_DOCUMENT_RETRIEVED",
+        "scope": "DOCUMENT_PRESENCE"
+      },
+      {
+        "evidence_id": "ev-2",
+        "kind": "SOURCE_CHECK",
+        "name": "WUENIC country profile 2023 revision",
+        "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3",
+        "status": "PARTIAL_MATCH",
+        "scope": "SELF_CONSISTENCY"
+      },
+      {
+        "evidence_id": "ev-3",
+        "kind": "SOURCE_CHECK",
+        "name": "WUENIC 2025 revision",
+        "url": "https://data.unicef.org/resources/dataset/immunization/",
+        "status": "EXTRACT_CONSISTENT",
+        "scope": "SELF_CONSISTENCY"
+      },
+      {
+        "evidence_id": "ev-4",
+        "kind": "CONFLICT",
+        "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2018: Administrative coverage 71.0 vs Household survey coverage 65.3",
+        "url": "",
+        "status": "CONFLICT_DETECTED",
+        "scope": "INDEPENDENT_MEASUREMENT"
+      },
+      {
+        "evidence_id": "ev-5",
+        "kind": "CONFLICT",
+        "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2020: Administrative coverage 74.0 vs Household survey coverage 54.0",
+        "url": "",
+        "status": "CONFLICT_DETECTED",
+        "scope": "INDEPENDENT_MEASUREMENT"
+      },
+      {
+        "evidence_id": "ev-6",
+        "kind": "CONFLICT",
+        "name": "CONFLICT_ADMIN_SURVEY Cameroon MCV1 2021: Administrative coverage 74.0 vs Household survey coverage 56.0",
+        "url": "",
+        "status": "CONFLICT_DETECTED",
+        "scope": "INDEPENDENT_MEASUREMENT"
+      },
+      {
+        "evidence_id": "ev-7",
+        "kind": "SOURCE_CHECK",
+        "name": "WHO/UNICEF country profile for Ethiopia (2023 revision)",
+        "url": "https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf",
+        "status": "PARTIAL_MATCH",
+        "scope": "SELF_CONSISTENCY"
+      },
+      {
+        "evidence_id": "ev-8",
+        "kind": "CONFLICT",
+        "name": "CONFLICT_ADMIN_SURVEY Ethiopia MCV1 2017: Administrative coverage 92.0 vs Household survey coverage 58.0",
+        "url": "",
+        "status": "CONFLICT_DETECTED",
+        "scope": "INDEPENDENT_MEASUREMENT"
+      },
+      {
+        "evidence_id": "ev-9",
+        "kind": "DOCUMENT_FETCH",
+        "name": "Source document https://data.unicef.org/resources/dataset/immunization/",
+        "url": "https://data.unicef.org/resources/dataset/immunization/",
+        "status": "NOT_RETRIEVED",
+        "scope": "DOCUMENT_PRESENCE"
+      }
+    ],
+    "stop_reason": "SOURCES_UNAVAILABLE",
+    "uncertainties": {
+      "Cameroon MCV1 (2018)": [
+        "The document behind 'Cameroon DHS 2018 survey report' was retrieved but its values were not checked.",
+        "Only part of 'WUENIC country profile 2023 revision' matched the expected table row.",
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ],
+      "Cameroon MCV1 (2020)": [
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ],
+      "Cameroon MCV1 (2021)": [
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ],
+      "Cameroon MCV1 (2023)": [
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ],
+      "Ethiopia MCV1 (2017)": [
+        "Only part of 'WHO/UNICEF country profile for Ethiopia (2023 revision)' matched the expected table row.",
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ],
+      "Ethiopia MCV1 (2020)": [
+        "Only part of 'WHO/UNICEF country profile for Ethiopia (2023 revision)' matched the expected table row.",
+        "'WUENIC 2025 revision' was only compared with the extract the claim came from (self-consistency, not independent verification).",
+        "Missing support: No independent document confirms either value."
+      ]
+    }
+  },
+  "execution_time_seconds": 23.788,
+  "programme_checks": [],
+  "elapsed_seconds": 23.788
+}

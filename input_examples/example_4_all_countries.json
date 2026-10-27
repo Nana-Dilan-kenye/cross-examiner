@@ -1,0 +1,7 @@
+{
+  "question": "Compare every published coverage figure we hold for Cameroon MCV1 and say which of them can be trusted as the coverage level.",
+  "source": "auto",
+  "model": "off",
+  "use_memory": true,
+  "remember": false
+}

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Cross-Examiner — Evidence-Based Investigation</title>
+  <link rel="icon" href="data:,">
+  <link rel="preload" href="team-script.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#investigation-input">Skip to the investigation form</a>
+
+  <header class="masthead">
+    <div class="wrap topbar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <h1>Cross-Examiner — Evidence-Based Investigation</h1>
+      </div>
+      <div id="mode-banner" class="banner" role="status" aria-live="polite">Checking the API…</div>
+      <nav id="sectionnav" class="rail" aria-label="Result sections" hidden>
+        <a class="rail-link" href="#evidence">Evidence</a>
+        <a class="rail-link" href="#trace">Trace</a>
+        <a class="rail-link" href="#conclusion">Conclusion</a>
+        <a class="rail-link" href="#run">Run details</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <p class="lede">
+        Published coverage figures for the same country, antigen and year often disagree.
+        Cross-Examiner reads each figure with its lineage, counts figures that share one origin
+        as one, checks administrative figures against independent household measurements, and
+        returns a recommendation or an explicit <strong>REVIEW</strong> for a person to decide.
+      </p>
+      <p class="disclaimer">
+        Cross-Examiner supports human decision-making. It does not independently certify which
+        vaccination figure is true.
+      </p>
+    </div>
+
+    <div class="wrap">
+      <section id="investigation-input" class="panel" aria-labelledby="input-heading">
+        <h2 id="input-heading"><span class="sec-tag" aria-hidden="true">A</span>Investigation input</h2>
+        <form id="investigate-form" novalidate>
+          <div class="field">
+            <label for="question">Planner’s question</label>
+            <textarea id="question" name="question" rows="3" maxlength="2000">Which Cameroon MCV1 coverage figure should we plan against for 2020?</textarea>
+          </div>
+
+          <fieldset class="scope">
+            <legend>Scope (optional). Narrows the investigation; leave blank to consider every figure the question matches.</legend>
+            <div class="scope-grid">
+              <div class="field">
+                <label for="country">Country</label>
+                <input id="country" name="country" type="text" value="Cameroon" autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="antigen">Antigen</label>
+                <input id="antigen" name="antigen" type="text" value="MCV1" autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="year">Year</label>
+                <input id="year" name="year" type="text" inputmode="numeric" value="2020" autocomplete="off">
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="field checkbox">
+            <input id="remember" name="remember" type="checkbox">
+            <label for="remember">Store what this run finds in memory for later runs (writes to the H-MEM store)</label>
+          </div>
+          <p id="remember-hint" class="hint"></p>
+
+          <div class="actions">
+            <button id="investigate-button" type="submit">Investigate</button>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <div class="examples">
+          <h3>Example questions</h3>
+          <p class="hint">Each example fills the form from a file in <code>input_examples/</code>. Nothing runs until you press Investigate.</p>
+          <div id="examples" class="chips">
+            <p class="muted">Loading the examples…</p>
+          </div>
+        </div>
+      </section>
+
+      <div id="error-panel" class="alert" role="alert" tabindex="-1" hidden></div>
+
+      <div id="results" hidden>
+        <div id="verdict" class="verdict" role="status" aria-live="polite"></div>
+
+        <section id="evidence" class="panel" aria-labelledby="evidence-heading">
+          <h2 id="evidence-heading"><span class="sec-tag" aria-hidden="true">B</span>Evidence comparison</h2>
+          <div id="evidence-body"></div>
+        </section>
+
+        <section id="trace" class="panel" aria-labelledby="trace-heading">
+          <h2 id="trace-heading"><span class="sec-tag" aria-hidden="true">C</span>Investigation trace</h2>
+          <div id="trace-body"></div>
+        </section>
+
+        <section id="conclusion" class="panel" aria-labelledby="conclusion-heading">
+          <h2 id="conclusion-heading"><span class="sec-tag" aria-hidden="true">D</span>Conclusion and review status</h2>
+          <div id="conclusion-body"></div>
+        </section>
+
+        <section id="run" class="panel" aria-labelledby="run-heading">
+          <h2 id="run-heading"><span class="sec-tag" aria-hidden="true">E</span>Run details</h2>
+          <div id="run-body"></div>
+        </section>
+      </div>
+    </div>
+
+    <button id="totop" class="totop" type="button" aria-label="Back to the top" hidden>↑</button>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>
+        This page calls the same API as <code>python3 run.py</code>. In sample mode the answers come
+        from the cached files in <code>data/</code> and every finding is labelled as sample data.
+      </p>
+      <p class="footer-brand">Built by Team RadixMente</p>
+    </div>
+  </footer>
+</body>
+</html>

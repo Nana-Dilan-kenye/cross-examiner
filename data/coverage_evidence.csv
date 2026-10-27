@@ -1,0 +1,17 @@
+country,antigen,year,measure,value_percent,source,source_url,notes
+Cameroon,MCV1,2020,WUENIC estimate,63,WUENIC 2025 revision,https://data.unicef.org/resources/dataset/immunization/,Estimate
+Cameroon,MCV1,2020,Administrative coverage,74,WUENIC country profile 2023 revision,https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3,Reported administrative figure
+Cameroon,MCV1,2020,Household survey coverage,54,WUENIC country profile 2023 revision,https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3,Household survey row published in the country profile
+Cameroon,MCV1,2021,WUENIC estimate,65,WUENIC 2025 revision,https://data.unicef.org/resources/dataset/immunization/,Estimate
+Cameroon,MCV1,2021,Administrative coverage,74,WUENIC country profile 2023 revision,https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3,Reported administrative figure
+Cameroon,MCV1,2021,Household survey coverage,56,WUENIC country profile 2023 revision,https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3,Household survey row published in the country profile
+Cameroon,MCV1,2023,WUENIC estimate,71,WUENIC 2025 revision,https://data.unicef.org/resources/dataset/immunization/,Estimate
+Cameroon,MCV1,2023,Administrative coverage,82,WUENIC country profile 2023 revision,https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3,Reported administrative figure
+Cameroon,MCV1,2018,WUENIC estimate,61,WUENIC 2025 revision,https://data.unicef.org/resources/dataset/immunization/,Estimate
+Cameroon,MCV1,2018,Administrative coverage,71,WUENIC country profile 2023 revision,https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-cmr.pdf?download=true&sfvrsn=fb0d6c18_3,Reported administrative figure
+Cameroon,MCV1,2018,Household survey coverage,65.3,Cameroon DHS 2018 survey report,https://dhsprogram.com/pubs/pdf/SR266/SR266.pdf,Measles (MCV1) in children 12-23 months; transcribed from the published DHS summary report
+Ethiopia,MCV1,2017,WUENIC estimate,59,WUENIC 2025 revision,https://data.unicef.org/resources/dataset/immunization/,Estimate
+Ethiopia,MCV1,2017,Administrative coverage,92,WHO/UNICEF country profile for Ethiopia (2023 revision),https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf,Reported administrative figure
+Ethiopia,MCV1,2017,Household survey coverage,58,WHO/UNICEF country profile for Ethiopia (2023 revision),https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf,Household survey row published in the country profile; it agrees with the reconciled estimate
+Ethiopia,MCV1,2020,WUENIC estimate,67,WUENIC 2025 revision,https://data.unicef.org/resources/dataset/immunization/,Estimate
+Ethiopia,MCV1,2020,Administrative coverage,93,WHO/UNICEF country profile for Ethiopia (2023 revision),https://cdn.who.int/media/docs/default-source/country-profiles/immunization/2024-country-profiles/immunization-2024-eth.pdf,Reported administrative figure

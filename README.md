@@ -77,37 +77,7 @@ conflict, and the layer records it as such.
 
 ## Architecture
 
-```
-   a planner                    the Cross-Examiner service                  the platform
-      │                                     │                                     │
-      │  POST /run                           │                                     │
-      ├────────────────────────────────────►│                                     │
-      │                                      │  read the evidence                   │
-      │                                      ├────────────────────────────────────►│
-      │                                      │   Zetaris unified semantic layer    │
-      │                                      │   lightning.metastore.cross_examiner │
-      │                                      │   .coverage_observations             │
-      │                                      │   .coverage_observation              │
-      │                                      │                                     │
-      │                                      │  one row per reported number, with   │
-      │                                      │  its lineage: source, series,        │
-      │                                      │  derivation, independence, synthetic │
-      │                                      │                                     │
-      │                                      ├─────► Meterless (Nightshift) ───────►│
-      │                                      │        the model proposes, it never │
-      │                                      │        decides                      │
-      │                                      │                                     │
-      │                                      ├─────► H-MEM ─────────────────────►│
-      │                                      │        what an earlier run found    │
-      │                                      │                                     │
-      │  200 OK                               │                                     │
-      │  findings, lineage, evidence ids,    │                                     │
-      │  confidence, review status, run id   │                                     │
-      │◄────────────────────────────────────┤                                     │
-      │                                     │                                     │
-      │  GET /traces/<run_id>                │                                     │
-      ├────────────────────────────────────►│   logs/trace-<run_id>.jsonl          │
-```
+![Cross-Examiner System Architecture Flowchart](docs/architecture.png)
 
 The parts, and what each one is for:
 

@@ -315,6 +315,8 @@ class ConflictTests(unittest.TestCase):
         self.assertEqual(len(conflicts), 1)
         self.assertEqual(conflicts[0]["code"], "CONFLICT_ADMIN_SURVEY")
         self.assertAlmostEqual(conflicts[0]["gap_percentage_points"], 20.0)
+        self.assertIn("unverified", conflicts[0]["note"])
+        self.assertNotIn("confirmed truth", conflicts[0]["note"])
 
     def test_two_publications_of_one_series_are_not_a_conflict(self):
         finding = _finding()

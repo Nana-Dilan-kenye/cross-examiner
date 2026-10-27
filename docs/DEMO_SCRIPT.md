@@ -11,6 +11,15 @@ result may not.
 Every command below is one that was run on this machine. Run them
 before you record, so nothing surprises you.
 
+Sample-mode note: the commands in "Before you record" assume the live
+Zetaris instance and the Meterless H-MEM engine are running. If only
+the sample-mode path is available, replace `python3 -m src.app` with
+`SAMPLE_MODE=true python3 -m src.app`, replace `python3 scripts/verify_usl.py`
+with `python3 -m unittest tests.test_usl_offline`, and use
+`SAMPLE_MODE=true python3 -m src.analyzer --source csv --model off`.
+Sample mode does not exercise live H-MEM persistence or live Nightshift
+model calls.
+
 ---
 
 ## Before you record

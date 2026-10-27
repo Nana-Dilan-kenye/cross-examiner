@@ -334,8 +334,9 @@ def detect_conflicts(finding, threshold=5):
                     f"{gap:.1f} percentage points above an independent "
                     "household-survey measurement for the same year. The "
                     "administrative number is not usable as the coverage "
-                    "level; the survey is the better estimate of the level, "
-                    "with the usual caveats about survey design."
+                    "level; the survey is the more appropriate level estimate "
+                    "among the reported figures, but it remains an unverified "
+                    "measurement, with the usual caveats about survey design."
                 ),
             })
     return conflicts

@@ -538,7 +538,7 @@ false positives on clean controls: 0/12 (0.0)
 3. **Run it.** `curl -s -X POST http://127.0.0.1:8000/run -d
    @input_examples/example_1_cameroon_mcv1_2020.json` - the response
    carries the three numbers with their lineage, the conflict, the
-   recommendation (use the survey, 54, with caveats), the confidence
+   recommendation (review the household-survey figure, 54, as the more appropriate level estimate, with caveats; it is an independent measurement, not a verified value), the confidence
    (`moderate`), the review status (`REVIEW`) and the run id.
 4. **Show the critique.** The trace at `logs/trace-<run_id>.jsonl` shows
    the evidence that was checked, what the model proposed, what the

@@ -11,3 +11,19 @@ data/synthetic_programme_reports.db
 
 # The engine runner.
 engine/node_modules/
+
+# Private pitch, demo, and submission-planning materials.
+docs/DEMO_SCRIPT.md
+docs/SLIDES.md
+docs/SUBMISSION_CHECKLIST.md
+docs\RELEASE_VERIFICATION_RESULTS.md
+# Generated reports, traces, and temporary review artifacts.
+logs/
+reports/report.md
+reports/*_iterative_report.md
+reports/*_iterative_results.json
+TEMP-REVIEW.md
+eval/results.json
+
+# Private release verification report.
+docs/RELEASE_VERIFICATION_RESULTS.md
